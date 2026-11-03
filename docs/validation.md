@@ -23,7 +23,9 @@
 
 Le dépôt public [portfolio-raphael-mounir-](https://github.com/raphaelmounirprivate-dot/portfolio-raphael-mounir-) a été créé par Raphaël puis alimenté par le connecteur GitHub. Le tiret final fait partie du nom réel et des chemins de publication. Commit du code : `bfdc1cc350d46999e2723598ddbda336d9fc73dd`. Les arbres local et distant correspondent exactement : `8391a3159311d33864f6d908620f18cdac35f202`, images incluses. La branche locale main a été synchronisée et suit origin/main ; l’ancien commit local reste sur local-before-publication.
 
-Le [workflow 41704142105](https://github.com/raphaelmounirprivate-dot/portfolio-raphael-mounir-/actions/runs/41704142105) a réussi les tests Chromium, la compilation et l’envoi de l’artefact Pages. Le job deploy a échoué avec HTTP 404 : son journal demande d’activer GitHub Pages. Action attendue : Settings → Pages → Build and deployment → Source : GitHub Actions. Le connecteur ne propose pas ce réglage. Après activation, relancer le job échoué et contrôler le site public. L’URL publique n’est pas encore annoncée comme active. Aucun dépôt existant n’a changé de visibilité.
+Le [workflow 41704142105](https://github.com/raphaelmounirprivate-dot/portfolio-raphael-mounir-/actions/runs/41704142105) a réussi les tests Chromium, la compilation et l’envoi de l’artefact Pages. Après l’activation de Pages par Raphaël, la relance a terminé avec les jobs build et deploy en succès. Aucun dépôt existant n’a changé de visibilité.
+
+**Site public vérifié : https://raphaelmounirprivate-dot.github.io/portfolio-raphael-mounir-/**. Contrôles navigateur réels sur cette URL en 1440, 768 et 390 pixels : ressources sans erreur HTTP, galerie, carte mobile, liens directs, vue d’ensemble et thèmes clair/sombre. Captures publiques ordinateur et mobile inspectées, disponibles dans `.local/public-1440.png` et `.local/public-390.png`. Ce contrôle utilise Chromium, sans test sur appareil physique.
 
 ## Limites
 
