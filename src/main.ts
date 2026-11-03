@@ -8,9 +8,12 @@ import { initTheme } from "./theme";
 import { initGalleries } from "./gallery";
 import { initNavigation } from "./navigation";
 import { initAnimations } from "./animations";
+import { initDemos } from "./demos";
+import "./demos.css";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = render(projects);
 initTheme();
 initGalleries(projects);
 initNavigation();
 initAnimations();
+initDemos();

@@ -1,5 +1,5 @@
 {
-  "name": "Une fibre, deux univers",
+  "name": "Une fibre, six univers",
   "mode": "experience",
   "tokens": {
     "colors": {
@@ -37,8 +37,8 @@
     "authority": "Brief utilisateur : fibre optique, bleu nuit, cyan, scroll libre",
     "THESIS": "Un signal relie les univers vérifiés de Raphaël Mounir.",
     "OWN_WORLD": "Une liaison fibre traduite en parcours éditorial, sans simulation technique.",
-    "STORY": "Départ à Namur, mouvement, simulation, présentation de Raphaël, prochaine connexion.",
+    "STORY": "Départ, mouvement, simulation, connexions, quotidien, raisonnement, mots, à propos.",
     "FIRST_VIEWPORT": "Nom, accroche fournie, présentation, deux accès au trajet, fibre géométrique.",
-    "FORM": "Deux escales séquentielles, galerie réelle et carte compacte ; vue d’ensemble issue des mêmes données."
+    "FORM": "Six escales avec démonstrations locales réinitialisables ; carte et grille partagent les données."
   }
 }

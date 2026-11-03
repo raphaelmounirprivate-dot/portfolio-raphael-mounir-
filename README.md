@@ -1,6 +1,8 @@
 # Raphaël Mounir — D’une connexion à l’autre
 
-Un portfolio français qui suit un signal dans la fibre, de **Mon Coach Sport** à **Pandemic Horizon**. Coif’heure est exclu à la demande de Raphaël. Les faits viennent du brief et de son GitHub ; les captures du jeu restent à fournir.
+Un portfolio français qui suit un signal dans la fibre à travers **six univers interactifs** : Mon Coach Sport, Pandemic Horizon, Télécom & Réseau, Mon App (Budget Belgique), Math et Déclic Ados. Coif’heure est exclu à la demande de Raphaël. Chaque escale se teste sur place, sans renvoi vers GitHub.
+
+Les petites démos sont adaptées des fonctions et exercices documentés dans les projets. Les séries, le budget et la mini-simulation utilisent des exemples fictifs et ne sauvegardent rien. La simulation du jeu est volontairement simplifiée ; elle ne reproduit pas son moteur Godot. Les exercices Math et Déclic et le diagnostic PoE conservent leurs corrections expliquées. Les captures réelles du sport restent disponibles dans un volet sous sa démo.
 
 TypeScript strict, HTML, CSS, Vite. Site entièrement statique, sans compte ni backend. Thèmes clair/sombre selon le système, choix mémorisé localement, défilement libre, carte du voyage, vue d’ensemble et galerie accessible.
 
@@ -30,17 +32,17 @@ La dernière commande sert la compilation sur http://localhost:4173. `test:produ
 
 ## Ajouter une destination
 
-Modifier uniquement `src/data/projects.ts` : ajouter un objet `Project` au tableau `projects`, avec un identifiant unique sans espace, son titre, type, univers, accroche, résumé, technologies vérifiées, captures, liens, couleur d’accent et statut. `story` est facultatif. Le trajet, les liens vers l’escale suivante, le mini-plan et la grille sont générés depuis cette source.
+Modifier `src/data/projects.ts` : ajouter un objet `Project` au tableau `projects`, avec un identifiant unique sans espace, son titre, type, univers, accroche, résumé, technologies vérifiées, captures, couleur d’accent, statut et clé `demo`. `story` est facultatif. Le trajet, les liens vers l’escale suivante, le mini-plan et la grille sont générés depuis cette source. Une nouvelle interaction se définit dans `src/demo-render.ts` et `src/demos.ts`, avec son type et son contenu dans `src/data/demo-content.ts` ; les calculs purs restent dans `src/demo-models.ts`.
 
-Ne pas ajouter une destination sans contenu. Ne pas déduire une technologie ou un résultat sans preuve. Pour un projet sans capture, utiliser `screenshots: []` : un aperçu à venir explicite apparaît. Pour un projet sans lien, utiliser `links: []`.
+Ne pas ajouter une destination sans contenu. Ne pas déduire une technologie ou un résultat sans preuve. Pour un projet sans capture, utiliser `screenshots: []` : sa démo reste disponible, avec un résumé de l’interaction dans la vue d’ensemble. Ne pas ajouter de liens GitHub dans l’interface : le visiteur doit pouvoir essayer le projet sur place.
 
 ## Captures, textes et liens
 
 Placer les images dans `public/images/`, idéalement WebP ou PNG compressé. Dans `screenshots`, utiliser le helper `asset('nom-image.png')`, un texte `alt` décrivant l’écran, une `caption` et les dimensions réelles `width` / `height`. Les images sont chargées en différé. La galerie accepte les boutons, les flèches du clavier et le balayage horizontal.
 
-Modifier `summary`, `story`, `technologies` et `links` dans la même entrée. Les liens doivent être des URL HTTPS vérifiées. Le dépôt du sport contient les captures ; leur provenance exacte est conservée dans `docs/sources.md`. `node --use-system-ca scripts/fetch-assets.mjs` permet de retélécharger les trois originaux au commit fixé. Ne pas utiliser de captures d’un autre projet.
+Modifier `summary`, `story`, `technologies` et `demo` dans la même entrée. Les questions et explications se modifient dans `src/data/demo-content.ts`. Le dépôt du sport contient les captures ; leur provenance exacte est conservée dans `docs/sources.md`. `node --use-system-ca scripts/fetch-assets.mjs` permet de retélécharger les trois originaux au commit fixé. Ne pas utiliser de captures d’un autre projet.
 
-Le contact contient uniquement le GitHub demandé. Aucun email ou LinkedIn n’a été inventé ou repris des données privées du compte.
+La dernière section ramène vers les démos. Aucun email ou LinkedIn n’a été inventé ou repris des données privées du compte.
 
 ## Personnaliser les couleurs
 

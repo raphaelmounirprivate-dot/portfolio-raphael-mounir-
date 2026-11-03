@@ -3,6 +3,7 @@ export function initNavigation(): void {
   const overview = document.querySelector<HTMLElement>("#overview")!;
   const opener = document.querySelector<HTMLButtonElement>("#open-overview")!;
   const map = document.querySelector<HTMLElement>(".journey-map")!;
+  document.querySelector(".header")!.after(map);
   const toggle = document.querySelector<HTMLButtonElement>("#map-toggle")!;
   let previousScroll = 0;
   const close = (restore: boolean): void => {

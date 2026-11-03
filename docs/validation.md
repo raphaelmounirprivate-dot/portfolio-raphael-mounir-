@@ -1,6 +1,6 @@
 # Validation locale du 3 novembre 2026
 
-## Résultats exécutés
+## Première publication — résultats exécutés
 
 - Installation npm : 19 paquets, audit de 20 paquets, zéro vulnérabilité signalée.
 - `npm run build` : TypeScript strict puis Vite, succès. Dernière compilation : 13 modules, JavaScript 15,34 ko (5,97 ko gzip), CSS 17,15 ko (4,55 ko gzip). Images : environ 202 ko au total ; polices locales et aucun appel à Google Fonts.
@@ -29,4 +29,13 @@ Le [workflow 41704142105](https://github.com/raphaelmounirprivate-dot/portfolio-
 
 ## Limites
 
-Pas de test sur appareil physique ni Safari/Firefox. Pas de capture du jeu fournie : visuel de remplacement identifié, aucun écran inventé. Aucun email ou LinkedIn ajouté. Le contenu reste visible si l’animation échoue. Le site applicatif exige JavaScript ; un message noscript renvoie au GitHub.
+Pas de test sur appareil physique ni Safari/Firefox. Pas de capture du jeu fournie : mini-simulation adaptée et identifiée, sans présenter un faux écran original. Aucun email ou LinkedIn ajouté. Le contenu reste visible si l’animation échoue. Le site applicatif exige JavaScript ; un message noscript invite à activer JavaScript.
+
+## Mise à jour — six démos sur place
+
+- Ajout Télécom & Réseau, Mon App / Budget Belgique, Math et Déclic Ados. Boutons externes GitHub supprimés de toute l’interface, y compris le noscript.
+- Six démos locales, sans compte distant, transmission, sauvegarde ni donnée personnelle. Les adaptations et les données fictives sont signalées.
+- 36 tests navigateur réussis en 1440 × 1000, 768 × 1024 et 390 × 844 : six destinations, absence de liens GitHub, navigation, thème, galerie, séries et chrono (pause, reprise, échéance, reset), paiement idempotent, dépense unique, deux stratégies, quiz avec erreur/correction, indice, score et clavier.
+- Vérification explicite de l’absence de chevauchement entre le premier bouton actif de chaque démo et la carte du parcours. Revue des captures : la carte initialement gênante a été déplacée en barre sticky sur mobile/tablette ; les commandes et explications sont dégagées.
+- Revue visuelle effectuée dans le fil après indisponibilité du sous-agent de finition ; aucune revue indépendante de cette mise à jour annoncée. Le système visuel existant est conservé.
+- Compilation TypeScript/Vite et test de la version compilée sous le sous-répertoire Pages réussis aux trois formats. Publication de cette mise à jour en cours.

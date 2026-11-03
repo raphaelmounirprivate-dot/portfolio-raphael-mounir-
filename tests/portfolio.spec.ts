@@ -10,7 +10,8 @@ test("le voyage et les ressources se chargent sans erreur", async ({
   });
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-  await expect(page.locator("[data-destination]")).toHaveCount(2);
+  await expect(page.locator("[data-destination]")).toHaveCount(6);
+  await page.locator(".real-captures > summary").click();
   await page.locator("#mon-coach-sport").scrollIntoViewIfNeeded();
   await expect(page.locator(".phone img")).toBeVisible();
   await expect
@@ -26,6 +27,10 @@ test("le voyage et les ressources se chargent sans erreur", async ({
     "depart",
     "mon-coach-sport",
     "pandemic-horizon",
+    "telecom",
+    "mon-app",
+    "math",
+    "declic-ados",
     "a-propos",
     "contact",
   ]) {
@@ -37,6 +42,7 @@ test("le voyage et les ressources se chargent sans erreur", async ({
     ).toBe(true);
   }
   await expect(page.getByText("Coif’heure", { exact: false })).toHaveCount(0);
+  await expect(page.locator('a[href*="github.com"]')).toHaveCount(0);
   expect(errors).toEqual([]);
   await page.evaluate(async () => {
     for (const image of document.images) {
@@ -61,6 +67,7 @@ test("le voyage et les ressources se chargent sans erreur", async ({
 
 test("galerie par boutons, clavier et balayage", async ({ page }) => {
   await page.goto("/#mon-coach-sport");
+  await page.locator(".real-captures > summary").click();
   const gallery = page.locator("[data-gallery]");
   await gallery.getByRole("button", { name: "Capture suivante" }).click();
   await expect(gallery.locator("[data-counter]")).toHaveText("2 / 3");
@@ -93,7 +100,7 @@ test("vue d’ensemble, liens directs et retour au focus", async ({ page }) => {
   const opener = page.getByRole("button", { name: "Vue d’ensemble" });
   await opener.click();
   await expect(page.locator("#overview")).toBeFocused();
-  await expect(page.locator("[data-overview-link]")).toHaveCount(2);
+  await expect(page.locator("[data-overview-link]")).toHaveCount(6);
   await page.getByRole("button", { name: "Revenir au voyage" }).click();
   await expect(opener).toBeFocused();
   await opener.click();

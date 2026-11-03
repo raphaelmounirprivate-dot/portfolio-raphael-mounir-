@@ -1,5 +1,5 @@
 ---
-name: Une fibre, deux univers
+name: Une fibre, six univers
 description: Le portfolio de Raphaël Mounir au fil de la fibre
 colors:
   background: "#080f1c"
@@ -18,12 +18,13 @@ typography:
 rounded:
   button: "6px"
   preview: "12px"
+  navigation: "8px"
 spacing:
   small: "8px"
   medium: "24px"
   large: "32px"
 ---
-# Une fibre, deux univers
+# Une fibre, six univers
 
 ## Overview
 
@@ -51,5 +52,9 @@ Le cadrage retenu transpose un schéma de liaison en parcours éditorial libre.
 - Réduction des mouvements : signal et transitions supprimés, aucun scroll animé.
 - Galerie : image réelle, légende, boutons précédent/suivant, balayage et flèches clavier.
 - Vue d’ensemble : section intégrée, retour au point de départ avec restauration du focus.
-- Risque honnête : absence de capture du jeu ; remplacement sobre explicitement identifié.
-- Critère de qualité : deux destinations identifiables, lisibles et accessibles sans animation.
+- Chaque escale place sa démo interactive dans une surface de travail à côté du récit. La galerie sport se déplie sous sa démo. Aucune redirection GitHub.
+- Le thème existant reste commun ; la variété vient des tâches réelles : séance, simulation, diagnostic, budget et apprentissages.
+- Risque honnête : les démos sont adaptées, les données fictives et la simulation du jeu simplifiée ; la note sous chaque essai le précise.
+- Critère de qualité : six destinations identifiables, lisibles et accessibles sans animation, avec une interaction réellement utilisable et réinitialisable.
+
+La carte conserve son dock sur grand écran. À 960 px et moins, elle passe dans une barre compacte sticky sous l’en-tête, avec menu déroulant : aucun contrôle ou retour de démo ne doit être masqué. Le minutage se lit comme un timer, sans annonce automatique chaque seconde.

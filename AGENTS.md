@@ -20,6 +20,8 @@ Utiliser le niveau minimal fiable : simple et local au minimum, plusieurs fichie
 ## Contenu et publication
 Les destinations, le mini-plan et la vue d’ensemble proviennent de src/data/projects.ts. Les faits viennent du brief et des README vérifiés ; voir docs/sources.md. Aucun secret, donnée financière ou historique personnel. Ne jamais publier de dépôt privé ni changer sa visibilité sans autorisation. Dépôt cible : portfolio-raphael-mounir-.
 
+Chaque destination expose une démo locale via sa propriété `demo`. Aucune redirection GitHub dans l’interface. Contenu pédagogique dans `src/data/demo-content.ts`, affichage dans `src/demo-render.ts`, interactions dans `src/demos.ts`, calculs purs dans `src/demo-models.ts`. Les données de démonstration sont fictives et non persistées. Les démos adaptées ne doivent pas être présentées comme les applications originales complètes. Les montants restent en centimes entiers et le paiement d’une facture est idempotent. Les réinitialisations doivent réellement restaurer l’état initial.
+
 ## Skills installés
 Les sept skills sont préexistants dans le catalogue de cette session et détectés, sans réinstallation ni mise à jour. Les empreintes locales et sources sont consignées dans docs/skills.md. Aucun installateur distant exécuté.
 

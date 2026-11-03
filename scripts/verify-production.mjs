@@ -58,10 +58,11 @@ try {
         await img.decode();
       }
     });
+    await page.locator(".real-captures > summary").click();
     await page.getByRole("button", { name: "Capture suivante" }).click();
     if ((await page.locator("[data-counter]").textContent()) !== "2 / 3")
       throw Error("gallery");
-    if (width < 640) {
+    if (width <= 960) {
       await page.locator("#map-toggle").click();
       if (
         (await page.locator("#map-toggle").getAttribute("aria-expanded")) !==
@@ -71,6 +72,27 @@ try {
     }
     await page.locator('[data-map="pandemic-horizon"]').click();
     if (!page.url().endsWith("#pandemic-horizon")) throw Error("anchor");
+
+    if ((await page.locator("[data-demo]").count()) !== 6)
+      throw Error("six demos");
+    if ((await page.locator('a[href*="github.com"]').count()) !== 0)
+      throw Error("github link");
+    const budget = page.locator('[data-demo="budget"]');
+    await budget.locator("[data-pay]").click();
+    if (
+      !(await budget.locator("[data-feedback]").textContent()).includes(
+        "double déduction",
+      )
+    )
+      throw Error("budget");
+    const math = page.locator('[data-demo="math"]');
+    await math.getByRole("button", { name: "64", exact: true }).click();
+    if (
+      !(await math.locator("[data-feedback]").textContent()).includes(
+        "Bonne réponse",
+      )
+    )
+      throw Error("math");
     const contrast = await page.evaluate(() => {
       const rgb = (s) =>
         s

@@ -1,3 +1,5 @@
+import type { DemoKind } from "./demo-content";
+
 export interface Screenshot {
   src: string;
   alt: string;
@@ -9,19 +11,18 @@ export interface Screenshot {
 export interface Project {
   id: string;
   title: string;
-  type: "Application Android" | "Jeu PC" | "Site web";
+  type: "Application Android" | "Jeu PC" | "Site web" | "Application budget";
   universe: string;
   tagline: string;
   summary: string;
   story?: string;
   technologies: string[];
   screenshots: Screenshot[];
-  links: { label: string; url: string }[];
+  demo: DemoKind;
   accentColor: string;
   status: string;
 }
 
-export const githubUrl = "https://github.com/raphaelmounirprivate-dot";
 const asset = (name: string): string =>
   `${import.meta.env.BASE_URL}images/${name}`;
 
@@ -60,13 +61,7 @@ export const projects: Project[] = [
         height: 936,
       },
     ],
-    links: [
-      { label: "Explorer le code", url: `${githubUrl}/full-body` },
-      {
-        label: "Télécharger l’APK 0.9.1",
-        url: `${githubUrl}/full-body/releases/tag/v0.9.1`,
-      },
-    ],
+    demo: "sport",
     accentColor: "#ffb57b",
     status: "Projet personnel · Android · hors ligne",
   },
@@ -82,10 +77,79 @@ export const projects: Project[] = [
       "Une autre manière d’explorer les connexions : ici, les réseaux deviennent le terrain du jeu. Le projet est expérimental et se joue hors ligne sur Windows. Son ancien nom de travail était « plague-inc-evolved » ; il est indépendant du jeu commercial Plague Inc.",
     technologies: ["Godot", "GDScript", "Windows"],
     screenshots: [],
-    links: [
-      { label: "Explorer le projet", url: `${githubUrl}/pandemic-horizon` },
-    ],
+    demo: "simulation",
     accentColor: "#b6a4ee",
     status: "Jeu original · version expérimentale",
+  },
+  {
+    id: "telecom",
+    title: "Télécom & Réseau",
+    type: "Site web",
+    universe: "Les connexions",
+    tagline: "Comprendre le réseau en le pratiquant.",
+    summary:
+      "Des cours, exercices corrigés et simulateurs pour explorer l’adressage, les VLAN, les services IP, le cuivre et la fibre. L’atelier relie les explications aux essais.",
+    story:
+      "Le projet réunit un parcours pédagogique, des exercices réseau et des scénarios simulés Cisco, FortiGate et Meraki. Les équipements sont simulés : ils ne remplacent pas les manipulations en laboratoire.",
+    technologies: ["TypeScript", "NestJS", "PostgreSQL"],
+    screenshots: [],
+    demo: "telecom",
+    accentColor: "#7ce5f1",
+    status: "Atelier pédagogique · réseaux simulés",
+  },
+  {
+    id: "mon-app",
+    title: "Mon App",
+    type: "Application budget",
+    universe: "Le quotidien",
+    tagline: "Voir ce qui reste. Comprendre ce qui change.",
+    summary:
+      "Budget Belgique rassemble les revenus, dépenses, factures et objectifs d’épargne. Le disponible tient compte de ce qui est déjà payé et de ce qu’il faut encore prévoir.",
+    story:
+      "Une application personnelle en français, avec une interface React Native/Expo et un serveur local. Le paiement d’une facture déjà prévue crée sa dépense sans compter le même montant deux fois.",
+    technologies: [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "NestJS",
+      "PostgreSQL",
+      "Prisma",
+    ],
+    screenshots: [],
+    demo: "budget",
+    accentColor: "#a7d8ac",
+    status: "Budget Belgique · application personnelle",
+  },
+  {
+    id: "math",
+    title: "Math",
+    type: "Site web",
+    universe: "Le raisonnement",
+    tagline: "Une puissance se comprend pas à pas.",
+    summary:
+      "Huit leçons autour des puissances, avec exercices, indices, corrections et progression. L’univers Déclic accompagne la révision, du premier essai au bilan.",
+    story:
+      "Le cours propose 32 exercices, un diagnostic et des explications. La démo reprend trois questions d’introduction aux puissances, avec des réponses proposées pour les essayer rapidement.",
+    technologies: ["TypeScript", "NestJS", "PostgreSQL"],
+    screenshots: [],
+    demo: "math",
+    accentColor: "#e4c480",
+    status: "Révision des puissances · exercices guidés",
+  },
+  {
+    id: "declic-ados",
+    title: "Déclic Ados",
+    type: "Site web",
+    universe: "Les mots",
+    tagline: "Le bon accord commence par le bon indice.",
+    summary:
+      "Apprendre le participe passé à travers des missions, des exercices et des corrections expliquées. Avec être, avec avoir, ou dans les phrases qui demandent un peu plus d’attention.",
+    story:
+      "La version autonome propose cinq missions et trente exercices. Cette escale en reprend trois phrases pour découvrir les règles, choisir une réponse et comprendre la correction.",
+    technologies: ["HTML", "CSS", "JavaScript"],
+    screenshots: [],
+    demo: "declic",
+    accentColor: "#df86ca",
+    status: "Français · participe passé · missions pédagogiques",
   },
 ];
