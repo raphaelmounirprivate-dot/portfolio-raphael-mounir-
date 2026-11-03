@@ -42,3 +42,12 @@ Pas de test sur appareil physique ni Safari/Firefox. Pas de capture du jeu fourn
 - Publication des descriptions et exercices adaptés des quatre dépôts privés explicitement autorisée par Raphaël dans la conversation, après revue de la liste précise des extraits. Aucun secret ou historique personnel inclus.
 - Commit applicatif `bc5137da553e7cb2ea44e5c93c2403d061e0e513` publié. [Workflow 41708360019](https://github.com/raphaelmounirprivate-dot/portfolio-raphael-mounir-/actions/runs/41708360019) : tests, compilation et déploiement en succès.
 - Vérification sur le site public : les six démos sont présentes, aucun lien GitHub dans l’interface, interactions Sport, simulation, budget, Télécom, Math et Déclic testées en Chromium aux largeurs 1440, 768 et 390 pixels. Galerie, carte, liens directs, vue d’ensemble et thèmes également contrôlés. Aucune erreur de ressource observée. Captures publiques ordinateur et mobile inspectées.
+
+## Identité enfantine de Math et Déclic
+
+- Identité relue dans les sources d’origine : palette, Nunito, géométrie de Pixel et titres. La mascotte est également visible sur la publication publique Déclic. Le Math public répond mais sa capture initiale reste sur la préparation de session ; pas de prétention à avoir vérifié son écran final.
+- Démos Math et Déclic et leurs vignettes : fond clair de miniature, bleu/menthe/corail, Pixel, bulles, missions, progression et XP de démonstration. Les autres univers sont inchangés.
+- 42 tests navigateur passent : les 36 précédents et six contrôles sur les trois formats pour la mascotte chargée, Nunito, les missions, les XP, les encouragements, la réinitialisation et la réduction des animations.
+- Compilation et contrôle sous-répertoire Pages passent. Nunito auto-hébergée, licence OFL distribuée ; aucun appel Google Fonts ajouté.
+- Revue visuelle réalisée dans le fil : captures des miniatures ordinateur/mobile, en masquant uniquement les éléments de navigation du portfolio pour les captures isolées. Titres corrigés pour retrouver les deux lignes et le bleu de l’original. Aucun débordement horizontal observé.
+- Diagnostic mécanique exécuté une fois : avertissements sur les nouvelles couleurs, Nunito et rayons propres aux miniatures. Ces choix intentionnels sont désormais consignés dans DESIGN.md et le sidecar ; aucun second diagnostic annoncé. Publication de cette évolution en cours.

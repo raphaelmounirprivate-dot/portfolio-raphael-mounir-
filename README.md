@@ -4,6 +4,8 @@ Un portfolio français qui suit un signal dans la fibre à travers **six univers
 
 Les petites démos sont adaptées des fonctions et exercices documentés dans les projets. Les séries, le budget et la mini-simulation utilisent des exemples fictifs et ne sauvegardent rien. La simulation du jeu est volontairement simplifiée ; elle ne reproduit pas son moteur Godot. Les exercices Math et Déclic et le diagnostic PoE conservent leurs corrections expliquées. Les captures réelles du sport restent disponibles dans un volet sous sa démo.
 
+Math et Déclic retrouvent leur direction artistique d’origine : mascotte Pixel, Nunito, papier clair, bleu/menthe/corail, bulles, missions et XP de démo. Leur aperçu reste en thème clair pour montrer cette identité au sein du parcours sombre. Les images de Pixel et la police sont locales. Le score n’est lié à aucun compte et repart de zéro en recommençant.
+
 TypeScript strict, HTML, CSS, Vite. Site entièrement statique, sans compte ni backend. Thèmes clair/sombre selon le système, choix mémorisé localement, défilement libre, carte du voyage, vue d’ensemble et galerie accessible.
 
 ## Lancer le site

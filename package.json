@@ -12,6 +12,7 @@
     "test:production": "npm run build && node scripts/verify-production.mjs"
   },
   "devDependencies": {
+    "@fontsource/nunito": "^5.3.0",
     "@fontsource/outfit": "^5.2.0",
     "@playwright/test": "^1.56.0",
     "typescript": "^5.9.0",

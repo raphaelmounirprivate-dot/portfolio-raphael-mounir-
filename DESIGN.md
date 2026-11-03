@@ -8,7 +8,33 @@ colors:
   muted: "#a7b4c8"
   signal: "#7ce5f1"
   line: "#29364b"
+  learning-bg: "#f5f6fc"
+  learning-paper: "#ffffff"
+  learning-ink: "#192345"
+  learning-muted: "#53607c"
+  learning-blue: "#3657e8"
+  learning-blue-hover: "#2947c7"
+  learning-mint: "#bdf46b"
+  learning-mint-ink: "#233812"
+  learning-coral: "#ff8b70"
+  learning-line: "#dce1f0"
+  learning-soft: "#edf0ff"
+  learning-stage-blue: "#dfe6ff"
+  learning-stage-green: "#e9f8d8"
+  learning-success-bg: "#effbdf"
+  learning-success-border: "#5e9224"
+  learning-success-ink: "#17663b"
+  learning-retry-bg: "#fff0ea"
+  learning-retry-border: "#b95438"
+  learning-retry-chip: "#ffe5dc"
+  learning-retry-ink: "#933a27"
 typography:
+  learning-display:
+    fontFamily: "Nunito, system-ui, sans-serif"
+    fontSize: "33px"
+    fontWeight: 900
+    lineHeight: 1.12
+    letterSpacing: "-0.025em"
   display:
     fontFamily: "Outfit, sans-serif"
     fontSize: "clamp(2.6rem, 5.8vw, 5.5rem)"
@@ -19,6 +45,15 @@ rounded:
   button: "6px"
   preview: "12px"
   navigation: "8px"
+  learning-sticker: "9px"
+  learning-number: "10px"
+  learning-soft: "14px"
+  learning-feedback: "16px"
+  learning-bubble: "18px"
+  learning-exercise: "20px"
+  learning-stage-mobile: "22px"
+  learning-frame: "24px"
+  learning-stage: "26px"
 spacing:
   small: "8px"
   medium: "24px"
@@ -58,3 +93,7 @@ Le cadrage retenu transpose un schéma de liaison en parcours éditorial libre.
 - Critère de qualité : six destinations identifiables, lisibles et accessibles sans animation, avec une interaction réellement utilisable et réinitialisable.
 
 La carte conserve son dock sur grand écran. À 960 px et moins, elle passe dans une barre compacte sticky sous l’en-tête, avec menu déroulant : aucun contrôle ou retour de démo ne doit être masqué. Le minutage se lit comme un timer, sans annonce automatique chaque seconde.
+
+## Identité des univers pédagogiques
+
+Math et Déclic présentent une miniature du thème clair des sites d’origine, même dans le portfolio sombre : papier #F5F6FC / blanc, encre #192345, secondaire #53607C, bleu #3657E8, menthe #BDF46B et corail #FF8B70. Ces couleurs sont limitées aux démos et à leurs vignettes. Nunito 800/900 auto-hébergée porte la marque et les titres. Pixel reprend la géométrie de la mascotte originale, visible publiquement sur Déclic ; ce n’est pas un nouveau personnage généré. Bulles, missions numérotées, coins de 14 à 26 px, encouragements et XP de démonstration reprennent le langage des sites. Les chiffres ne sont pas un profil ou des notes réelles. Une bonne réponse déclenche une courte réaction de Pixel ; la réduction des mouvements la supprime.

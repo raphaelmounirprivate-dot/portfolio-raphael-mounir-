@@ -10,6 +10,9 @@ import { initNavigation } from "./navigation";
 import { initAnimations } from "./animations";
 import { initDemos } from "./demos";
 import "./demos.css";
+import "@fontsource/nunito/latin-800.css";
+import "@fontsource/nunito/latin-900.css";
+import "./learning-world.css";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = render(projects);
 initTheme();

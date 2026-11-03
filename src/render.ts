@@ -1,3 +1,4 @@
+import { learningOverview } from "./learning-world";
 import { type Project } from "./data/projects";
 
 import { renderDemo } from "./demo-render";
@@ -39,7 +40,7 @@ export function projectSection(
 }
 
 export function overview(projects: Project[]): string {
-  return `<section id="overview" class="overview wrap" hidden aria-labelledby="overview-title" tabindex="-1"><div class="overview-heading"><div><p>Choisissez votre destination</p><h2 id="overview-title">Tous les univers.</h2></div><button class="button secondary" id="return-journey">Revenir au voyage ${arrow}</button></div><div class="overview-grid">${projects.map((p, i) => `<a class="overview-item" href="#${p.id}" data-overview-link><span>${number(i)} / ${escape(p.type)}</span><div class="overview-visual ${p.screenshots.length ? "has-image" : ""}">${p.screenshots.length ? `<img src="${p.screenshots[0].src}" alt="${escape(p.screenshots[0].alt)}" width="${p.screenshots[0].width}" height="${p.screenshots[0].height}" loading="lazy" />` : `<div class="overview-demo-preview"><strong>${escape(demoLabels[p.demo].title)}</strong><span>${escape(demoLabels[p.demo].preview)}</span><span class="overview-try">Démo interactive ${arrow}</span></div>`}</div><h3>${escape(p.title)}${arrow}</h3><p>${escape(p.summary)}</p></a>`).join("")}</div></section>`;
+  return `<section id="overview" class="overview wrap" hidden aria-labelledby="overview-title" tabindex="-1"><div class="overview-heading"><div><p>Choisissez votre destination</p><h2 id="overview-title">Tous les univers.</h2></div><button class="button secondary" id="return-journey">Revenir au voyage ${arrow}</button></div><div class="overview-grid">${projects.map((p, i) => `<a class="overview-item" href="#${p.id}" data-overview-link><span>${number(i)} / ${escape(p.type)}</span><div class="overview-visual ${p.screenshots.length ? "has-image" : ""}">${p.screenshots.length ? `<img src="${p.screenshots[0].src}" alt="${escape(p.screenshots[0].alt)}" width="${p.screenshots[0].width}" height="${p.screenshots[0].height}" loading="lazy" />` : p.demo === "math" || p.demo === "declic" ? learningOverview(p.demo) : `<div class="overview-demo-preview"><strong>${escape(demoLabels[p.demo].title)}</strong><span>${escape(demoLabels[p.demo].preview)}</span><span class="overview-try">Démo interactive ${arrow}</span></div>`}</div><h3>${escape(p.title)}${arrow}</h3><p>${escape(p.summary)}</p></a>`).join("")}</div></section>`;
 }
 
 export function render(projects: Project[]): string {

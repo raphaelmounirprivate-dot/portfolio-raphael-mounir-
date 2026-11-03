@@ -25,7 +25,41 @@
     "breakpoints": [
       "640px",
       "960px"
-    ]
+    ],
+    "learning": {
+      "scope": ".learning-world",
+      "theme": "aperçu clair des sites originaux",
+      "fontFamily": "Nunito, system-ui, sans-serif",
+      "fontWeights": [
+        800,
+        900
+      ],
+      "colors": {
+        "background": "#f5f6fc",
+        "paper": "#ffffff",
+        "ink": "#192345",
+        "muted": "#53607c",
+        "blue": "#3657e8",
+        "mint": "#bdf46b",
+        "coral": "#ff8b70",
+        "line": "#dce1f0",
+        "soft": "#edf0ff"
+      },
+      "radii": [
+        "9px",
+        "10px",
+        "12px",
+        "14px",
+        "16px",
+        "18px",
+        "20px",
+        "22px",
+        "24px",
+        "26px"
+      ],
+      "mascot": "public/images/pixel.svg",
+      "motion": "pixel-cheer 500ms, supprimé sous prefers-reduced-motion"
+    }
   },
   "signature": "Signal dans la fibre : accueil, trajet, carte",
   "accessibility": {

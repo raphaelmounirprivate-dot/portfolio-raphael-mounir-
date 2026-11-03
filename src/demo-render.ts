@@ -1,5 +1,6 @@
 import type { DemoKind } from "./data/demo-content";
 import { demoLabels } from "./data/demo-content";
+import { learningWelcome, learningMissions } from "./learning-world";
 
 function sport(): string {
   return `<div class="workout-demo"><div class="demo-screen-heading"><span>Full Body · séance A</span><span>Exemple</span></div><h4>Presse à cuisses</h4><p class="demo-prescription">2 séries · 10 à 15 répétitions</p><div class="demo-fields"><label>Charge fictive<input type="number" required min="0" max="500" step="0.5" value="40" data-weight />kg</label><label>Répétitions<input type="number" required min="1" max="100" value="12" data-reps /></label></div><div class="set-list"><p data-set="1"><span>Série 1</span><span>À faire</span></p><p data-set="2"><span>Série 2</span><span>À faire</span></p></div><button class="demo-primary" data-validate>Valider une série</button><div class="rest-bar"><span>Repos<output data-timer role="timer" aria-live="off" aria-label="Temps de repos restant">02:00</output></span><button data-pause disabled>Pause</button></div><p class="demo-feedback" data-feedback role="status">À vous de jouer : validez votre première série.</p><button class="demo-reset" data-reset>Recommencer la séance</button></div>`;
@@ -30,8 +31,9 @@ function budget(): string {
   return `<div class="budget-demo"><div class="demo-screen-heading"><span>Mon App · Budget Belgique</span><span>Compte fictif</span></div><div class="available"><span>Disponible estimé</span><output data-available>920,00 €</output></div><dl class="budget-lines"><div><dt>Solde du compte</dt><dd data-balance>1 200,00 €</dd></div><div><dt>Facture encore à payer</dt><dd data-bill>−80,00 €</dd></div><div><dt>Épargne réservée</dt><dd>−200,00 €</dd></div></dl><div class="invoice-demo"><div><strong>Facture d’électricité</strong><span>80,00 € · exemple fictif</span></div><button data-pay>Marquer payée</button></div><button class="demo-primary" data-expense>Ajouter une dépense fictive de 25 €</button><p class="demo-feedback" data-feedback role="status">La facture de 80 € est déjà prévue dans le disponible.</p><button class="demo-reset" data-reset>Réinitialiser le budget</button></div>`;
 }
 
-function quiz(): string {
-  return `<div class="quiz-demo"><div class="demo-screen-heading"><span data-quiz-progress>Défi 1 / 3</span><span data-score>0 bonne réponse</span></div><h4 data-question></h4><div class="quiz-choices" data-choices></div><button class="demo-reset" data-hint>Un indice ?</button><p class="demo-hint" data-hint-text hidden></p><p class="demo-feedback" data-feedback role="status">Choisissez une réponse pour découvrir l’explication.</p><div class="quiz-actions"><button class="demo-primary" data-next-question disabled>Question suivante</button><button class="demo-reset" data-reset>Recommencer</button></div></div>`;
+function quiz(kind: DemoKind): string {
+  const learning = kind === "math" || kind === "declic";
+  return `<div class="quiz-demo">${learning ? learningMissions(kind) : ""}<div class="demo-screen-heading"><span data-quiz-progress>Défi 1 / 3</span><span data-score>0 bonne réponse</span></div><h4 data-question></h4><div class="quiz-choices" data-choices></div><button class="demo-reset" data-hint>Un indice ?</button><p class="demo-hint" data-hint-text hidden></p><p class="demo-feedback" data-feedback role="status">Choisissez une réponse pour découvrir l’explication.</p><div class="quiz-actions"><button class="demo-primary" data-next-question disabled>Question suivante</button><button class="demo-reset" data-reset>Recommencer</button></div></div>`;
 }
 
 export function renderDemo(kind: DemoKind, id: string): string {
@@ -43,6 +45,13 @@ export function renderDemo(kind: DemoKind, id: string): string {
         ? simulation()
         : kind === "budget"
           ? budget()
-          : quiz();
-  return `<div class="demo-panel demo-${kind}" id="demo-${id}" data-demo="${kind}" tabindex="-1" role="region" aria-label="Démo de ${label.title}"><div class="demo-topbar"><span class="demo-live-dot" aria-hidden="true"></span><span>Démo interactive</span><span>À essayer ici</span></div><div class="demo-content"><h3>${label.title}</h3>${body}</div><p class="demo-note">${label.note}</p></div>`;
+          : quiz(kind);
+  const learning = kind === "math" || kind === "declic";
+  const title =
+    kind === "math"
+      ? "<span>Un calcul.</span><span>Un déclic.</span>"
+      : kind === "declic"
+        ? "<span>L’accord parfait&nbsp;?</span><span>À toi de jouer.</span>"
+        : label.title;
+  return `<div class="demo-panel demo-${kind}${learning ? " learning-world" : ""}" id="demo-${id}" data-demo="${kind}" tabindex="-1" role="region" aria-label="Démo de ${label.title}"><div class="demo-topbar"><span class="demo-live-dot" aria-hidden="true"></span><span>Démo interactive</span><span>${learning ? "L’univers d’origine" : "À essayer ici"}</span></div><div class="demo-content">${learning ? learningWelcome(kind) : ""}<h3>${title}</h3>${body}</div><p class="demo-note">${label.note}</p></div>`;
 }

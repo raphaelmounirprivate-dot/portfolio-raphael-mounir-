@@ -125,13 +125,13 @@ export const demoLabels: Record<
     note: "Montants entièrement fictifs. Démo locale du calcul, sans compte ni opération bancaire.",
   },
   math: {
-    title: "Le déclic des puissances",
+    title: "Un calcul. Un déclic.",
     action: "Résoudre un défi",
     preview: "Essayer, prendre un indice, comprendre",
     note: "Trois exercices adaptés du cours. Progression de démo uniquement, sans compte.",
   },
   declic: {
-    title: "Trouvez le bon accord",
+    title: "L’accord parfait ? À toi de jouer.",
     action: "Jouer une mission",
     preview: "Être, avoir et les petits pièges",
     note: "Trois phrases issues de Déclic Ados. Corrections expliquées, sans enregistrer de résultat scolaire.",

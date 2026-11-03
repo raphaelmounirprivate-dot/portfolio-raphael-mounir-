@@ -191,10 +191,34 @@ function initQuiz(root: HTMLElement, questions: QuizQuestion[]): void {
   let index = 0;
   let score = 0;
   let attempted = false;
+  const outcomes: (boolean | null)[] = questions.map(() => null);
+  const learning = root.classList.contains("learning-world");
+  const updateLearning = (message: string): void => {
+    if (!learning) return;
+    find(root, "[data-pixel-message]").textContent = message;
+    find(root, "[data-learning-xp]").textContent = String(score * 10);
+    const answered = outcomes.filter((result) => result !== null).length;
+    find(root, "[data-learning-progress]").textContent =
+      `${answered} / ${questions.length} défis essayés`;
+    find<HTMLProgressElement>(root, "[data-learning-meter]").value = answered;
+    root
+      .querySelectorAll<HTMLElement>("[data-learning-step]")
+      .forEach((step, i) => {
+        const result = outcomes[i];
+        step.dataset.state =
+          result === null ? "waiting" : result ? "correct" : "retry";
+        find(step, "[data-step-result]").textContent =
+          result === null ? "" : result ? "Réussi" : "À revoir";
+        if (i === index && root.dataset.learningState !== "finished")
+          step.setAttribute("aria-current", "step");
+        else step.removeAttribute("aria-current");
+      });
+  };
   const next = find<HTMLButtonElement>(root, "[data-next-question]");
   const paint = (): void => {
     const question = questions[index];
     attempted = false;
+    root.dataset.learningState = "ready";
     find(root, "[data-question]").textContent = question.prompt;
     find(root, "[data-quiz-progress]").textContent =
       `Défi ${index + 1} / ${questions.length}`;
@@ -211,6 +235,14 @@ function initQuiz(root: HTMLElement, questions: QuizQuestion[]): void {
         if (attempted) return;
         attempted = true;
         if (i === question.correct) score++;
+        outcomes[index] = i === question.correct;
+        root.dataset.learningState =
+          i === question.correct ? "success" : "retry";
+        updateLearning(
+          i === question.correct
+            ? "Bien joué ! Tu avances, un déclic à la fois."
+            : "Les erreurs font partie du jeu. Lis l’explication, puis continue !",
+        );
         choices.querySelectorAll("button").forEach((answer, j) => {
           answer.disabled = true;
           if (j === question.correct) answer.classList.add("correct");
@@ -232,11 +264,17 @@ function initQuiz(root: HTMLElement, questions: QuizQuestion[]): void {
     next.disabled = true;
     next.textContent =
       index === questions.length - 1 ? "Voir le bilan" : "Question suivante";
+    updateLearning(
+      root.dataset.demo === "math"
+        ? "Pas besoin de tout savoir. On apprend en essayant !"
+        : "Moi, c’est Pixel. On passe un niveau ensemble ?",
+    );
   };
   find(root, "[data-hint]").addEventListener("click", () => {
     const hint = find(root, "[data-hint-text]");
     hint.hidden = false;
     hint.textContent = questions[index].hint ?? "";
+    updateLearning("Un indice, c’est un coup de pouce. À toi d’essayer !");
   });
   next.addEventListener("click", () => {
     if (!attempted) return;
@@ -246,6 +284,10 @@ function initQuiz(root: HTMLElement, questions: QuizQuestion[]): void {
       find(root, "[data-choices] button").focus();
     } else {
       next.disabled = true;
+      root.dataset.learningState = "finished";
+      updateLearning(
+        `Mission terminée ! ${score * 10} XP de démo. On rejoue pour progresser ?`,
+      );
       find(root, "[data-feedback]").textContent =
         `Démo terminée : ${score} / ${questions.length}. Les explications sont là pour apprendre. Vous pouvez recommencer.`;
     }
@@ -253,6 +295,7 @@ function initQuiz(root: HTMLElement, questions: QuizQuestion[]): void {
   find(root, "[data-reset]").addEventListener("click", () => {
     index = 0;
     score = 0;
+    outcomes.fill(null);
     paint();
   });
   paint();

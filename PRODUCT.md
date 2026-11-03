@@ -17,5 +17,7 @@ Compte GitHub : raphaelmounirprivate-dot. README de full-body : Mon Coach Sport,
 
 Nouvelle demande du 3 novembre : ajouter Télécom & Réseau, Mon App (Budget Belgique), Math et Déclic Ados. Démos adaptées de fonctions et exercices réellement documentés. Télécom : diagnostic PoE, 3 questions. Mon App : disponible, facture et dépense fictives. Math : 3 questions des leçons sur les puissances. Déclic : 3 phrases du participe passé. Sport : séries et repos. Pandemic : simulation miniature explicitement distincte de l’équilibrage du jeu. Aucun compte distant, secret, serveur ou historique personnel repris.
 
+Direction artistique demandée ensuite : rendre visible le côté enfantin de Math et Déclic à partir de leurs sites d’origine. Les démos et vignettes reprennent Pixel, Nunito, le papier clair, le bleu/menthe/corail, les missions et les encouragements. Les XP sont limités à cette démo et remis à zéro en recommençant. Les autres univers gardent leur identité actuelle.
+
 ## Contraintes
 Défilement libre, mobile/tablette/ordinateur, clavier, contraste, réduction des mouvements, thème système mémorisable. Les contenus restent visibles sans animation. Liens absents masqués. Visuels manquants explicitement identifiés. Raphaël a explicitement autorisé le dépôt public du portfolio le 3 novembre 2026. Les autres dépôts gardent leur visibilité. Aucune coordonnée personnelle issue du connecteur ajoutée sans indication explicite dans le brief.
