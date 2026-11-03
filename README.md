@@ -65,7 +65,7 @@ git push -u origin main
 4. Le workflow `.github/workflows/pages.yml` vérifie TypeScript et les interactions dans trois formats, compile et publie `dist/`. Les pull requests exécutent les vérifications sans publier.
 5. Attendre le succès de `deploy`, puis ouvrir l’URL fournie par GitHub et contrôler ressources, navigation, galerie et thème sur mobile et ordinateur.
 
-L’adresse attendue, **non vérifiée tant que la publication n’a pas eu lieu**, est `https://raphaelmounirprivate-dot.github.io/portfolio-raphael-mounir-/`.
+Le [site public](https://raphaelmounirprivate-dot.github.io/portfolio-raphael-mounir-/) a été déployé et vérifié le 3 novembre 2026 : ressources, navigation, galerie, carte, vue d’ensemble et thèmes dans trois formats. Les détails et limites figurent dans `docs/validation.md`.
 
 Le `base: './'` de Vite conserve des chemins relatifs pour le sous-répertoire GitHub Pages. Les sections utilisent des ancres, donc aucune réécriture de route n’est nécessaire. Pour mettre à jour : modifier, exécuter les tests, compiler, committer puis pousser sur `main`. Ne pas envoyer `.env`, `node_modules`, `.local` ou des données personnelles.
 
