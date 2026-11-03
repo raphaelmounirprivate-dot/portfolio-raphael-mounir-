@@ -21,9 +21,9 @@
 
 ## État de publication
 
-Le dossier est un dépôt Git local. Le connecteur GitHub a permis de lire le compte et les projets, mais ne fournit pas la création de dépôt. L’authentification Git enregistrée n’est pas accessible dans cette session, même après essai hors sandbox. L’ouverture UI du navigateur a expiré en attente d’autorisation. Le dépôt public portfolio-raphael-mounir- a ensuite été créé par Raphaël ; envoi en cours, déploiement non encore confirmé.
+Le dépôt public [portfolio-raphael-mounir-](https://github.com/raphaelmounirprivate-dot/portfolio-raphael-mounir-) a été créé par Raphaël puis alimenté par le connecteur GitHub. Le tiret final fait partie du nom réel et des chemins de publication. Commit du code : `bfdc1cc350d46999e2723598ddbda336d9fc73dd`. Les arbres local et distant correspondent exactement : `8391a3159311d33864f6d908620f18cdac35f202`, images incluses. La branche locale main a été synchronisée et suit origin/main ; l’ancien commit local reste sur local-before-publication.
 
-La création du dépôt public vide `portfolio-raphael-mounir-` a été demandée à Raphaël. Le workflow est prêt. La visibilité publique du nouveau portfolio est explicitement autorisée ; aucun dépôt existant n’a changé de visibilité. L’URL GitHub Pages n’est donc pas annoncée comme active.
+Le [workflow 41704142105](https://github.com/raphaelmounirprivate-dot/portfolio-raphael-mounir-/actions/runs/41704142105) a réussi les tests Chromium, la compilation et l’envoi de l’artefact Pages. Le job deploy a échoué avec HTTP 404 : son journal demande d’activer GitHub Pages. Action attendue : Settings → Pages → Build and deployment → Source : GitHub Actions. Le connecteur ne propose pas ce réglage. Après activation, relancer le job échoué et contrôler le site public. L’URL publique n’est pas encore annoncée comme active. Aucun dépôt existant n’a changé de visibilité.
 
 ## Limites
 
