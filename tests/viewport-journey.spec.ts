@@ -1,7 +1,10 @@
 import { test, expect } from "@playwright/test";
 
 test("chaque escale occupe un écran et garde ses commandes accessibles", async ({ page }, testInfo) => {
+  // Mesurer la géométrie finale, sans déplacement transitoire pendant les révélations.
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/#depart");
+  await page.evaluate(() => document.fonts.ready);
   const destinations = page.locator("[data-destination]");
   for (const section of await destinations.all()) {
     await section.evaluate(element => element.scrollIntoView({ block: "start", behavior: "instant" }));
