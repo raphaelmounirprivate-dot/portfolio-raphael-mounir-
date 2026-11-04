@@ -53,6 +53,7 @@ try {
         errors.push(`${response.status()} ${response.url()}`);
     });
     await page.goto(`http://127.0.0.1:4173${prefix}`);
+    await page.getByRole("button", { name: "Entrer dans le site" }).click();
     await page.locator("#mon-coach-sport").scrollIntoViewIfNeeded();
     await page.evaluate(async () => {
       for (const img of document.images) {

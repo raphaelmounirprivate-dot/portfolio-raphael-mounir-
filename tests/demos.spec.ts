@@ -80,7 +80,7 @@ for (const [kind, wrong, correct] of [
   test(`${kind} : erreur expliquée, indice, bilan et nouvel essai`, async ({
     page,
   }) => {
-    await page.goto("/");
+    await page.goto("/#depart");
     const demo = page.locator(`[data-demo="${kind}"]`);
     if (kind === "telecom") await demo.locator(".cisco-poe > summary").click();
     await demo.getByRole("button", { name: wrong, exact: true }).click();
@@ -113,7 +113,7 @@ for (const [kind, wrong, correct] of [
 test("les six démos restent lisibles et utilisables sur chaque format", async ({
   page,
 }, testInfo) => {
-  await page.goto("/");
+  await page.goto("/#depart");
   for (const kind of [
     "sport",
     "simulation",

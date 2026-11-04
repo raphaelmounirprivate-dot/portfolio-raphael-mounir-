@@ -29,3 +29,5 @@ import "./horizon.css";
 initHorizon();
 
 import "./viewport-journey.css";
+import { initWelcome } from "./welcome";
+initWelcome();

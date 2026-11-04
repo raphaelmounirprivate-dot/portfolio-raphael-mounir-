@@ -8,7 +8,7 @@ test("le voyage et les ressources se chargent sans erreur", async ({
   page.on("console", (e) => {
     if (e.type() === "error") errors.push(e.text());
   });
-  await page.goto("/");
+  await page.goto("/#depart");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   await expect(page.locator("[data-destination]")).toHaveCount(6);
   await page.locator(".real-captures > summary").click();
@@ -96,7 +96,7 @@ test("galerie par boutons, clavier et balayage", async ({ page }) => {
 });
 
 test("vue d’ensemble, liens directs et retour au focus", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/#depart");
   const opener = page.getByRole("button", { name: "Vue d’ensemble" });
   await opener.click();
   await expect(page.locator("#overview")).toBeFocused();
@@ -114,6 +114,9 @@ test("thème persistant, clavier et mouvements réduits", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce", colorScheme: "dark" });
   await page.goto("/");
   await page.keyboard.press("Tab");
+  await expect(page.getByRole("button", { name: "Entrer dans le site" })).toBeFocused();
+  await page.keyboard.press("Enter");
+  await page.getByRole("link", { name: "Aller au contenu" }).focus();
   await expect(
     page.getByRole("link", { name: "Aller au contenu" }),
   ).toBeFocused();
@@ -147,7 +150,7 @@ test("thème persistant, clavier et mouvements réduits", async ({ page }) => {
 test("une destination ajoutée alimente le voyage, la carte et la grille", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/#depart");
   const result = await page.evaluate(async () => {
     // Le test vérifie le contrat public du rendu avec une donnée supplémentaire.
     const { render } = await import("/src/render.ts");

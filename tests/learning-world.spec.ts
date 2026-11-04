@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test("Math et Déclic retrouvent Pixel, leurs missions et les XP de démo", async ({
   page,
 }, testInfo) => {
-  await page.goto("/");
+  await page.goto("/#depart");
   for (const [kind, correct] of [
     ["math", "64"],
     ["declic", "arrivées"],

@@ -82,3 +82,13 @@ Pas de test sur appareil physique ni Safari/Firefox. Pas de capture du jeu fourn
 - Geste supplémentaire validé sur Chromium au format téléphone : une séquence tactile synthétisée via CDP fait défiler la démo sans déplacer le document pendant le geste. Ce contrôle ne remplace pas un essai sur appareil physique ou Safari.
 - Publication : commit applicatif `3475b66fb89e2ddafa7a066208fd56f9326668a1`, [workflow 41783408369](https://github.com/raphaelmounirprivate-dot/portfolio-raphael-mounir-/actions/runs/41783408369) en succès : 6 830 contrôles du jeu, **56 tests navigateur réussis**, quatre contrôles non applicables aux autres formats ignorés, compilation et déploiement.
 - Vérification sur le site public : six escales mesurées à 1 000 px, 1 024 px et 844 px selon la hauteur du navigateur, aux largeurs 1 440, 768 et 390 px. Détails ouverts sans agrandir la section, cadre défilant contenu dans l’écran et carte hors des titres. Ressources, autres démos, galerie, thèmes et chargement du jeu également vérifiés publiquement.
+
+## Écran d’entrée — 4 novembre 2026
+
+- Image fournie en plein écran, moteur GlowCursor WebGL fourni adapté sans React, bouton d’entrée au clavier et au toucher. Portfolio inert pendant l’accueil ; focus rendu au départ et ressources graphiques libérées à l’entrée. Liens directs préservés, absence de mémorisation de l’entrée, réduction des mouvements respectée.
+- Compilation et TypeScript strict réussis. Tests navigateur : 58 réussis au premier passage, puis les trois contrôles clavier corrigés pour passer par le nouvel accueil réussis. Cinq contrôles non applicables ignorés, dont le moteur Godot absent du clone. Six tests d’accueil inclus, ordinateur/tablette/mobile ; captures inspectées aux formats 1440 × 1000 et 390 × 844, traînée lumineuse visible.
+- Accueil compilé vérifié sous `/portfolio-raphael-mounir-/` aux largeurs 1440, 768 et 390 px : image, entrée, focus, vue d’ensemble et lien direct Télécom réussis, aucune ressource en erreur. Le vérificateur global de production atteint le jeu puis échoue faute d’export dans `public/horizon-game/`, exclu de Git ; aucune réussite complète de ce contrôle annoncée.
+- Lanceur Windows complété pour utiliser le Node portable déjà installé dans Desktop/monapp. Aucun envoi GitHub ni déploiement effectué.
+### Version finale destinée à la publication
+
+Nom retiré de l’écran de lancement ; l’effet suit le déplacement du pointeur, sans éclat au clic. Nouvelle compilation réussie et passage complet de la suite locale : 61 tests réussis, cinq contrôles non applicables ignorés. Le workflow GitHub reconstruit l’export du jeu avant ses propres contrôles et le déploiement Pages.

@@ -1,5 +1,9 @@
 # Sources et provenance
 
+## Écran d’entrée — 4 novembre 2026
+
+Image demandée par l’utilisateur, retrouvée à l’identique dans son fichier `Downloads/home-sunset.57ad0c3af150497b.jpg` et copiée dans `public/images/welcome-sunset.jpg`. Visuel illustratif d’accueil, sans le présenter comme un lieu de travail réel. Effet GlowCursor de React Bits : source JavaScript + CSS fournie dans le texte joint par l’utilisateur, moteur WebGL adapté sans dépendance React dans `src/glow-cursor.js`. L’effet est désactivé pour la réduction des mouvements et libéré à l’entrée dans le portfolio. Les liens directs vers les sections passent l’écran d’entrée.
+
 Lecture du brief fourni et du GitHub connecté le 3 novembre 2026. Les anciennes notes ont seulement orienté la recherche ; le contenu du site a été vérifié dans les sources courantes.
 
 - Identité, formation télécom, fibre/cuivre, Namur, accroche : brief de Raphaël.
