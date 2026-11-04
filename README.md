@@ -86,3 +86,7 @@ Le `base: './'` de Vite conserve des chemins relatifs pour le sous-répertoire G
 ## Vérifications et limites
 
 Voir `docs/validation.md` pour les contrôles réellement exécutés, `docs/sources.md` pour le contenu et `docs/skills.md` pour les outils préexistants. Une compilation locale ne prouve ni le push ni le déploiement public.
+
+## Escales sur un écran
+
+Chaque destination utilise la hauteur du navigateur (100dvh). Les informations détaillées se déplient dans la présentation ; la démo et ses captures défilent dans un cadre accessible au clavier et au toucher. Aucun contenu n’est réduit par une transformation ou supprimé. Le lien vers la démo y place le focus sans déplacer l’escale hors de l’écran.

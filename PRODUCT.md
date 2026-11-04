@@ -23,3 +23,5 @@ Ajout demandé ensuite à Télécom : mini-labo Cisco dans le portfolio. Scénar
 
 ## Contraintes
 Défilement libre, mobile/tablette/ordinateur, clavier, contraste, réduction des mouvements, thème système mémorisable. Les contenus restent visibles sans animation. Liens absents masqués. Visuels manquants explicitement identifiés. Raphaël a explicitement autorisé le dépôt public du portfolio le 3 novembre 2026. Les autres dépôts gardent leur visibilité. Aucune coordonnée personnelle issue du connecteur ajoutée sans indication explicite dans le brief.
+
+Demande du 4 novembre : chaque escale du voyage occupe un écran. Les détails sont repliables et le contenu des démos défile à l’intérieur de son cadre. Retrouver également les deux images publiques de fond de la connexion Télécom ; elles sont fournies comme références, sans changer le fond du portfolio.

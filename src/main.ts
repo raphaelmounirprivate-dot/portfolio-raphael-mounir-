@@ -27,3 +27,5 @@ initCisco();
 import { initHorizon } from "./horizon-demo";
 import "./horizon.css";
 initHorizon();
+
+import "./viewport-journey.css";

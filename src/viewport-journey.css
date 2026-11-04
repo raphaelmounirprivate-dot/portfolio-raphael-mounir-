@@ -1,0 +1,79 @@
+/* One viewport per destination. Long demos keep their own readable scroll area. */
+:root { scroll-padding-top: 0; }
+.destination {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) 44px;
+  gap: 16px;
+  padding: 24px 0 96px;
+  scroll-margin-top: 0;
+}
+.destination .destination-layout {
+  min-height: 0;
+  padding: 0;
+  gap: clamp(24px, 5vw, 72px);
+  align-items: center;
+}
+.destination .project-copy {
+  min-height: 0;
+  max-height: 100%;
+  overflow-y: auto;
+  scrollbar-color: var(--line) transparent;
+  scrollbar-width: thin;
+}
+.destination .project-copy h2 {
+  font-size: clamp(28px, 4vw, 56px);
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.destination .project-status { margin: 0 0 14px; }
+.destination .project-tagline { font-size: 21px; margin: 0 0 12px; }
+.destination .project-description { margin: 0 0 14px; }
+.destination .project-description summary { min-height: 44px; padding: 10px 0; }
+.destination .project-description p { margin-block: 12px; }
+.destination .technologies { padding-top: 8px; margin-bottom: 16px; }
+.destination .project-experience {
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 8px;
+}
+.experience-heading { color: var(--muted); font-size: 12px; line-height: 1.4; margin: 0; }
+.experience-scroll {
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted) var(--surface);
+  scroll-padding-block: 16px;
+}
+.experience-scroll:focus-visible { outline: 2px solid var(--signal); outline-offset: 4px; }
+.destination .next-stop { margin: 0; min-height: 44px; }
+@media (max-width: 960px) {
+  .destination { padding-block: 72px 20px; }
+}
+@media (max-width: 800px) {
+  .destination { gap: 12px; }
+  .destination .destination-layout { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); gap: 14px; }
+  .destination .project-copy { max-height: min(34dvh, 240px); max-width: none; }
+  .destination .project-copy h2 { font-size: 28px; margin-bottom: 6px; }
+  .destination .project-status { font-size: 11px; margin-bottom: 5px; }
+  .destination .project-tagline { font-size: 16px; line-height: 1.4; margin-bottom: 0; }
+  .destination .project-description { margin-block: 0; font-size: 13px; }
+  .destination .project-description summary { padding-block: 8px; }
+  .destination .project-links { display: none; }
+  .destination .project-experience { max-width: 580px; }
+  .experience-heading { font-size: 11px; }
+}
+@media (max-height: 500px) and (min-width: 640px) {
+  .destination { padding-block: 12px 74px; gap: 8px; }
+  .destination .destination-layout { grid-template-columns: 1fr 1fr; grid-template-rows: minmax(0, 1fr); gap: 24px; }
+  .destination .project-copy { max-height: 100%; }
+}
+@media (max-height: 500px) and (min-width: 640px) and (max-width: 960px) {
+  .destination { padding-block: 72px 12px; }
+}

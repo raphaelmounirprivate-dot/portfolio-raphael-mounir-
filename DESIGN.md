@@ -103,3 +103,7 @@ La console Cisco utilise une surface #080F1C, texte #DFF9F8 et prompt #7CE5F1, y
 ## Pandemic Horizon : jeu original
 
 Le panneau présente une capture réelle du moteur, 24 régions et trois agents, puis ouvre le jeu dans une fenêtre couvrant le navigateur. Son interface Godot conserve son identité et ses règles. Le poids approximatif du lancement et la préférence pour un ordinateur sont visibles avant le clic. La fermeture reste accessible au-dessus du jeu et rend le focus au bouton initial ; le moteur est alors déchargé. Les ressources lourdes ne sont pas préchargées.
+
+## Escales sur un écran
+
+Chaque destination mesure 100dvh. Présentation et démo sont côte à côte sur grand écran, empilées sur téléphone. Résumé, histoire et technologies sont réunis dans un volet ; le texte garde sa taille lisible. La démonstration et les captures ont une zone défilante au clavier et au toucher. Le plan du voyage conserve son espace réservé en bas sur ordinateur et en haut sur petit écran. Le défilement général reste libre, sans défilement forcé par crans.
