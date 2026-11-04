@@ -3,17 +3,10 @@ import { type Project } from "./data/projects";
 
 import { renderDemo } from "./demo-render";
 import { demoLabels } from "./data/demo-content";
+import { escape } from "./html";
 
 export const arrow =
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>';
-export const escape = (value: string): string =>
-  value.replace(
-    /[&<>"']/g,
-    (c) =>
-      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[
-        c
-      ]!,
-  );
 const number = (i: number): string => String(i + 1).padStart(2, "0");
 
 export function gallery(project: Project): string {

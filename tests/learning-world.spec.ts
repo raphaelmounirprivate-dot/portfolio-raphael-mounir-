@@ -1,5 +1,42 @@
 import { test, expect } from "@playwright/test";
 
+test("les chapitres de maths et de français expliquent les règles sans perdre la progression", async ({ page }, testInfo) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/#depart");
+  for (const [kind, answer, title, correction] of [
+    ["math", "64", "Comprendre les puissances", "3³ = 3 × 3 × 3 = 27"],
+    ["declic", "arrivées", "Accorder le participe passé", "On écrit « écrites »"],
+  ]) {
+    const world = page.locator(`[data-demo="${kind}"]`);
+    const chapter = world.locator(".learning-chapter");
+    await world.getByRole("button", { name: answer, exact: true }).click();
+    await world.locator("[data-next-question]").click();
+    const question = await world.locator("[data-question]").textContent();
+    const read = world.getByRole("button", { name: "Lire le chapitre", exact: true });
+    await read.focus();
+    await page.keyboard.press("Enter");
+    await expect(read).toHaveAttribute("aria-pressed", "true");
+    await expect(world.locator(".demo-content")).toBeHidden();
+    await expect(chapter.getByRole("heading", { name: title, exact: true })).toBeVisible();
+    await expect(chapter.locator(".chapter-steps > li")).toHaveCount(3);
+    await chapter.getByText("Voir la correction", { exact: true }).click();
+    await expect(chapter.locator(".chapter-application details p")).toContainText(correction);
+    const scrollers = await chapter.evaluate(root => Array.from(root.querySelectorAll("*")).filter(element => /^(auto|scroll)$/.test(getComputedStyle(element).overflowY) && element.scrollHeight > element.clientHeight + 1).length);
+    expect(scrollers).toBe(0);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await chapter.screenshot({ path: `.local/chapters/${testInfo.project.name}-${kind}.png`, style: ".journey-map,.skip-link{visibility:hidden!important}" });
+    await chapter.getByRole("button", { name: "Passer aux trois défis" }).click();
+    await expect(chapter).toBeHidden();
+    await expect(world.locator("[data-question]")).toHaveText(question!);
+    await expect(world.locator("[data-learning-xp]")).toHaveText("10");
+    await expect(world.locator("[data-quiz-progress]")).toHaveText("Défi 2 / 3");
+    await expect(world.locator("[data-choices] button").first()).toBeFocused();
+    await read.click();
+    await world.getByRole("button", { name: "S’entraîner", exact: true }).click();
+    await expect(world.locator(".demo-content")).toBeVisible();
+  }
+});
+
 test("Math et Déclic retrouvent Pixel, leurs missions et les XP de démo", async ({
   page,
 }, testInfo) => {
@@ -58,7 +95,7 @@ test("Math et Déclic retrouvent Pixel, leurs missions et les XP de démo", asyn
     );
     expect(
       await world
-        .locator("h3")
+        .locator(".demo-content h3")
         .evaluate((el) => getComputedStyle(el).fontFamily),
     ).toContain("Nunito");
     expect(

@@ -101,8 +101,9 @@
   .learning-world .quiz-choices { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @media (max-width: 960px) {
-  .destination { padding-block: 80px 32px; }
-  .destination .demo-panel { scroll-margin-top: 80px; }
+  :root { scroll-padding-top: 72px; }
+  .destination { padding-block: 24px 32px; }
+  .destination .demo-panel { scroll-margin-top: 12px; }
 }
 @media (max-width: 800px) {
   .destination { min-height: 0; gap: 20px; padding-bottom: 48px; }

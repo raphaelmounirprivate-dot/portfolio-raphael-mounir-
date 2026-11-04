@@ -13,6 +13,7 @@ import "./demos.css";
 import "@fontsource/nunito/latin-800.css";
 import "@fontsource/nunito/latin-900.css";
 import "./learning-world.css";
+import { initLearningChapters } from "./learning-chapters";
 import { initCisco } from "./cisco-demo";
 import "./cisco.css";
 
@@ -22,6 +23,7 @@ initGalleries(projects);
 initNavigation();
 initAnimations();
 initDemos();
+initLearningChapters();
 initCisco();
 
 import { initHorizon } from "./horizon-demo";

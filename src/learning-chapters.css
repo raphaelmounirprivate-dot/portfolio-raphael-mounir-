@@ -1,0 +1,27 @@
+.learning-modes { display: flex; gap: 8px; padding: 12px 18px 0; }
+.learning-world .learning-modes button { flex: 1; border-color: #dce1f0; border-radius: 10px; color: #3657e8; font-size: 14px; font-weight: 750; min-height: 44px; }
+.learning-world .learning-modes button[aria-pressed="true"] { color: #fff; background: #3657e8; border-color: #3657e8; }
+.learning-world .learning-modes button[aria-pressed="true"]:hover { background: #2947c7; }
+.learning-chapter { padding: 22px 24px; color: #192345; }
+.destination:has(.learning-chapter:not([hidden])) .project-copy { align-self: start; padding-top: 18px; }
+.learning-chapter > h3 { font-family: Nunito, system-ui, sans-serif; font-weight: 900; font-size: clamp(26px, 3vw, 34px); line-height: 1.15; letter-spacing: -.025em; margin: 0 0 14px; }
+.learning-chapter p, .learning-chapter li { color: #192345; font-size: 15px; line-height: 1.7; }
+.learning-chapter p { margin: 0 0 12px; }
+.learning-chapter .chapter-introduction { color: #53607c; margin-bottom: 24px; }
+.learning-chapter h4 { font-family: Nunito, system-ui, sans-serif; font-weight: 900; font-size: 21px; letter-spacing: -.02em; line-height: 1.25; margin: 0 0 10px; }
+.chapter-steps { list-style: none; padding: 0; margin: 0; counter-reset: chapter-step; }
+.chapter-steps > li { counter-increment: chapter-step; padding: 20px 0; border-top: 1px solid #dce1f0; }
+.chapter-steps h4::before { content: counter(chapter-step) ". "; color: #3657e8; }
+.learning-chapter .chapter-example { background: #fff; padding: 14px 16px; border-radius: 12px; color: #3657e8; font-weight: 700; overflow-wrap: anywhere; }
+.chapter-reminders { background: #e9f8d8; padding: 18px; border-radius: 14px; margin-block: 8px 24px; }
+.chapter-reminders ul { padding-left: 20px; margin: 0; }
+.chapter-reminders li + li { margin-top: 4px; }
+.chapter-application { margin-bottom: 20px; }
+.chapter-application summary { color: #3657e8; cursor: pointer; padding-block: 12px; min-height: 44px; font-weight: 650; font-size: 14px; }
+.chapter-application details[open] > p { padding: 14px; background: #edf0ff; border-radius: 12px; }
+@media (max-width: 480px) {
+  .learning-modes { padding: 12px 14px 0; }
+  .learning-world .learning-modes button { font-size: 13px; padding-inline: 8px; }
+  .learning-chapter { padding: 20px 16px; }
+  .learning-chapter h4 { font-size: 20px; }
+}

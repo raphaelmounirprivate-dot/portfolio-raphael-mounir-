@@ -128,12 +128,12 @@ export const demoLabels: Record<
     title: "Un calcul. Un déclic.",
     action: "Résoudre un défi",
     preview: "Essayer, prendre un indice, comprendre",
-    note: "Trois exercices adaptés du cours. Progression de démo uniquement, sans compte.",
+    note: "Un chapitre introductif et trois exercices adaptés du cours. Progression de démo uniquement, sans compte.",
   },
   declic: {
     title: "L’accord parfait ? À toi de jouer.",
     action: "Jouer une mission",
     preview: "Être, avoir et les petits pièges",
-    note: "Trois phrases issues de Déclic Ados. Corrections expliquées, sans enregistrer de résultat scolaire.",
+    note: "Un chapitre introductif et trois phrases issues de Déclic Ados. Aucun résultat scolaire enregistré.",
   },
 };

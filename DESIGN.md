@@ -107,3 +107,7 @@ Le panneau présente une capture réelle du moteur, 24 régions et trois agents,
 ## Escales sans défilement interne
 
 Chaque destination mesure au moins un écran sur ordinateur et s’allonge avec son contenu ; sur téléphone la hauteur reste naturelle. Présentation et démo sont côte à côte sur grand écran, empilées sur téléphone. Les cadres défilants sont supprimés : démonstrations, textes, captures, console et guide Cisco suivent le document. Math et Déclic passent en deux colonnes dans leur panneau dès 600 px disponibles, avec des choix en ligne dès 420 px. Les titres, marges et zones de retour sont plus compacts, les cibles tactiles restent à 44 px minimum. Résumé, histoire et technologies restent repliables, sans hauteur imposée. Le plan du voyage garde sa position basse sur ordinateur et haute sur petit écran. Le défilement général reste libre.
+
+## Lecture des chapitres
+
+Deux boutons à état pressé donnent accès au cours et aux défis dans les panneaux Math et Français. Le cours remplace visuellement les exercices, conservés dans le DOM et retrouvés dans leur état précédent. Article en hauteur naturelle, corps 15 px / 1,7 et titres Nunito de 26 à 34 px. Trois étapes numérotées pour la méthode, exemples sur papier blanc, rappel menthe et correction facultative. Le bouton final rend le focus au prochain contrôle utile des défis. Sur mobile, la marge de défilement du document réserve 72 px à la carte fixe ; les contrôles restent accessibles sous la navigation.
