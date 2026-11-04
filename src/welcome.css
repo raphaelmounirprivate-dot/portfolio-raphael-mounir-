@@ -17,9 +17,10 @@ body.welcome-open { overflow: hidden; }
 .welcome-pointer { position: absolute; width: 64px; height: 64px; transform: translate(-50%, -50%); pointer-events: none; mix-blend-mode: screen; background: radial-gradient(circle, #e0fcff 0 4%, #7ce5f1 8%, rgb(95 139 255 / 70%) 22%, transparent 70%); }
 .welcome-content { position: absolute; left: clamp(24px, 6vw, 96px); bottom: max(100px, 13dvh); }
 .welcome-content h1 { margin: 0 0 32px; max-width: 15ch; font-size: clamp(44px, 5.8vw, 84px); font-weight: 400; line-height: 1.06; letter-spacing: -.035em; color: #fff; text-shadow: 0 3px 24px rgb(8 15 28 / 40%); }
-.welcome-enter { display: inline-flex; align-items: center; justify-content: space-between; gap: 36px; min-height: 56px; padding: 15px 24px; border: 1px solid #7ce5f1; border-radius: 6px; font: 500 17px Outfit, sans-serif; color: #080f1c; background: #7ce5f1; cursor: pointer; transition: background-color 180ms, transform 180ms; }
+.welcome-enter { position: relative; isolation: isolate; display: inline-flex; align-items: center; justify-content: space-between; gap: 36px; min-height: 56px; padding: 15px 24px; border: 1px solid rgb(124 229 241 / 40%); border-radius: 6px; font: 500 17px Outfit, sans-serif; color: #f1f3f6; background: #080f1c; cursor: pointer; transition: background-color 180ms; }
+.star-border-light { position: absolute; top: -21px; left: -21px; width: calc(100% + 42px); height: calc(100% + 42px); pointer-events: none; }
 .welcome-enter svg { width: 24px; height: 24px; transition: transform 180ms; }
-.welcome-enter:hover { background: #b1f3f9; transform: translateY(-2px); }
+.welcome-enter:hover { background: #101c2e; }
 .welcome-enter:hover svg { transform: translateX(4px); }
 .welcome-enter:focus-visible { outline: 3px solid #fff; outline-offset: 5px; }
 .welcome-hint { position: absolute; bottom: max(24px, env(safe-area-inset-bottom)); left: clamp(24px, 6vw, 96px); margin: 0; font-size: 14px; color: #e0e9f4; }

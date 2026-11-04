@@ -313,8 +313,9 @@ html {
 .signal {
   stroke: var(--signal);
   stroke-width: 2;
-  stroke-dasharray: 100 2100;
-  animation: signal 12s linear infinite;
+  stroke-dasharray: 5 95;
+  stroke-linecap: round;
+  animation: signal 12s linear var(--signal-delay) infinite;
 }
 .fiber-label {
   position: absolute;
@@ -861,7 +862,7 @@ html {
 }
 @keyframes signal {
   from {
-    stroke-dashoffset: 2200;
+    stroke-dashoffset: 100;
   }
   to {
     stroke-dashoffset: 0;
@@ -1222,7 +1223,7 @@ html {
 }
 
 /* L’activation explicite de la vague ne réactive aucune autre animation. */
-:root[data-wave-motion="on"] .signal { animation: signal 12s linear -2s infinite !important; stroke-dasharray: 100 2100; opacity: 1; }
+:root[data-wave-motion="on"] .signal { animation: signal 12s linear var(--signal-delay) infinite !important; stroke-dasharray: 5 95; opacity: 1; }
 :root[data-wave-motion="off"] .signal { animation-play-state: paused !important; }
 
 .contact h2 span {

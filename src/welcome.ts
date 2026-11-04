@@ -1,4 +1,5 @@
 import { initWelcomeCursor } from "./welcome-cursor";
+import { initStarBorder } from "./star-border";
 import "./welcome.css";
 
 export function initWelcome(): void {
@@ -24,8 +25,11 @@ export function initWelcome(): void {
   document.body.classList.add("welcome-open");
   document.body.append(welcome);
   const dispose = initWelcomeCursor(welcome, welcome.querySelector("canvas")!);
+  const enterButton = welcome.querySelector<HTMLButtonElement>(".welcome-enter")!;
+  const disposeBorder = initStarBorder(enterButton);
   const enter = (): void => {
     dispose?.();
+    disposeBorder();
     welcome.remove();
     document.body.classList.remove("welcome-open");
     app.inert = false;
@@ -39,6 +43,6 @@ export function initWelcome(): void {
     }
     window.removeEventListener("hashchange", enter);
   };
-  welcome.querySelector("button")!.addEventListener("click", enter, { once: true });
+  enterButton.addEventListener("click", enter, { once: true });
   window.addEventListener("hashchange", enter, { once: true });
 }

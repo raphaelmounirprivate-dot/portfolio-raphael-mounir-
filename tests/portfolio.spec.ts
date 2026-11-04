@@ -128,8 +128,8 @@ test("thème persistant, clavier et mouvements réduits", async ({ page }) => {
   expect(
     await page
       .locator(".signal")
-      .evaluate((el) => getComputedStyle(el).animationName),
-  ).toBe("none");
+      .evaluateAll((elements) => elements.map(el => getComputedStyle(el).animationName)),
+  ).toEqual(Array(5).fill("none"));
   expect(
     await page
       .locator("html")
