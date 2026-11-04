@@ -6,6 +6,8 @@ Les petites démos sont adaptées des fonctions et exercices documentés dans le
 
 Math et Déclic retrouvent leur direction artistique d’origine : mascotte Pixel, Nunito, papier clair, bleu/menthe/corail, bulles, missions et XP de démo. Leur aperçu reste en thème clair pour montrer cette identité au sein du parcours sombre. Les images de Pixel et la police sont locales. Le score n’est lié à aucun compte et repart de zéro en recommençant.
 
+Télécom contient un **mini-labo Cisco** : créer le VLAN 10, placer Fa0/1 et Fa0/2 en accès, activer les liens et tester deux PC fictifs. La console propose les modes et invites, `?`, l’historique par flèches, Ctrl+Z, le collage de commandes, les commandes `show`, `write memory` et `reload` simulés. Le parcours guidé remplit la commande choisie sans l’exécuter automatiquement. La réinitialisation restaure tout le labo. Cette miniature ne charge aucune image IOS et ne contacte aucun équipement ; elle couvre uniquement le scénario affiché. Le quiz PoE reste dans un volet sous la console.
+
 TypeScript strict, HTML, CSS, Vite. Site entièrement statique, sans compte ni backend. Thèmes clair/sombre selon le système, choix mémorisé localement, défilement libre, carte du voyage, vue d’ensemble et galerie accessible.
 
 ## Lancer le site

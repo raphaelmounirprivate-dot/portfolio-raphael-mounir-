@@ -53,3 +53,10 @@ Pas de test sur appareil physique ni Safari/Firefox. Pas de capture du jeu fourn
 - Diagnostic mécanique exécuté une fois : avertissements sur les nouvelles couleurs, Nunito et rayons propres aux miniatures. Ces choix intentionnels sont désormais consignés dans DESIGN.md et le sidecar ; aucun second diagnostic annoncé.
 - Commit applicatif `d4588b0a687db57b6a4f9349f7eeb5a2230a5da0` déployé. [Workflow 41710488469](https://github.com/raphaelmounirprivate-dot/portfolio-raphael-mounir-/actions/runs/41710488469) : tests, compilation et publication en succès.
 - Vérification réelle sur l’URL publique en 1440, 768 et 390 pixels : Pixel chargé depuis le site, Nunito appliquée, 10 XP après une bonne réponse dans chaque démo, vignettes et six interactions conservées. Captures publiques des miniatures inspectées : titres sur deux lignes, seconde ligne bleue, mascotte et palette d’origine visibles sur ordinateur et mobile. Les limites d’adaptation sont conservées.
+
+## Mini-labo Cisco — 4 novembre 2026
+
+- Scénario complet VLAN 10 et deux ports configurables, modes et invites, aide, historique, Ctrl+Z, collage borné, sorties `show`, test de communication, sauvegarde/reload simulés et reset.
+- 51 tests navigateur réussis aux trois formats : 42 précédents et neuf contrôles Cisco. Ils couvrent le refus d’une commande hors mode, les états de port, la réussite et l’échec de connectivité après coupure, la restauration de la configuration sauvegardée, le reset, une saisie HTML inerte et le refus d’un collage de plus de 20 commandes.
+- Captures ordinateur et mobile du scénario exécuté inspectées : console, formulaire, topologie et retours lisibles, sans débordement horizontal observé. Le quiz PoE reste utilisable dans son volet.
+- Publication de cette évolution en cours ; la miniature ne représente pas un essai sur équipement réel.

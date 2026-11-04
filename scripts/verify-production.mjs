@@ -93,6 +93,44 @@ try {
       )
     )
       throw Error("math");
+    const cisco = page.locator("[data-cisco]");
+    await cisco.locator("input").evaluate((input) => {
+      const transfer = new DataTransfer();
+      transfer.setData(
+        "text",
+        [
+          "enable",
+          "configure terminal",
+          "vlan 10",
+          "name BUREAU",
+          "exit",
+          "interface fa0/1",
+          "switchport mode access",
+          "switchport access vlan 10",
+          "no shutdown",
+          "exit",
+          "interface fa0/2",
+          "switchport mode access",
+          "switchport access vlan 10",
+          "no shutdown",
+          "end",
+        ].join("\n"),
+      );
+      input.dispatchEvent(
+        new ClipboardEvent("paste", {
+          clipboardData: transfer,
+          bubbles: true,
+          cancelable: true,
+        }),
+      );
+    });
+    await cisco.locator("[data-cisco-test]").click();
+    if (
+      !(await cisco.locator("[data-cisco-status]").textContent()).includes(
+        "Mission réussie",
+      )
+    )
+      throw Error("Cisco VLAN");
     const contrast = await page.evaluate(() => {
       const rgb = (s) =>
         s

@@ -77,6 +77,7 @@ for (const [kind, wrong, correct] of [
   }) => {
     await page.goto("/");
     const demo = page.locator(`[data-demo="${kind}"]`);
+    if (kind === "telecom") await demo.locator(".cisco-poe > summary").click();
     await demo.getByRole("button", { name: wrong, exact: true }).click();
     await expect(demo.locator("[data-feedback]")).toContainText("À retenir");
     await expect(

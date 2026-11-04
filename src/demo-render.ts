@@ -1,6 +1,7 @@
 import type { DemoKind } from "./data/demo-content";
 import { demoLabels } from "./data/demo-content";
 import { learningWelcome, learningMissions } from "./learning-world";
+import { renderCisco } from "./cisco-demo";
 
 function sport(): string {
   return `<div class="workout-demo"><div class="demo-screen-heading"><span>Full Body · séance A</span><span>Exemple</span></div><h4>Presse à cuisses</h4><p class="demo-prescription">2 séries · 10 à 15 répétitions</p><div class="demo-fields"><label>Charge fictive<input type="number" required min="0" max="500" step="0.5" value="40" data-weight />kg</label><label>Répétitions<input type="number" required min="1" max="100" value="12" data-reps /></label></div><div class="set-list"><p data-set="1"><span>Série 1</span><span>À faire</span></p><p data-set="2"><span>Série 2</span><span>À faire</span></p></div><button class="demo-primary" data-validate>Valider une série</button><div class="rest-bar"><span>Repos<output data-timer role="timer" aria-live="off" aria-label="Temps de repos restant">02:00</output></span><button data-pause disabled>Pause</button></div><p class="demo-feedback" data-feedback role="status">À vous de jouer : validez votre première série.</p><button class="demo-reset" data-reset>Recommencer la séance</button></div>`;
@@ -45,7 +46,10 @@ export function renderDemo(kind: DemoKind, id: string): string {
         ? simulation()
         : kind === "budget"
           ? budget()
-          : quiz(kind);
+          : kind === "telecom"
+            ? renderCisco() +
+              `<details class="cisco-poe"><summary>Autre démo : diagnostic PoE</summary>${quiz(kind)}</details>`
+            : quiz(kind);
   const learning = kind === "math" || kind === "declic";
   const title =
     kind === "math"

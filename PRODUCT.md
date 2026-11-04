@@ -19,5 +19,7 @@ Nouvelle demande du 3 novembre : ajouter Télécom & Réseau, Mon App (Budget Be
 
 Direction artistique demandée ensuite : rendre visible le côté enfantin de Math et Déclic à partir de leurs sites d’origine. Les démos et vignettes reprennent Pixel, Nunito, le papier clair, le bleu/menthe/corail, les missions et les encouragements. Les XP sont limités à cette démo et remis à zéro en recommençant. Les autres univers gardent leur identité actuelle.
 
+Ajout demandé ensuite à Télécom : mini-labo Cisco dans le portfolio. Scénario fictif limité à un switch, VLAN 10 et deux ports/PC, console et contrôle de connectivité calculé. Modèle TypeScript écrit pour cette miniature à partir de la syntaxe publique Cisco, sans recopier le moteur du dépôt privé. Aucun IOS réel, équipement distant ou trafic réseau. Le diagnostic PoE est conservé dans un volet.
+
 ## Contraintes
 Défilement libre, mobile/tablette/ordinateur, clavier, contraste, réduction des mouvements, thème système mémorisable. Les contenus restent visibles sans animation. Liens absents masqués. Visuels manquants explicitement identifiés. Raphaël a explicitement autorisé le dépôt public du portfolio le 3 novembre 2026. Les autres dépôts gardent leur visibilité. Aucune coordonnée personnelle issue du connecteur ajoutée sans indication explicite dans le brief.

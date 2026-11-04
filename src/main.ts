@@ -13,6 +13,8 @@ import "./demos.css";
 import "@fontsource/nunito/latin-800.css";
 import "@fontsource/nunito/latin-900.css";
 import "./learning-world.css";
+import { initCisco } from "./cisco-demo";
+import "./cisco.css";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = render(projects);
 initTheme();
@@ -20,3 +22,4 @@ initGalleries(projects);
 initNavigation();
 initAnimations();
 initDemos();
+initCisco();

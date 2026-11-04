@@ -1,0 +1,262 @@
+.cisco-demo h4 {
+  font-size: 22px;
+  margin: 10px 0 14px;
+}
+.cisco-mission {
+  font-size: 14px;
+  line-height: 1.65;
+  margin-bottom: 22px;
+}
+.cisco-topology {
+  display: grid;
+  grid-template-columns: 1fr 18px 0.85fr 18px 1fr;
+  align-items: center;
+  gap: 0;
+  margin: 20px 0 24px;
+}
+.cisco-topology > div {
+  display: grid;
+  gap: 6px;
+  text-align: center;
+  min-width: 0;
+}
+.cisco-topology strong {
+  font-size: 14px;
+  font-weight: 500;
+}
+.cisco-topology span {
+  font-size: 10px;
+  color: var(--muted);
+}
+.cisco-topology small {
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.cisco-switch {
+  padding: 14px 4px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+}
+.cisco-cable {
+  height: 1px;
+  width: 100%;
+  background: var(--line);
+}
+.cisco-connected .cisco-cable {
+  background: var(--signal);
+}
+.cisco-terminal {
+  background: #080f1c;
+  color: #dff9f8;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #29364b;
+}
+.cisco-terminal-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-bottom: 1px solid #29364b;
+  font-size: 11px;
+  color: #a7b4c8;
+}
+.cisco-output {
+  height: 235px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 14px;
+  scrollbar-color: #29364b #080f1c;
+}
+.cisco-output pre {
+  font:
+    12px/1.7 Consolas,
+    "Courier New",
+    monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin: 0 0 13px;
+  color: #dff9f8;
+}
+.cisco-output:focus-visible {
+  outline: 2px solid #7ce5f1;
+  outline-offset: -3px;
+}
+.cisco-terminal form {
+  padding: 12px 14px;
+  border-top: 1px solid #29364b;
+}
+.cisco-terminal label {
+  display: block;
+  font-size: 11px;
+  color: #a7b4c8;
+  margin-bottom: 8px;
+}
+.cisco-command-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.cisco-command-row > span {
+  font:
+    12px/1.5 Consolas,
+    "Courier New",
+    monospace;
+  color: #7ce5f1;
+  flex-shrink: 0;
+}
+.cisco-command-row input {
+  font:
+    13px/1.5 Consolas,
+    "Courier New",
+    monospace;
+  color: #f1f3f6;
+  background: #101c2e;
+  border: 1px solid #29364b;
+  border-radius: 5px;
+  min-width: 80px;
+  flex: 1;
+  padding: 10px;
+  min-height: 44px;
+  caret-color: #7ce5f1;
+}
+.cisco-command-row input::placeholder {
+  color: #a7b4c8;
+}
+.cisco-command-row input:focus-visible {
+  outline: 2px solid #7ce5f1;
+  outline-offset: 2px;
+}
+.demo-panel .cisco-terminal button {
+  background: #7ce5f1;
+  color: #080f1c;
+  border-color: #7ce5f1;
+  padding-inline: 12px;
+  font-size: 12px;
+}
+.demo-panel .cisco-terminal button:not(:disabled):hover {
+  background: #b1f3fa;
+  color: #080f1c;
+}
+.cisco-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+.cisco-actions button {
+  font-size: 12px;
+  flex: 1;
+}
+.cisco-status {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text);
+  margin: 18px 0;
+  min-height: 64px;
+}
+.cisco-guide {
+  border-top: 1px solid var(--line);
+  padding-top: 4px;
+  font-size: 13px;
+}
+.cisco-guide summary,
+.cisco-poe > summary {
+  cursor: pointer;
+  min-height: 48px;
+  padding-block: 14px;
+  line-height: 1.5;
+  font-size: 13px;
+  color: var(--text);
+}
+.cisco-guide p {
+  font-size: 12px;
+  margin: 8px 0 15px;
+}
+.cisco-guide ol {
+  padding-left: 25px;
+  display: grid;
+  gap: 8px;
+  max-height: 300px;
+  overflow: auto;
+}
+.cisco-guide li {
+  padding-left: 3px;
+}
+.cisco-guide li button {
+  font:
+    12px/1.5 Consolas,
+    "Courier New",
+    monospace;
+  max-width: 100%;
+  text-align: left;
+  overflow-wrap: anywhere;
+  min-height: 40px;
+}
+.cisco-scope {
+  font-size: 11px;
+  line-height: 1.65;
+  margin: 12px 0 22px;
+  color: var(--muted);
+}
+.cisco-poe {
+  border-top: 1px solid var(--line);
+  margin-top: 15px;
+  padding-top: 5px;
+}
+.cisco-poe .quiz-demo {
+  padding-top: 14px;
+}
+.cisco-poe .quiz-demo h4 {
+  font-size: 21px;
+}
+.cisco-poe > summary {
+  color: var(--muted);
+}
+@media (max-width: 640px) {
+  .cisco-topology {
+    grid-template-columns: 1fr 10px 0.85fr 10px 1fr;
+  }
+  .cisco-topology span,
+  .cisco-topology small {
+    font-size: 9px;
+  }
+  .cisco-topology strong {
+    font-size: 12px;
+  }
+  .cisco-switch {
+    padding: 12px 3px;
+  }
+  .cisco-output {
+    height: 225px;
+    padding: 12px;
+  }
+  .cisco-terminal form {
+    padding: 12px;
+  }
+  .cisco-command-row {
+    gap: 7px;
+  }
+  .cisco-command-row input {
+    font-size: 16px;
+    flex-basis: 60%;
+    min-width: 100px;
+    width: 0;
+  }
+  .demo-panel .cisco-terminal button {
+    margin-left: auto;
+    min-width: 95px;
+  }
+  .cisco-command-row > span {
+    font-size: 11px;
+  }
+  .cisco-actions button {
+    font-size: 11px;
+  }
+  .cisco-guide ol {
+    padding-left: 22px;
+  }
+}

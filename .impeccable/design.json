@@ -59,6 +59,15 @@
       ],
       "mascot": "public/images/pixel.svg",
       "motion": "pixel-cheer 500ms, supprimé sous prefers-reduced-motion"
+    },
+    "cisco": {
+      "background": "#080f1c",
+      "foreground": "#dff9f8",
+      "prompt": "#7ce5f1",
+      "fontFamily": "Consolas, Courier New, monospace",
+      "logHeight": "235px",
+      "mobileLogHeight": "225px",
+      "radius": "8px"
     }
   },
   "signature": "Signal dans la fibre : accueil, trajet, carte",

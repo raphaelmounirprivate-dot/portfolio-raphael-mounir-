@@ -113,10 +113,10 @@ export const demoLabels: Record<
     note: "Mini-simulation adaptée : 6 nœuds fictifs, règles simplifiées. Ce n’est pas le jeu complet ni son équilibrage.",
   },
   telecom: {
-    title: "Dans la peau du technicien",
-    action: "Essayer le diagnostic PoE",
-    preview: "Alimenter un réseau, puis diagnostiquer",
-    note: "Trois questions adaptées de mon atelier Télécom. Cas fictif, sans connexion à un équipement.",
+    title: "Un switch. À vous de jouer.",
+    action: "Essayer la console Cisco",
+    preview: "Créer un VLAN et connecter deux PC",
+    note: "Console Cisco simplifiée et diagnostic PoE. Scénarios fictifs, sans connexion à un équipement.",
   },
   budget: {
     title: "Un budget qui reste juste",
