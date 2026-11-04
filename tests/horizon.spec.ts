@@ -20,7 +20,7 @@ test("le moteur Web original termine son scénario de contrôle exporté", async
       `);
     await route.fulfill({ response, body: html });
   });
-  await page.goto("/horizon-game/index.html");
+  await page.goto("horizon-game/index.html");
   await expect.poll(() => messages.some(message => message.includes("RUNTIME_SMOKE_OK")), { timeout: 100_000 }).toBe(true);
   expect(errors).toEqual([]);
 });

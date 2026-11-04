@@ -27,7 +27,7 @@ Le [workflow 41704142105](https://github.com/raphaelmounirprivate-dot/portfolio-
 
 **Site public vérifié : https://raphaelmounirprivate-dot.github.io/portfolio-raphael-mounir-/**. Contrôles navigateur réels sur cette URL en 1440, 768 et 390 pixels : ressources sans erreur HTTP, galerie, carte mobile, liens directs, vue d’ensemble et thèmes clair/sombre. Captures publiques ordinateur et mobile inspectées, disponibles dans `.local/public-1440.png` et `.local/public-390.png`. Ce contrôle utilise Chromium, sans test sur appareil physique.
 
-## Limites
+## Limites de la première publication
 
 Pas de test sur appareil physique ni Safari/Firefox. Pas de capture du jeu fournie : mini-simulation adaptée et identifiée, sans présenter un faux écran original. Aucun email ou LinkedIn ajouté. Le contenu reste visible si l’animation échoue. Le site applicatif exige JavaScript ; un message noscript invite à activer JavaScript.
 
@@ -68,3 +68,7 @@ Pas de test sur appareil physique ni Safari/Firefox. Pas de capture du jeu fourn
 - Suite originale : **6 830 contrôles, zéro échec**. Script reproductible d’export vérifié localement ; licences moteur distribuées.
 - Contrôles navigateur : 51 régressions/cadre réussies sur ordinateur, tablette et mobile ; contrôle additionnel du véritable moteur Web réussi une fois sur ordinateur (doublons tablette/mobile intentionnellement ignorés). Son scénario `RUNTIME_SMOKE_OK` couvre parties, évolutions, transports, tutoriel, sauvegarde, incidents et stratégies ; pilote audio Dummy dans ce seul contrôle automatique pour éviter la course entre initialisation audio et arrêt immédiat.
 - Parcours clavier réel de nouvelle partie traversé jusqu’à la carte mondiale, capture utilisée comme aperçu. Export de production sous le sous-répertoire Pages contrôlé aux trois largeurs, moteur chargé et déchargé à la fermeture. Aperçu et cadre inspectés visuellement. Le jeu conserve son ergonomie PC : aucune validation de confort tactile complet ni essai humain d’équilibrage annoncé.
+
+- Publication applicative : commit `17591da0b59013d83541f2454607cba29b6a4df8`, [workflow 41753497620](https://github.com/raphaelmounirprivate-dot/portfolio-raphael-mounir-/actions/runs/41753497620) en succès pour export, 6 830 contrôles du jeu, 52 tests navigateur, compilation et déploiement.
+- Contrôle du site public en 1440, 768 et 390 pixels : moteur réellement initialisé, menu rendu puis déchargé à la fermeture, autres démos et thèmes fonctionnels. Le vérificateur attend le redimensionnement du canevas et deux images avant sa capture ; le masque de chargement initialement caché ne sert pas à lui seul de preuve de démarrage. Le détachement de la fenêtre est attendu pour éviter une course avec l’événement natif `close`.
+- Contrôle additionnel du moteur servi depuis Pages : `RUNTIME_SMOKE_OK`, sans erreur JavaScript ; parcours réel de nouvelle partie jusqu’à la carte mondiale capturé et inspecté. Échap ferme la fenêtre depuis le canevas et rend le focus au portfolio. Manifeste public : version 0.26.0, source `b066ed745c7c778b45f1fbe0baa3df8e372be2b0`, Godot 4.7.2. Aucun essai sur appareil physique annoncé.

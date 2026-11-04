@@ -136,10 +136,18 @@ try {
     const launch = page.locator('[data-horizon-launch]');
     await launch.click();
     const frame = page.frameLocator('[data-horizon-frame]');
+    await frame.locator('canvas').evaluate(async canvas => {
+      const deadline = performance.now() + 60000;
+      while (canvas.width <= 300) {
+        if (performance.now() > deadline) throw Error('Game canvas did not initialize');
+        await new Promise(requestAnimationFrame);
+      }
+      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    });
     await frame.locator('#status').waitFor({state:'hidden',timeout:60000});
     await frame.locator('canvas').screenshot({path:'.local/production-horizon-'+width+'.png'});
     await page.getByRole('button',{name:'Revenir au portfolio'}).click();
-    if(await page.locator('[data-horizon-frame]').count()) throw Error('Game not unloaded');
+    await page.locator('[data-horizon-frame]').waitFor({state:'detached'});
     const contrast = await page.evaluate(() => {
       const rgb = (s) =>
         s
