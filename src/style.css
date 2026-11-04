@@ -351,6 +351,10 @@ html {
   gap: 14px;
   min-height: 44px;
 }
+.hero-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 24px; }
+.wave-toggle { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--muted); font-size: 12px; cursor: pointer; }
+.wave-toggle:hover { border-color: var(--signal); color: var(--text); }
+.wave-toggle svg { width: 18px; height: 18px; }
 .scroll-symbol {
   width: 15px;
   height: 24px;
@@ -1216,6 +1220,10 @@ html {
     transform: none;
   }
 }
+
+/* L’activation explicite de la vague ne réactive aucune autre animation. */
+:root[data-wave-motion="on"] .signal { animation: signal 12s linear -2s infinite !important; stroke-dasharray: 100 2100; opacity: 1; }
+:root[data-wave-motion="off"] .signal { animation-play-state: paused !important; }
 
 .contact h2 span {
   display: inline-block;

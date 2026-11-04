@@ -1,4 +1,7 @@
+import { initWaveMotion } from "./wave-motion";
+
 export function initAnimations(): void {
+  initWaveMotion();
   const progress = document.querySelector<HTMLElement>("#route-progress")!;
   const route = document.querySelector<HTMLElement>(".route-container")!;
   let pending = false;

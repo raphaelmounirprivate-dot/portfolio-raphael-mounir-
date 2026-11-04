@@ -114,3 +114,6 @@ Deux boutons à état pressé donnent accès au cours et aux défis dans les pan
 ## Curseur de l’écran d’entrée
 
 Le moteur GlowCursor reste prioritaire. Si WebGL ou les textures flottantes sont indisponibles, une traînée Canvas 2D conserve le signal lumineux bleu/cyan, sans dépendance. Une perte du contexte graphique active également ce secours. En mouvements réduits, un halo de 64 px se positionne directement sous le pointeur, sans inertie ni animation continue. Les écouteurs, observateurs et boucles sont supprimés à l’entrée dans le portfolio. Le changement de préférence système reconfigure le rendu pendant l’accueil.
+## Lecture et pause de la vague
+
+Une commande visible près de « Suivez le fil » active ou met en pause le signal de la fibre, sur ordinateur comme sur téléphone. Sans choix enregistré, elle suit la préférence de réduction des mouvements. Une activation volontaire autorise uniquement cette vague, même en mouvements réduits ; les autres animations gardent leur préférence système. Le choix est mémorisé localement quand le stockage est disponible. Un décalage initial de deux secondes place le signal sur la partie visible dès son activation.
