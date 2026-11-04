@@ -66,6 +66,10 @@ test("Pandemic : chargement au clic, fermeture et retour du focus", async ({ pag
   await expect(page.getByRole("dialog")).not.toBeVisible();
   await expect(page.locator("[data-horizon-frame]")).toHaveCount(0);
   await expect(demo.locator("[data-horizon-launch]")).toBeFocused();
+  await demo.locator("[data-horizon-launch]").click();
+  await page.frameLocator("[data-horizon-frame]").locator("body").press("Escape");
+  await expect(page.getByRole("dialog")).not.toBeVisible();
+  await expect(demo.locator("[data-horizon-launch]")).toBeFocused();
 });
 
 for (const [kind, wrong, correct] of [
