@@ -9,6 +9,8 @@ const types = {
   ".js": "text/javascript",
   ".css": "text/css",
   ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".wasm": "application/wasm",
   ".svg": "image/svg+xml",
   ".woff": "font/woff",
   ".woff2": "font/woff2",
@@ -131,6 +133,13 @@ try {
       )
     )
       throw Error("Cisco VLAN");
+    const launch = page.locator('[data-horizon-launch]');
+    await launch.click();
+    const frame = page.frameLocator('[data-horizon-frame]');
+    await frame.locator('#status').waitFor({state:'hidden',timeout:60000});
+    await frame.locator('canvas').screenshot({path:'.local/production-horizon-'+width+'.png'});
+    await page.getByRole('button',{name:'Revenir au portfolio'}).click();
+    if(await page.locator('[data-horizon-frame]').count()) throw Error('Game not unloaded');
     const contrast = await page.evaluate(() => {
       const rgb = (s) =>
         s

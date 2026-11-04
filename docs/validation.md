@@ -61,3 +61,10 @@ Pas de test sur appareil physique ni Safari/Firefox. Pas de capture du jeu fourn
 - Captures ordinateur et mobile du scénario exécuté inspectées : console, formulaire, topologie et retours lisibles, sans débordement horizontal observé. Le quiz PoE reste utilisable dans son volet.
 - Commit applicatif `4e2b565456f09083ce4b73da40c64585aadd7073` déployé. [Workflow 41750323710](https://github.com/raphaelmounirprivate-dot/portfolio-raphael-mounir-/actions/runs/41750323710) : tests, compilation et publication en succès.
 - Contrôle sur l’URL publique en 1440, 768 et 390 pixels : parcours de commandes collé dans la console, VLAN 10 configuré sur les deux ports, test PC-A vers PC-B réussi. Ressources, autres démos, galerie, carte, vignettes et thèmes également contrôlés. La miniature ne représente pas un essai sur équipement réel.
+
+## Pandemic Horizon original — 4 novembre 2026
+
+- Source publique fixée à `b066ed745c7c778b45f1fbe0baa3df8e372be2b0`, version 0.26.0, export Godot 4.7.2 monothread compatible avec Pages. Aucun changement de script, de règles ou de JSON du jeu.
+- Suite originale : **6 830 contrôles, zéro échec**. Script reproductible d’export vérifié localement ; licences moteur distribuées.
+- Contrôles navigateur : 51 régressions/cadre réussies sur ordinateur, tablette et mobile ; contrôle additionnel du véritable moteur Web réussi une fois sur ordinateur (doublons tablette/mobile intentionnellement ignorés). Son scénario `RUNTIME_SMOKE_OK` couvre parties, évolutions, transports, tutoriel, sauvegarde, incidents et stratégies ; pilote audio Dummy dans ce seul contrôle automatique pour éviter la course entre initialisation audio et arrêt immédiat.
+- Parcours clavier réel de nouvelle partie traversé jusqu’à la carte mondiale, capture utilisée comme aperçu. Export de production sous le sous-répertoire Pages contrôlé aux trois largeurs, moteur chargé et déchargé à la fermeture. Aperçu et cadre inspectés visuellement. Le jeu conserve son ergonomie PC : aucune validation de confort tactile complet ni essai humain d’équilibrage annoncé.

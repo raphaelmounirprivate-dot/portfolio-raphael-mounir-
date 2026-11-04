@@ -53,18 +53,19 @@ test("sport : validation, chrono, pause et réinitialisation", async ({
   await expect(demo.locator("[data-timer]")).toHaveText("02:00");
 });
 
-test("simulation : comparer les stratégies et rejouer", async ({ page }) => {
+test("Pandemic : chargement au clic, fermeture et retour du focus", async ({ page }) => {
+  // This test owns the dialog lifecycle. The real engine has its separate smoke test.
+  await page.route("**/horizon-game/index.html", route => route.fulfill({ contentType: "text/html", body: "<title>Cadre du jeu</title>" }));
   await page.goto("/#pandemic-horizon");
   const demo = page.locator('[data-demo="simulation"]');
-  for (let i = 0; i < 3; i++) await demo.locator("[data-advance]").click();
-  await expect(demo.locator("[data-connected]")).toHaveText("6 / 6");
-  await expect(demo.locator("[data-remedy]")).toHaveText("90 %");
-  await expect(demo.locator("[data-advance]")).toBeDisabled();
-  await demo.locator("[data-reset]").click();
-  await demo.getByRole("radio", { name: /Discrétion/ }).check();
-  for (let i = 0; i < 5; i++) await demo.locator("[data-advance]").click();
-  await expect(demo.locator("[data-connected]")).toHaveText("6 / 6");
-  await expect(demo.locator("[data-remedy]")).toHaveText("75 %");
+  await expect(page.locator("[data-horizon-frame]")).toHaveCount(0);
+  await demo.locator("[data-horizon-launch]").click();
+  await expect(page.getByRole("dialog")).toBeVisible();
+  await expect(page.locator("[data-horizon-frame]")).toHaveAttribute("src", /horizon-game\/index.html/);
+  await page.getByRole("button", {name: "Revenir au portfolio"}).click();
+  await expect(page.getByRole("dialog")).not.toBeVisible();
+  await expect(page.locator("[data-horizon-frame]")).toHaveCount(0);
+  await expect(demo.locator("[data-horizon-launch]")).toBeFocused();
 });
 
 for (const [kind, wrong, correct] of [

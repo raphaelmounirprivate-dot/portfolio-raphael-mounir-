@@ -24,6 +24,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
+      - name: Exporter le jeu original et vérifier ses tests
+        run: npm run build:game -- --test
       - run: npm test
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3

@@ -2,7 +2,7 @@
 
 Un portfolio français qui suit un signal dans la fibre à travers **six univers interactifs** : Mon Coach Sport, Pandemic Horizon, Télécom & Réseau, Mon App (Budget Belgique), Math et Déclic Ados. Coif’heure est exclu à la demande de Raphaël. Chaque escale se teste sur place, sans renvoi vers GitHub.
 
-Les petites démos sont adaptées des fonctions et exercices documentés dans les projets. Les séries, le budget et la mini-simulation utilisent des exemples fictifs et ne sauvegardent rien. La simulation du jeu est volontairement simplifiée ; elle ne reproduit pas son moteur Godot. Les exercices Math et Déclic et le diagnostic PoE conservent leurs corrections expliquées. Les captures réelles du sport restent disponibles dans un volet sous sa démo.
+Les petites démos sont adaptées des fonctions et exercices documentés dans les projets. Les séries et le budget utilisent des exemples fictifs et ne sauvegardent rien. Pandemic Horizon charge au clic le véritable jeu Godot 0.26 dans une adaptation Web expérimentale : 24 régions, agents, évolutions, transports, crises, décisions et tutoriel. Les sauvegardes du jeu restent locales au navigateur. Les exercices Math et Déclic et le diagnostic PoE conservent leurs corrections expliquées. Les captures réelles du sport restent disponibles dans un volet sous sa démo.
 
 Math et Déclic retrouvent leur direction artistique d’origine : mascotte Pixel, Nunito, papier clair, bleu/menthe/corail, bulles, missions et XP de démo. Leur aperçu reste en thème clair pour montrer cette identité au sein du parcours sombre. Les images de Pixel et la police sont locales. Le score n’est lié à aucun compte et repart de zéro en recommençant.
 
@@ -33,6 +33,14 @@ npm run preview
 ```
 
 La dernière commande sert la compilation sur http://localhost:4173. `test:production` compile et teste temporairement ce même port sous le sous-répertoire prévu pour Pages ; le port doit être libre. Pour conserver le navigateur de test dans le projet sous Windows : `$env:PLAYWRIGHT_BROWSERS_PATH="$PWD\.local\browsers"` avant son installation et les tests. Les captures de contrôle sont écrites dans `.local/`, exclu de Git.
+
+## Exporter Pandemic Horizon
+
+Le moteur Web (environ 40 Mo) est généré dans `public/horizon-game/`, exclu de Git. Il est téléchargé par le visiteur seulement au lancement. La fermeture décharge le moteur. Le jeu PC est conseillé sur ordinateur ; son interface n'est pas une refonte tactile.
+
+Python 3.11+ est nécessaire. Sous Linux, `npm run build:game -- --test` télécharge le Godot officiel 4.7.2 et ses modèles, vérifie leurs SHA-512, clone le dépôt **public** au commit immuable `b066ed745c7c778b45f1fbe0baa3df8e372be2b0`, exécute ses tests et exporte sans modifier ses scripts ou ses données. Les licences du moteur sont distribuées avec l'export. La CI réalise ces étapes avant les contrôles du portfolio.
+
+Sous Windows, définir `GODOT_BIN` (console Godot 4.7.2) et `GODOT_TEMPLATES_DIR` (dossier contenant `web_nothreads_release.zip` et `web_nothreads_debug.zip`). Utiliser ensuite `python scripts/export-horizon.py --test`. Sans `--test`, l'export seul est reconstruit. Les données utilisateur du moteur sont isolées dans `.local/`. Après un simple clone du portfolio, exporter le jeu avant de le lancer ; le test moteur est signalé ignoré tant que le WASM n'existe pas. Le test de production requiert cet export.
 
 ## Ajouter une destination
 

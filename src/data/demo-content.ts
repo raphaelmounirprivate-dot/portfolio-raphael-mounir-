@@ -108,9 +108,9 @@ export const demoLabels: Record<
   },
   simulation: {
     title: "Faites circuler la stratégie",
-    action: "Jouer la mini-simulation",
-    preview: "Choisir une stratégie, observer sa propagation",
-    note: "Mini-simulation adaptée : 6 nœuds fictifs, règles simplifiées. Ce n’est pas le jeu complet ni son équilibrage.",
+    action: "Découvrir le jeu original",
+    preview: "24 régions, trois agents, un monde à faire évoluer",
+    note: "Le jeu Godot original, adapté au navigateur. Version 0.26 expérimentale ; simulation et données fictives.",
   },
   telecom: {
     title: "Un switch. À vous de jouer.",

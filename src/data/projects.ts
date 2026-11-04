@@ -74,8 +74,8 @@ export const projects: Project[] = [
     summary:
       "Un jeu de stratégie original en français : faire évoluer un agent fictif dans un monde de 24 régions, composer avec les transports et réagir à la recherche d’un remède.",
     story:
-      "Une autre manière d’explorer les connexions : ici, les réseaux deviennent le terrain du jeu. Le projet est expérimental et se joue hors ligne sur Windows. Son ancien nom de travail était « plague-inc-evolved » ; il est indépendant du jeu commercial Plague Inc.",
-    technologies: ["Godot", "GDScript", "Windows"],
+      "Une autre manière d’explorer les connexions : ici, les réseaux deviennent le terrain du jeu. Le projet Windows est expérimental. Son moteur original se joue aussi ici dans une adaptation Web. Son ancien nom de travail était « plague-inc-evolved » ; il est indépendant du jeu commercial Plague Inc.",
+    technologies: ["Godot", "GDScript", "Windows", "WebAssembly"],
     screenshots: [],
     demo: "simulation",
     accentColor: "#b6a4ee",

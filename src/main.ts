@@ -23,3 +23,7 @@ initNavigation();
 initAnimations();
 initDemos();
 initCisco();
+
+import { initHorizon } from "./horizon-demo";
+import "./horizon.css";
+initHorizon();

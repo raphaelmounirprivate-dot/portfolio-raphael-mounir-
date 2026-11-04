@@ -203,89 +203,6 @@
 .rest-bar button {
   min-width: 90px;
 }
-.network-demo {
-  width: 100%;
-  height: auto;
-  display: block;
-  max-height: 230px;
-  margin: 14px 0;
-}
-.network-demo path {
-  stroke: var(--line);
-  stroke-width: 2;
-}
-.network-demo circle {
-  fill: var(--bg);
-  stroke: var(--line);
-  stroke-width: 1.5;
-}
-.network-demo text {
-  font-size: 13px;
-  font-family: inherit;
-  fill: var(--muted);
-}
-.network-demo .reached circle {
-  fill: var(--signal);
-  stroke: var(--signal);
-}
-.network-demo .reached text {
-  fill: var(--button-text);
-}
-.strategy {
-  border: 0;
-  padding: 0;
-  margin: 0 0 16px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-.strategy legend {
-  font-size: 12px;
-  color: var(--muted);
-  margin-bottom: 12px;
-}
-.strategy label {
-  border: 1px solid var(--line);
-  padding: 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 13px;
-  line-height: 1.5;
-}
-.strategy input {
-  accent-color: var(--signal);
-  margin: 0 5px 0 0;
-  width: 15px;
-  height: 15px;
-  vertical-align: middle;
-}
-.strategy label:has(input:checked) {
-  border-color: var(--signal);
-  background: color-mix(in srgb, var(--signal) 5%, transparent);
-}
-.strategy label span {
-  display: block;
-  font-size: 11px;
-  color: var(--muted);
-  margin-top: 6px;
-}
-.simulation-totals {
-  display: flex;
-  gap: 28px;
-  padding: 8px 0 18px;
-}
-.simulation-totals p {
-  margin: 0;
-  font-size: 11px;
-  flex: 1;
-}
-.simulation-totals strong {
-  display: block;
-  color: var(--text);
-  font-weight: 400;
-  font-size: 24px;
-  margin-top: 4px;
-}
 .available {
   padding: 24px 0;
   border-bottom: 1px solid var(--line);
@@ -593,16 +510,6 @@
   }
   .demo-declic .quiz-demo h4 {
     font-size: 23px;
-  }
-  .strategy {
-    gap: 8px;
-  }
-  .strategy label {
-    padding: 10px;
-    font-size: 12px;
-  }
-  .strategy label span {
-    font-size: 11px;
   }
   .invoice-demo {
     align-items: start;

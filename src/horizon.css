@@ -1,0 +1,21 @@
+.horizon-preview > img { width:100%; height:auto; display:block; border:1px solid var(--line); border-radius:6px; margin-bottom:24px; }
+.horizon-kicker { font-size:10px; letter-spacing:.12em; color:var(--signal); }
+.horizon-preview h4 { font-size:clamp(26px,3vw,38px); margin:12px 0; font-weight:400; }
+.horizon-preview > p:not(.horizon-kicker) { line-height:1.65; color:var(--muted); }
+.horizon-features { display:flex; flex-wrap:wrap; gap:18px 26px; padding:18px 0; margin:12px 0 20px; border-block:1px solid var(--line); }
+.horizon-features dt { font-size:22px; color:var(--text); }
+.horizon-features dd { margin:5px 0 0; font-size:12px; color:var(--muted); }
+.horizon-preview .horizon-hint { font-size:12px; margin-bottom:0; }
+.horizon-dialog { position:fixed; inset:0; width:100vw; max-width:100vw; height:100dvh; max-height:100dvh; margin:0; padding:0; border:0; background:#091115; color:#e0ece9; }
+.horizon-dialog[open] { display:flex; flex-direction:column; }
+.horizon-dialog::backdrop { background:#091115; }
+.horizon-dialog header { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 20px; border-bottom:1px solid #31464c; }
+.horizon-dialog h2 { font-size:18px; margin:0; font-weight:500; }
+.horizon-dialog h2 span { display:block; color:#adc5c9; font-size:11px; margin-top:3px; }
+.horizon-dialog button { flex-shrink:0; padding:10px 14px; background:#193740; color:#e0ece9; border:1px solid #66cfc0; border-radius:4px; min-height:44px; cursor:pointer; }
+.horizon-dialog button:focus-visible { outline:3px solid #fff; outline-offset:3px; }
+.horizon-loading { margin:0; padding:6px 20px; font-size:11px; color:#adc5c9; }
+[data-horizon-stage] { flex:1; min-height:0; }
+[data-horizon-frame] { width:100%; height:100%; display:block; border:0; }
+.horizon-playing { overflow:hidden; }
+@media(max-width:600px) { .horizon-dialog header { padding:8px 12px; }.horizon-dialog h2 { font-size:14px; }.horizon-dialog button { font-size:12px; padding:8px; }.horizon-loading { padding:6px 12px; } }

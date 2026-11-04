@@ -6,8 +6,6 @@ import {
   declicQuestions,
 } from "./data/demo-content";
 import {
-  advanceSimulation,
-  initialSimulation,
   budgetAvailable,
   initialBudget,
   payBill,
@@ -105,47 +103,6 @@ function initSport(root: HTMLElement): void {
     feedback.textContent = "Séance réinitialisée. À vous de jouer.";
   });
   addEventListener("pagehide", stop);
-}
-
-function initSimulation(root: HTMLElement): void {
-  let state = initialSimulation();
-  const update = (): void => {
-    find(root, "[data-day]").textContent = `Jour ${state.day}`;
-    find(root, "[data-connected]").textContent = `${state.connected} / 6`;
-    find(root, "[data-remedy]").textContent = `${state.remedy} %`;
-    root
-      .querySelectorAll("[data-node]")
-      .forEach((node, i) =>
-        node.classList.toggle("reached", i < state.connected),
-      );
-    find<HTMLButtonElement>(root, "[data-advance]").disabled =
-      state.connected >= 6 || state.remedy >= 100;
-  };
-  root
-    .querySelectorAll<HTMLInputElement>('[name="strategy"]')
-    .forEach((input) =>
-      input.addEventListener("change", () => {
-        state.strategy =
-          input.value === "discretion" ? "discretion" : "mobility";
-      }),
-    );
-  find(root, "[data-advance]").addEventListener("click", () => {
-    state = advanceSimulation(state);
-    update();
-    find(root, "[data-feedback]").textContent =
-      state.connected >= 6
-        ? "Les 6 nœuds sont touchés. Rejouez avec l’autre stratégie pour comparer."
-        : state.remedy >= 100
-          ? "Le remède est prêt. Rejouez pour tester un autre choix."
-          : `${state.strategy === "mobility" ? "Mobilité" : "Discrétion"} : ${state.connected} nœuds touchés, remède à ${state.remedy} %.`;
-  });
-  find(root, "[data-reset]").addEventListener("click", () => {
-    state = initialSimulation();
-    find<HTMLInputElement>(root, '[value="mobility"]').checked = true;
-    update();
-    find(root, "[data-feedback]").textContent =
-      "Nouveau départ : un seul nœud est touché.";
-  });
 }
 
 function initBudget(root: HTMLElement): void {
@@ -305,7 +262,7 @@ export function initDemos(): void {
   document.querySelectorAll<HTMLElement>("[data-demo]").forEach((root) => {
     const kind = root.dataset.demo as DemoKind;
     if (kind === "sport") initSport(root);
-    else if (kind === "simulation") initSimulation(root);
+    else if (kind === "simulation") return;
     else if (kind === "budget") initBudget(root);
     else
       initQuiz(
