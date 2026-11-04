@@ -27,11 +27,7 @@ export function initNavigation(): void {
     .querySelector("#return-journey")!
     .addEventListener("click", () => close(true));
   document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((link) =>
-    link.addEventListener("click", (event) => {
-      if (link.classList.contains("demo-jump")) {
-        event.preventDefault();
-        link.closest(".destination")?.querySelector(".experience-scroll")?.scrollTo({ top: 0 });
-      }
+    link.addEventListener("click", () => {
       if (!overview.hidden) close(false);
       map.classList.remove("expanded");
       toggle.setAttribute("aria-expanded", "false");

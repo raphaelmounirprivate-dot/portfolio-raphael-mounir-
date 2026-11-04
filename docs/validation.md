@@ -92,3 +92,8 @@ Pas de test sur appareil physique ni Safari/Firefox. Pas de capture du jeu fourn
 ### Version finale destinée à la publication
 
 Nom retiré de l’écran de lancement ; l’effet suit le déplacement du pointeur, sans éclat au clic. Nouvelle compilation réussie et passage complet de la suite locale : 61 tests réussis, cinq contrôles non applicables ignorés. Le workflow GitHub reconstruit l’export du jeu avant ses propres contrôles et le déploiement Pages.
+## Suppression des cadres défilants — 4 novembre 2026
+
+- Suppression du conteneur défilant des six démos et de la contrainte de hauteur des escales. Les présentations, captures, console et guide Cisco ne défilent plus dans leur propre zone. Les liens « Essayer » rejoignent réellement leur démo dans le document.
+- Redimensionnement des titres et espacements, boutons d’au moins 44 px. Math et Déclic réorganisés en deux colonnes quand leur panneau est assez large ; choix en ligne selon l’espace disponible. Aucune explication, progression ou commande retirée. Les informations dépliées agrandissent la section.
+- 61 tests navigateur locaux réussis, cinq contrôles non applicables ignorés. Nouveaux contrôles sur les six démos : aucune zone de défilement interne, boutons et retours à l’intérieur des panneaux, indices et explications visibles sans coupe, extension des descriptions et du guide. Le glissement tactile dans une démo déplace maintenant le document. Captures ordinateur, tablette et téléphone inspectées.

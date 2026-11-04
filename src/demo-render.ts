@@ -37,5 +37,6 @@ export function renderDemo(kind: DemoKind, id: string): string {
       : kind === "declic"
         ? "<span>L’accord parfait&nbsp;?</span><span>À toi de jouer.</span>"
         : label.title;
-  return `<div class="demo-panel demo-${kind}${learning ? " learning-world" : ""}" id="demo-${id}" data-demo="${kind}" tabindex="-1" role="region" aria-label="Démo de ${label.title}"><div class="demo-topbar"><span class="demo-live-dot" aria-hidden="true"></span><span>Démo interactive</span><span>${learning ? "L’univers d’origine" : "À essayer ici"}</span></div><div class="demo-content">${learning ? learningWelcome(kind) : ""}<h3>${title}</h3>${body}</div><p class="demo-note">${label.note}</p></div>`;
+  const introduction = `${learning ? learningWelcome(kind) : ""}<h3>${title}</h3>`;
+  return `<div class="demo-panel demo-${kind}${learning ? " learning-world" : ""}" id="demo-${id}" data-demo="${kind}" tabindex="-1" role="region" aria-label="Démo de ${label.title}"><div class="demo-topbar"><span class="demo-live-dot" aria-hidden="true"></span><span>Démo interactive</span><span>${learning ? "L’univers d’origine" : "À essayer ici"}</span></div><div class="demo-content">${learning ? `<div class="learning-intro">${introduction}</div>` : introduction}${body}</div><p class="demo-note">${label.note}</p></div>`;
 }

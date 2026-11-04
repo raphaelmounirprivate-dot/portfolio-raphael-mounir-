@@ -43,7 +43,6 @@ export function initCisco(): void {
       row.textContent = text;
       log.append(row);
       while (log.children.length > 40) log.firstElementChild!.remove();
-      log.scrollTop = log.scrollHeight;
     };
     const paint = (): void => {
       const prompt = ciscoPrompt(state);
