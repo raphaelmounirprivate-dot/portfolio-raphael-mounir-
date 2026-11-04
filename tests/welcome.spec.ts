@@ -75,7 +75,8 @@ test("l’accueil montre l’image, puis ouvre le portfolio au clavier ou au tou
   const welcome = page.locator(".welcome");
   const enter = page.getByRole("button", { name: "Entrer dans le site" });
   await expect(welcome).toBeVisible();
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("D’une connexionà l’autre.");
+  await expect(page).toHaveTitle("Un besoin, Des solutions");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Un besoin,Des solutions.");
   await expect.poll(() => page.locator(".welcome-image").evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth === 1376)).toBe(true);
   await expect(page.locator("#app")).toHaveAttribute("inert", "");
   await page.mouse.move(150, 200);

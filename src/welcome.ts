@@ -14,7 +14,7 @@ export function initWelcome(): void {
     <div class="welcome-shade" aria-hidden="true"></div>
     <canvas class="welcome-glow" aria-hidden="true"></canvas>
     <div class="welcome-content">
-      <h1 id="welcome-title">D’une connexion<br>à l’autre.</h1>
+      <h1 id="welcome-title">Un besoin,<br>Des solutions.</h1>
       <button class="welcome-enter" type="button">Entrer dans le site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
     </div>
     <p class="welcome-hint">Déplacez la souris. Suivez la lumière.</p>`;

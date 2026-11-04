@@ -1,4 +1,6 @@
-# Raphaël Mounir — D’une connexion à l’autre
+# Un besoin, Des solutions
+
+Portfolio de Raphaël Mounir. Migration Vercel préparée pour `un-besoin-des-solutions.vercel.app` ; configuration et état dans [docs/migration-vercel.md](docs/migration-vercel.md). L’adresse sera confirmée après attribution par Vercel.
 
 Un portfolio français qui suit un signal dans la fibre à travers **six univers interactifs** : Mon Coach Sport, Pandemic Horizon, Télécom & Réseau, Mon App (Budget Belgique), Math et Déclic Ados. Coif’heure est exclu à la demande de Raphaël. Chaque escale se teste sur place, sans renvoi vers GitHub.
 
