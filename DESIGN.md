@@ -111,3 +111,6 @@ Chaque destination mesure au moins un écran sur ordinateur et s’allonge avec 
 ## Lecture des chapitres
 
 Deux boutons à état pressé donnent accès au cours et aux défis dans les panneaux Math et Français. Le cours remplace visuellement les exercices, conservés dans le DOM et retrouvés dans leur état précédent. Article en hauteur naturelle, corps 15 px / 1,7 et titres Nunito de 26 à 34 px. Trois étapes numérotées pour la méthode, exemples sur papier blanc, rappel menthe et correction facultative. Le bouton final rend le focus au prochain contrôle utile des défis. Sur mobile, la marge de défilement du document réserve 72 px à la carte fixe ; les contrôles restent accessibles sous la navigation.
+## Curseur de l’écran d’entrée
+
+Le moteur GlowCursor reste prioritaire. Si WebGL ou les textures flottantes sont indisponibles, une traînée Canvas 2D conserve le signal lumineux bleu/cyan, sans dépendance. Une perte du contexte graphique active également ce secours. En mouvements réduits, un halo de 64 px se positionne directement sous le pointeur, sans inertie ni animation continue. Les écouteurs, observateurs et boucles sont supprimés à l’entrée dans le portfolio. Le changement de préférence système reconfigure le rendu pendant l’accueil.

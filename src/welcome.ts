@@ -1,4 +1,4 @@
-import { initGlowCursor } from "./glow-cursor.js";
+import { initWelcomeCursor } from "./welcome-cursor";
 import "./welcome.css";
 
 export function initWelcome(): void {
@@ -23,7 +23,7 @@ export function initWelcome(): void {
   skip.hidden = true;
   document.body.classList.add("welcome-open");
   document.body.append(welcome);
-  const dispose = initGlowCursor(welcome, welcome.querySelector("canvas")!);
+  const dispose = initWelcomeCursor(welcome, welcome.querySelector("canvas")!);
   const enter = (): void => {
     dispose?.();
     welcome.remove();
