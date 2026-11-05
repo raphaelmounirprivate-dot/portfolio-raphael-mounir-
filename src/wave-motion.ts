@@ -3,10 +3,7 @@ export function initWaveMotion(): void {
   const button = document.querySelector<HTMLButtonElement>("#wave-toggle")!;
   const preference = matchMedia("(prefers-reduced-motion: reduce)");
   let chosen: boolean | undefined;
-  try {
-    const saved = localStorage.getItem("portfolio-wave-motion");
-    if (saved === "on" || saved === "off") chosen = saved === "on";
-  } catch { /* La commande reste utilisable sans stockage. */ }
+  // La pause reste limitée à cette visite pour relancer la vague à chaque ouverture.
   const paint = (): void => {
     const playing = chosen ?? !preference.matches;
     root.dataset.waveMotion = playing ? "on" : "off";
@@ -17,8 +14,6 @@ export function initWaveMotion(): void {
   };
   button.addEventListener("click", () => {
     chosen = root.dataset.waveMotion !== "on";
-    try { localStorage.setItem("portfolio-wave-motion", chosen ? "on" : "off"); }
-    catch { /* Le choix s’applique aussi quand sa mémorisation est bloquée. */ }
     paint();
   });
   preference.addEventListener("change", paint);

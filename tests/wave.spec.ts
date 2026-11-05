@@ -36,7 +36,7 @@ test("chaque fibre porte une vague avec un départ et une arrivée décalés", a
   await expect.poll(() => signals.evaluateAll(elements => elements.map(el => getComputedStyle(el).strokeDashoffset))).not.toEqual(paused);
 });
 
-test("la vague peut être réactivée avec les mouvements réduits et mémorise le choix", async ({ page }, testInfo) => {
+test("la vague peut être réactivée pour la visite avec les mouvements réduits", async ({ page }, testInfo) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/#depart");
   const signal = page.locator(".signal").first();
@@ -52,12 +52,15 @@ test("la vague peut être réactivée avec les mouvements réduits et mémorise 
   await expect.poll(() => signal.evaluate(el => getComputedStyle(el).strokeDashoffset)).not.toBe(offset);
   expect(await page.locator("html").evaluate(el => getComputedStyle(el).scrollBehavior)).toBe("auto");
   await page.reload();
-  await expect(pause).toHaveAttribute("aria-pressed", "true");
-  expect(await signal.evaluate(el => getComputedStyle(el).animationName)).toBe("signal");
+  await expect(play).toHaveAttribute("aria-pressed", "false");
+  expect(await signal.evaluate(el => getComputedStyle(el).animationName)).toBe("none");
+  await play.click();
   await pause.click();
   await expect(play).toHaveAttribute("aria-pressed", "false");
   await page.reload();
   await expect(play).toHaveAttribute("aria-pressed", "false");
+  await play.click();
+  await pause.click();
   await page.emulateMedia({ reducedMotion: "no-preference" });
   expect(await signal.evaluate(el => getComputedStyle(el).animationPlayState)).toBe("paused");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -67,10 +70,17 @@ test("la vague peut être réactivée avec les mouvements réduits et mémorise 
 
 test("la vague est animée normalement après l’écran de lancement", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.addInitScript(() => localStorage.setItem("portfolio-wave-motion", "off"));
   await page.goto("/");
   await page.getByRole("button", { name: "Entrer dans le site" }).click();
   await expect(page.getByRole("button", { name: "Mettre la vague en pause", exact: true })).toHaveAttribute("aria-pressed", "true");
   const signal = page.locator(".signal").first();
   const offset = await signal.evaluate(el => getComputedStyle(el).strokeDashoffset);
   await expect.poll(() => signal.evaluate(el => getComputedStyle(el).strokeDashoffset)).not.toBe(offset);
+  await page.getByRole("button", { name: "Mettre la vague en pause", exact: true }).click();
+  await page.reload();
+  await page.getByRole("button", { name: "Entrer dans le site" }).click();
+  await expect(page.getByRole("button", { name: "Mettre la vague en pause", exact: true })).toHaveAttribute("aria-pressed", "true");
+  const restartedOffset = await signal.evaluate(el => getComputedStyle(el).strokeDashoffset);
+  await expect.poll(() => signal.evaluate(el => getComputedStyle(el).strokeDashoffset)).not.toBe(restartedOffset);
 });
