@@ -36,30 +36,28 @@ test("chaque fibre porte une vague avec un départ et une arrivée décalés", a
   await expect.poll(() => signals.evaluateAll(elements => elements.map(el => getComputedStyle(el).strokeDashoffset))).not.toEqual(paused);
 });
 
-test("la vague peut être réactivée pour la visite avec les mouvements réduits", async ({ page }, testInfo) => {
+test("la vague démarre plus lentement avec les mouvements réduits et reste contrôlable", async ({ page }, testInfo) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/#depart");
   const signal = page.locator(".signal").first();
   const play = page.getByRole("button", { name: "Animer la vague", exact: true });
-  await expect(play).toBeVisible();
-  expect(await signal.evaluate(el => getComputedStyle(el).animationName)).toBe("none");
+  const pause = page.getByRole("button", { name: "Mettre la vague en pause", exact: true });
+  await expect(pause).toHaveAttribute("aria-pressed", "true");
+  expect(await signal.evaluate(el => getComputedStyle(el).animationDuration)).toBe("24s");
+  await pause.click();
   await play.focus();
   await page.keyboard.press("Enter");
-  const pause = page.getByRole("button", { name: "Mettre la vague en pause", exact: true });
   await expect(pause).toHaveAttribute("aria-pressed", "true");
   expect(await signal.evaluate(el => getComputedStyle(el).animationName)).toBe("signal");
   const offset = await signal.evaluate(el => getComputedStyle(el).strokeDashoffset);
   await expect.poll(() => signal.evaluate(el => getComputedStyle(el).strokeDashoffset)).not.toBe(offset);
   expect(await page.locator("html").evaluate(el => getComputedStyle(el).scrollBehavior)).toBe("auto");
   await page.reload();
-  await expect(play).toHaveAttribute("aria-pressed", "false");
-  expect(await signal.evaluate(el => getComputedStyle(el).animationName)).toBe("none");
-  await play.click();
+  await expect(pause).toHaveAttribute("aria-pressed", "true");
   await pause.click();
   await expect(play).toHaveAttribute("aria-pressed", "false");
   await page.reload();
-  await expect(play).toHaveAttribute("aria-pressed", "false");
-  await play.click();
+  await expect(pause).toHaveAttribute("aria-pressed", "true");
   await pause.click();
   await page.emulateMedia({ reducedMotion: "no-preference" });
   expect(await signal.evaluate(el => getComputedStyle(el).animationPlayState)).toBe("paused");

@@ -1230,9 +1230,14 @@ html {
   }
 }
 
-/* L’activation explicite de la vague ne réactive aucune autre animation. */
+/* L’animation de la vague ne réactive aucun autre effet en mode réduit. */
 :root[data-wave-motion="on"] .signal { animation: signal 12s linear var(--signal-delay) infinite !important; stroke-dasharray: 5 95; opacity: 1; }
 :root[data-wave-motion="off"] .signal { animation-play-state: paused !important; }
+
+/* Le mode réduit conserve une vague deux fois plus lente, sans relancer les autres effets. */
+@media (prefers-reduced-motion: reduce) {
+  :root[data-wave-motion="on"] .signal { animation-duration: 24s !important; }
+}
 
 .contact h2 span {
   display: inline-block;
