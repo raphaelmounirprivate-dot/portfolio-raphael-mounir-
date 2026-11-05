@@ -13,12 +13,14 @@ export function learningModes(kind: LearningKind): string {
 export function learningChapter(kind: LearningKind): string {
   const chapter = learningChapters[kind];
   return `<article class="learning-chapter" id="chapter-${kind}" hidden aria-labelledby="chapter-title-${kind}">
-    <h3 id="chapter-title-${kind}" tabindex="-1">${escape(chapter.title)}</h3>
-    <p class="chapter-introduction">${escape(chapter.introduction)}</p>
-    <ol class="chapter-steps">${chapter.steps.map(step => `<li><h4>${escape(step.title)}</h4><p>${escape(step.explanation)}</p><p class="chapter-example">${escape(step.example)}</p><p>${escape(step.reasoning)}</p></li>`).join("")}</ol>
-    <aside class="chapter-reminders" aria-label="Méthode à retenir"><h4>La méthode à retenir</h4><ul>${chapter.reminders.map(reminder => `<li>${escape(reminder)}</li>`).join("")}</ul></aside>
+    <div class="chapter-heading"><h3 id="chapter-title-${kind}" tabindex="-1">${escape(chapter.title)}</h3>
+    <p class="chapter-introduction">${escape(chapter.introduction)}</p></div>
+    <div class="chapter-pages">
+    <ol class="chapter-steps">${chapter.steps.map((step, index) => `<li data-chapter-page="${index}"${index ? " hidden" : ""}><h4>${escape(step.title)}</h4><p>${escape(step.explanation)}</p><p class="chapter-example">${escape(step.example)}</p><p>${escape(step.reasoning)}</p></li>`).join("")}</ol>
+    <div class="chapter-wrapup" data-chapter-page="3" hidden><details class="chapter-reminders"><summary>La méthode à retenir</summary><ul>${chapter.reminders.map(reminder => `<li>${escape(reminder)}</li>`).join("")}</ul></details>
     <div class="chapter-application"><h4>À toi d’essayer</h4><p>${escape(chapter.application.question)}</p><details><summary>Voir la correction</summary><p>${escape(chapter.application.answer)}</p></details></div>
-    <button type="button" class="demo-primary" data-chapter-practice>Passer aux trois défis</button>
+    <button type="button" class="demo-primary" data-chapter-practice>Passer aux trois défis</button></div></div>
+    <nav class="chapter-navigation" aria-label="Étapes du chapitre"><button type="button" data-chapter-previous disabled>Précédent</button><span data-chapter-position role="status">Étape 1 / 4</span><button type="button" data-chapter-next>Suivant</button></nav>
   </article>`;
 }
 
@@ -27,6 +29,22 @@ export function initLearningChapters(): void {
     const practice = root.querySelector<HTMLElement>(".demo-content")!;
     const chapter = root.querySelector<HTMLElement>(".learning-chapter")!;
     const buttons = root.querySelectorAll<HTMLButtonElement>("[data-learning-mode]");
+    const pages = chapter.querySelectorAll<HTMLElement>("[data-chapter-page]");
+    const previous = chapter.querySelector<HTMLButtonElement>("[data-chapter-previous]")!;
+    const next = chapter.querySelector<HTMLButtonElement>("[data-chapter-next]")!;
+    let page = 0;
+    const turnPage = (direction: number): void => {
+      page = Math.max(0, Math.min(pages.length - 1, page + direction));
+      pages.forEach((element, index) => { element.hidden = index !== page; });
+      previous.disabled = page === 0;
+      next.disabled = page === pages.length - 1;
+      chapter.querySelector("[data-chapter-position]")!.textContent = `Étape ${page + 1} / ${pages.length}`;
+      // Garder le focus sur une commande utilisable aux extrémités du chapitre.
+      if (next.disabled && document.activeElement === next) previous.focus({ preventScroll: true });
+      if (previous.disabled && document.activeElement === previous) next.focus({ preventScroll: true });
+    };
+    previous.addEventListener("click", () => turnPage(-1));
+    next.addEventListener("click", () => turnPage(1));
     const show = (mode: "chapter" | "practice"): void => {
       practice.hidden = mode !== "practice";
       chapter.hidden = mode !== "chapter";

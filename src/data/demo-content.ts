@@ -1,6 +1,28 @@
 export type DemoKind =
   "sport" | "simulation" | "telecom" | "budget" | "math" | "declic";
 
+interface ExerciseGuide {
+  image: string;
+  imageAlt: string;
+  caption: string;
+  muscles: string;
+  setup: string;
+  movement: string;
+  check: string;
+  warning: string;
+}
+
+export const sportExerciseGuide: ExerciseGuide = {
+  image: "images/sport-presse-cuisses.webp",
+  imageAlt: "Presse à cuisses inclinée : position jambes fléchies à gauche, position de poussée à droite.",
+  caption: "À gauche : jambes fléchies. À droite : pousser, sans verrouiller les genoux.",
+  muscles: "Quadriceps et fessiers",
+  setup: "Règle dossier et sécurités avec le coach. Pieds stables, talons en appui.",
+  movement: "Fléchis les jambes sans décoller le bassin. Pousse en suivant la direction des orteils.",
+  check: "Dos stable, pas de rebond ni de verrouillage brutal des genoux.",
+  warning: "Illustration de repérage : les modèles et leurs réglages peuvent varier. Fais valider les appuis, les sécurités et la trajectoire sur le poste réel.",
+};
+
 export interface QuizQuestion {
   prompt: string;
   choices: string[];

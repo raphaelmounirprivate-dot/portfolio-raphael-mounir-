@@ -19,6 +19,31 @@ const find = <T extends HTMLElement>(root: HTMLElement, selector: string): T =>
   root.querySelector<T>(selector)!;
 
 function initSport(root: HTMLElement): void {
+  const modeButtons = root.querySelectorAll<HTMLButtonElement>("[data-sport-mode]");
+  const practiceButton = find<HTMLButtonElement>(root, '[data-sport-mode="practice"]');
+  let inviteVisible = false;
+  const syncInvite = (): void => {
+    practiceButton.style.animationPlayState = inviteVisible && !document.hidden ? "running" : "paused";
+  };
+  const inviteObserver = new IntersectionObserver(([entry]) => {
+    inviteVisible = entry.isIntersecting;
+    syncInvite();
+  });
+  inviteObserver.observe(practiceButton);
+  document.addEventListener("visibilitychange", syncInvite);
+  const stopInvite = (): void => {
+    practiceButton.classList.remove("sport-invite");
+    practiceButton.style.removeProperty("animation-play-state");
+    inviteObserver.disconnect();
+    document.removeEventListener("visibilitychange", syncInvite);
+  };
+  modeButtons.forEach(button => button.addEventListener("click", () => {
+    const technique = button.dataset.sportMode === "technique";
+    if (!technique) stopInvite();
+    find(root, "#sport-practice").hidden = technique;
+    find(root, "#sport-technique").hidden = !technique;
+    modeButtons.forEach(control => control.setAttribute("aria-pressed", String(control === button)));
+  }));
   let completed = 0;
   let remaining = 120;
   let deadline = 0;

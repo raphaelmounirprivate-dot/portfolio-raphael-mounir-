@@ -4,22 +4,35 @@
 .learning-world .learning-modes button[aria-pressed="true"]:hover { background: #2947c7; }
 .learning-chapter { padding: 22px 24px; color: #192345; }
 .destination:has(.learning-chapter:not([hidden])) .project-copy { align-self: start; padding-top: 18px; }
-.learning-chapter > h3 { font-family: Nunito, system-ui, sans-serif; font-weight: 900; font-size: clamp(26px, 3vw, 34px); line-height: 1.15; letter-spacing: -.025em; margin: 0 0 14px; }
+.chapter-heading { min-height: 132px; }
+.chapter-heading > h3 { font-family: Nunito, system-ui, sans-serif; font-weight: 900; font-size: 26px; line-height: 1.15; letter-spacing: -.025em; margin: 0 0 12px; }
+.chapter-pages, .chapter-steps { display: grid; }
+.chapter-pages { min-height: 400px; }
+.chapter-pages > *, .chapter-steps > li { grid-area: 1 / 1; align-self: start; min-width: 0; }
+/* Superposer les étapes stabilise la hauteur sans cadre défilant ni hauteur maximale. */
+.chapter-pages [data-chapter-page][hidden] { display: block !important; visibility: hidden; pointer-events: none; }
+.chapter-navigation { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; border-top: 1px solid #dce1f0; padding-top: 16px; margin-top: 12px; }
+.chapter-navigation span { font-size: 12px; color: #53607c; white-space: nowrap; }
+.learning-world .chapter-navigation button { color: #3657e8; border-color: #dce1f0; font-weight: 750; }
+.learning-world .chapter-navigation button:disabled { color: #53607c; opacity: .65; }
 .learning-chapter p, .learning-chapter li { color: #192345; font-size: 15px; line-height: 1.7; }
 .learning-chapter p { margin: 0 0 12px; }
 .learning-chapter .chapter-introduction { color: #53607c; margin-bottom: 24px; }
 .learning-chapter h4 { font-family: Nunito, system-ui, sans-serif; font-weight: 900; font-size: 21px; letter-spacing: -.02em; line-height: 1.25; margin: 0 0 10px; }
 .chapter-steps { list-style: none; padding: 0; margin: 0; counter-reset: chapter-step; }
-.chapter-steps > li { counter-increment: chapter-step; padding: 20px 0; border-top: 1px solid #dce1f0; }
+.chapter-steps > li { counter-increment: chapter-step; padding: 16px 0; border-top: 1px solid #dce1f0; }
 .chapter-steps h4::before { content: counter(chapter-step) ". "; color: #3657e8; }
 .learning-chapter .chapter-example { background: #fff; padding: 14px 16px; border-radius: 12px; color: #3657e8; font-weight: 700; overflow-wrap: anywhere; }
 .chapter-reminders { background: #e9f8d8; padding: 18px; border-radius: 14px; margin-block: 8px 24px; }
 .chapter-reminders ul { padding-left: 20px; margin: 0; }
+.chapter-reminders summary { font-family: Nunito, system-ui, sans-serif; font-size: 18px; font-weight: 900; cursor: pointer; min-height: 44px; display: list-item; align-content: center; }
+.chapter-reminders[open] summary { margin-bottom: 12px; }
 .chapter-reminders li + li { margin-top: 4px; }
 .chapter-application { margin-bottom: 20px; }
 .chapter-application summary { color: #3657e8; cursor: pointer; padding-block: 12px; min-height: 44px; font-weight: 650; font-size: 14px; }
 .chapter-application details[open] > p { padding: 14px; background: #edf0ff; border-radius: 12px; }
 @media (max-width: 480px) {
+  .chapter-heading { min-height: 208px; }
   .learning-modes { padding: 12px 14px 0; }
   .learning-world .learning-modes button { font-size: 13px; padding-inline: 8px; }
   .learning-chapter { padding: 20px 16px; }

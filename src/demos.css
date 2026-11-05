@@ -60,6 +60,42 @@
   font-size: 13px;
   margin-bottom: 20px;
 }
+.sport-modes { display: grid; grid-template-columns: 1.2fr .8fr; gap: 8px; margin-block: 18px 20px; }
+.sport-modes button { font-weight: 500; }
+.sport-modes button[aria-pressed="true"] { background: var(--signal); border-color: var(--signal); color: var(--button-text); }
+.sport-modes button[aria-pressed="true"]:hover { background: var(--signal); }
+.sport-modes .sport-invite { border-color: var(--signal); animation: sport-invite 1.8s ease-in-out infinite; }
+@keyframes sport-invite {
+  0%, 100% { background-color: transparent; }
+  50% { background-color: color-mix(in srgb, var(--signal) 28%, var(--surface)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sport-modes .sport-invite { animation: none; background: color-mix(in srgb, var(--signal) 14%, var(--surface)); }
+}
+.workout-stage { display: grid; }
+.workout-stage > .sport-view { grid-area: 1 / 1; min-width: 0; align-self: start; }
+/* Les deux vues réservent la même place sans exposer les contrôles masqués. */
+.workout-stage > .sport-view[hidden] { display: block !important; visibility: hidden; pointer-events: none; }
+.exercise-guide { margin: 0; }
+.exercise-illustration { margin: 0 0 20px; }
+.exercise-illustration img { display: block; width: 100%; height: auto; max-height: 220px; object-fit: contain; border-radius: 6px; background: #fff; }
+.exercise-illustration figcaption { margin-top: 10px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.exercise-guide h5 { margin: 0; font-size: 17px; font-weight: 500; line-height: 1.5; }
+.exercise-muscles { margin: 4px 0 16px; color: var(--muted); font-size: 13px; }
+.exercise-technique { margin: 0; display: grid; gap: 14px; font-size: 14px; line-height: 1.65; }
+.exercise-technique dt { color: var(--signal); font-weight: 500; }
+.exercise-technique dd { margin: 3px 0 0; }
+.exercise-guide-note { margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; line-height: 1.65; }
+@container (min-width: 600px) {
+  .exercise-guide-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); column-gap: 24px; align-items: start; }
+  .exercise-illustration { grid-column: 1; grid-row: 1 / 4; margin: 0; }
+  .exercise-guide-layout > h5, .exercise-muscles, .exercise-technique { grid-column: 2; }
+  .exercise-guide-note { grid-column: 1 / -1; }
+}
+@container (max-width: 599px) {
+  .workout-stage { display: block; }
+  .workout-stage > .sport-view[hidden] { display: none !important; }
+}
 .demo-panel button {
   min-height: 44px;
   background: transparent;

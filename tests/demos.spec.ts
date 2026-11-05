@@ -24,8 +24,36 @@ test("sport : validation, chrono, pause et réinitialisation", async ({
   page,
 }) => {
   await page.clock.install();
+  await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/#mon-coach-sport");
   const demo = page.locator('[data-demo="sport"]');
+  const technique = demo.getByRole("button", { name: "Technique de l’exercice", exact: true });
+  const session = demo.getByRole("button", { name: "Séance", exact: true });
+  await expect(technique).toHaveAttribute("aria-pressed", "true");
+  await expect(session).toHaveClass(/sport-invite/);
+  expect(await session.evaluate(el => getComputedStyle(el).animationName)).toBe("sport-invite");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  expect(await session.evaluate(el => getComputedStyle(el).animationName)).toBe("none");
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await expect(demo.locator("#sport-practice")).toBeHidden();
+  const illustration = demo.getByRole("img", { name: /Presse à cuisses inclinée/ });
+  await illustration.scrollIntoViewIfNeeded();
+  await expect.poll(() => illustration.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth === 1534)).toBe(true);
+  await expect(demo.getByRole("heading", { name: "Repères techniques" })).toBeVisible();
+  await expect(demo.locator(".exercise-technique")).toContainText("sans décoller le bassin");
+  await expect(demo.locator(".exercise-technique")).toContainText("pas de rebond");
+  await demo.screenshot({ path: `.local/demos/${test.info().project.name}-sport-technique.png`, style: ".journey-map,.skip-link{visibility:hidden!important}" });
+  const techniqueHeight = await demo.evaluate(el => el.getBoundingClientRect().height);
+  await session.click();
+  await expect(session).not.toHaveClass(/sport-invite/);
+  expect(await session.evaluate(el => getComputedStyle(el).animationName)).toBe("none");
+  await expect(demo.locator("#sport-technique")).toBeHidden();
+  const practiceHeight = await demo.evaluate(el => el.getBoundingClientRect().height);
+  if (await demo.evaluate(el => el.getBoundingClientRect().width) >= 600) {
+    expect(Math.abs(practiceHeight - techniqueHeight)).toBeLessThan(2);
+  } else {
+    expect(practiceHeight).toBeLessThan(techniqueHeight);
+  }
   await demo.locator("[data-weight]").fill("-1");
   await demo.locator("[data-validate]").click();
   await expect(demo.locator('[data-set="1"]')).toContainText("À faire");
@@ -33,6 +61,11 @@ test("sport : validation, chrono, pause et réinitialisation", async ({
   await demo.locator("[data-validate]").click();
   await expect(demo.locator('[data-set="1"]')).toContainText("40 kg × 12");
   await page.clock.fastForward(30000);
+  await expect(demo.locator("[data-timer]")).toHaveText("01:30");
+  await technique.click();
+  await expect(session).not.toHaveClass(/sport-invite/);
+  await demo.getByRole("button", { name: "Séance", exact: true }).click();
+  await expect(demo.locator('[data-set="1"]')).toContainText("40 kg × 12");
   await expect(demo.locator("[data-timer]")).toHaveText("01:30");
   await demo.locator("[data-pause]").click();
   await page.clock.fastForward(30000);
@@ -48,6 +81,7 @@ test("sport : validation, chrono, pause et réinitialisation", async ({
   await demo.locator("[data-reset]").click();
   await expect(demo.locator("[data-timer]")).toHaveText("02:00");
   await expect(demo.locator("[data-weight]")).toHaveValue("40");
+  await expect(session).not.toHaveClass(/sport-invite/);
   await expect(demo.locator("[data-reps]")).toHaveValue("12");
   await page.clock.fastForward(10000);
   await expect(demo.locator("[data-timer]")).toHaveText("02:00");

@@ -19,6 +19,8 @@ Aucune coordonnée de contact issue de l’authentification GitHub n’est publi
 
 ## Six démos intégrées — 3 novembre 2026
 
+Ajout du 5 novembre 2026 à la démo Sport : illustration de la presse à cuisses et repères techniques provenant du guide public de `full-body`, révision `77cdb91722109e80051a7cd99008b9cb47917e15`. Image `app/src/main/assets/guide/F1.webp`, copiée sans retouche en `public/images/sport-presse-cuisses.webp` ; objet Git vérifié `ef4452c64d6a9fec21b0c2bf403c7f3974e3b4cc`. Textes repris de l’entrée F1 de `app/src/main/assets/guide/exercises.json`, objet Git `85245ce2c96be89052f1ca96ac72a070e623eeac` : muscles, réglage, mouvement, contrôle, légende et réserve sur les différences entre machines. Les fichiers locaux utilisés ont les mêmes empreintes Git que les sources publiques. La prescription et les charges fictives de la démo restent distinctes du guide technique.
+
 Les README des quatre projets ajoutés ont été relus sur GitHub. Les dépôts gardent leur visibilité ; seules des descriptions et de petites adaptations pédagogiques autorisées sont reprises. Aucun compte, secret, historique ou fichier financier importé.
 
 - Télécom & Réseau : cas PoE de 100 W / trois bornes de 20 W / caméra de 15 W, puis limite du port et diagnostic IP. Trois questions adaptées, corrections conservées.

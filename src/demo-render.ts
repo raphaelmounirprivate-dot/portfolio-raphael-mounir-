@@ -1,12 +1,41 @@
 import type { DemoKind } from "./data/demo-content";
-import { demoLabels } from "./data/demo-content";
+import { demoLabels, sportExerciseGuide } from "./data/demo-content";
+import { escape } from "./html";
 import { learningWelcome, learningMissions } from "./learning-world";
 import { renderHorizon } from "./horizon-demo";
 import { renderCisco } from "./cisco-demo";
 import { learningModes, learningChapter } from "./learning-chapters";
 
+function sportGuide(): string {
+  const guide = sportExerciseGuide;
+  return `<section class="exercise-guide sport-view" id="sport-technique" aria-labelledby="sport-technique-title"><div class="exercise-guide-layout">
+    <figure class="exercise-illustration"><img src="${import.meta.env.BASE_URL}${guide.image}" width="1534" height="1022" alt="${escape(guide.imageAlt)}" loading="lazy" decoding="async" /><figcaption>${escape(guide.caption)}</figcaption></figure>
+    <h5 id="sport-technique-title">Repères techniques</h5><p class="exercise-muscles">${escape(guide.muscles)}</p>
+    <dl class="exercise-technique"><div><dt>Réglage</dt><dd>${escape(guide.setup)}</dd></div><div><dt>Mouvement</dt><dd>${escape(guide.movement)}</dd></div><div><dt>À contrôler</dt><dd>${escape(guide.check)}</dd></div></dl>
+    <p class="exercise-guide-note">${escape(guide.warning)}</p>
+  </div></section>`;
+}
+
 function sport(): string {
-  return `<div class="workout-demo"><div class="demo-screen-heading"><span>Full Body · séance A</span><span>Exemple</span></div><h4>Presse à cuisses</h4><p class="demo-prescription">2 séries · 10 à 15 répétitions</p><div class="demo-fields"><label>Charge fictive<input type="number" required min="0" max="500" step="0.5" value="40" data-weight />kg</label><label>Répétitions<input type="number" required min="1" max="100" value="12" data-reps /></label></div><div class="set-list"><p data-set="1"><span>Série 1</span><span>À faire</span></p><p data-set="2"><span>Série 2</span><span>À faire</span></p></div><button class="demo-primary" data-validate>Valider une série</button><div class="rest-bar"><span>Repos<output data-timer role="timer" aria-live="off" aria-label="Temps de repos restant">02:00</output></span><button data-pause disabled>Pause</button></div><p class="demo-feedback" data-feedback role="status">À vous de jouer : validez votre première série.</p><button class="demo-reset" data-reset>Recommencer la séance</button></div>`;
+  return `<div class="workout-demo">
+    <div class="demo-screen-heading"><span>Full Body · séance A</span><span>Exemple</span></div>
+    <h4>Presse à cuisses</h4><p class="demo-prescription">2 séries · 10 à 15 répétitions</p>
+    <div class="sport-modes" role="group" aria-label="Séance et technique de l’exercice">
+      <button type="button" data-sport-mode="technique" aria-pressed="true" aria-controls="sport-technique">Technique de l’exercice</button>
+      <button type="button" class="sport-invite" data-sport-mode="practice" aria-pressed="false" aria-controls="sport-practice">Séance</button>
+    </div>
+    <div class="workout-stage">
+      <div class="sport-view sport-practice" id="sport-practice" hidden>
+        <div class="demo-fields"><label>Charge fictive<input type="number" required min="0" max="500" step="0.5" value="40" data-weight />kg</label><label>Répétitions<input type="number" required min="1" max="100" value="12" data-reps /></label></div>
+        <div class="set-list"><p data-set="1"><span>Série 1</span><span>À faire</span></p><p data-set="2"><span>Série 2</span><span>À faire</span></p></div>
+        <button class="demo-primary" data-validate>Valider une série</button>
+        <div class="rest-bar"><span>Repos<output data-timer role="timer" aria-live="off" aria-label="Temps de repos restant">02:00</output></span><button data-pause disabled>Pause</button></div>
+        <p class="demo-feedback" data-feedback role="status">À vous de jouer : validez votre première série.</p>
+        <button class="demo-reset" data-reset>Recommencer la séance</button>
+      </div>
+      ${sportGuide()}
+    </div>
+  </div>`;
 }
 
 function budget(): string {

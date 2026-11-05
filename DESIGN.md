@@ -100,6 +100,10 @@ Math et Déclic présentent une miniature du thème clair des sites d’origine,
 
 La console Cisco utilise une surface #080F1C, texte #DFF9F8 et prompt #7CE5F1, y compris dans le portfolio clair. Consolas/Courier New sert uniquement aux commandes et sorties. Journal de hauteur bornée, texte repliable, commande et bouton de 44 px minimum. Topologie à trois nœuds, état des ports en texte ; pas d’animation réseau décorative. Sur mobile, Exécuter passe sous la saisie si nécessaire. Le guide et le quiz PoE se déplient sur place.
 
+## Guide de l’exercice Mon Coach Sport
+
+Dans Mon Coach Sport, deux boutons « Séance » et « Technique de l’exercice » séparent le suivi des séries du guide. La technique est affichée par défaut. Le bouton « Séance » pulse doucement jusqu’à sa première activation, puis reste sans animation, même en revenant à la technique. En mouvements réduits, le repère reste statique ; hors écran ou dans un onglet masqué, le clignotement est en pause. Changer de vue conserve les charges, séries et le chronomètre. L’illustration du guide original reste entière, avec légende, et les repères « Réglage », « Mouvement » et « À contrôler » sont groupés à côté dès 600 px disponibles. Sur grand panneau, les deux vues occupent la même cellule de grille pour conserver une hauteur stable. Sous 600 px disponibles, chaque vue retrouve sa hauteur naturelle pour éviter une grande zone vide dans la séance. Aucun cadre défilant. La vue masquée est invisible et absente de la navigation clavier. Image fluide et texte lisible dans les deux thèmes.
+
 ## Pandemic Horizon : jeu original
 
 Le panneau présente une capture réelle du moteur, 24 régions et trois agents, puis ouvre le jeu dans une fenêtre couvrant le navigateur. Son interface Godot conserve son identité et ses règles. Le poids approximatif du lancement et la préférence pour un ordinateur sont visibles avant le clic. La fermeture reste accessible au-dessus du jeu et rend le focus au bouton initial ; le moteur est alors déchargé. Les ressources lourdes ne sont pas préchargées.
@@ -111,6 +115,8 @@ Chaque destination mesure au moins un écran sur ordinateur et s’allonge avec 
 ## Lecture des chapitres
 
 Deux boutons à état pressé donnent accès au cours et aux défis dans les panneaux Math et Français. Le cours remplace visuellement les exercices, conservés dans le DOM et retrouvés dans leur état précédent. Article en hauteur naturelle, corps 15 px / 1,7 et titres Nunito de 26 à 34 px. Trois étapes numérotées pour la méthode, exemples sur papier blanc, rappel menthe et correction facultative. Le bouton final rend le focus au prochain contrôle utile des défis. Sur mobile, la marge de défilement du document réserve 72 px à la carte fixe ; les contrôles restent accessibles sous la navigation.
+Les chapitres Math et Français sont répartis en quatre étapes : trois notions, puis méthode et application. Précédent/Suivant et un compteur annoncé permettent la lecture sans grand bloc vertical. Les étapes partagent une grille dont la hauteur suit le contenu le plus long ; leur changement ne déplace pas la suite de la page. Typographie, marges et socle de hauteur sont communs aux deux chapitres, sans hauteur maximale ni défilement interne. Revenir aux défis conserve les réponses et les XP ; revenir au chapitre conserve l’étape lue.
+
 ## Curseur de l’écran d’entrée
 
 Le bouton « Entrer dans le site » utilise une adaptation TypeScript/Canvas du StarBorder fourni par l’utilisateur : fond bleu nuit, texte clair, étoile blanche et traînée cyan sur le contour, tour de quatre secondes. Survol et focus accélèrent un tour ; la pression éclaire brièvement la bordure. La préférence de réduction des mouvements conserve un contour statique. Le rendu s’arrête dans un onglet masqué et est détruit à l’entrée dans le portfolio. Aucun ajout de React ou de bibliothèque.

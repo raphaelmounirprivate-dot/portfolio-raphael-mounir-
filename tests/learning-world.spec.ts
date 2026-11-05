@@ -3,6 +3,7 @@ import { test, expect } from "@playwright/test";
 test("les chapitres de maths et de français expliquent les règles sans perdre la progression", async ({ page }, testInfo) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/#depart");
+  let sharedChapterHeight: number | undefined;
   for (const [kind, answer, title, correction] of [
     ["math", "64", "Comprendre les puissances", "3³ = 3 × 3 × 3 = 27"],
     ["declic", "arrivées", "Accorder le participe passé", "On écrit « écrites »"],
@@ -19,6 +20,16 @@ test("les chapitres de maths et de français expliquent les règles sans perdre 
     await expect(world.locator(".demo-content")).toBeHidden();
     await expect(chapter.getByRole("heading", { name: title, exact: true })).toBeVisible();
     await expect(chapter.locator(".chapter-steps > li")).toHaveCount(3);
+    const chapterHeight = await chapter.evaluate(el => el.getBoundingClientRect().height);
+    if (sharedChapterHeight !== undefined) expect(Math.abs(chapterHeight - sharedChapterHeight)).toBeLessThan(2);
+    sharedChapterHeight = chapterHeight;
+    for (let step = 0; step < 3; step++) {
+      await expect(chapter.locator("[data-chapter-page]:visible")).toHaveCount(1);
+      await chapter.getByRole("button", { name: "Suivant", exact: true }).click();
+      expect(Math.abs(await chapter.evaluate(el => el.getBoundingClientRect().height) - chapterHeight)).toBeLessThan(2);
+    }
+    await expect(chapter.locator("[data-chapter-position]")).toHaveText("Étape 4 / 4");
+    await expect(chapter.getByRole("button", { name: "Suivant", exact: true })).toBeDisabled();
     await chapter.getByText("Voir la correction", { exact: true }).click();
     await expect(chapter.locator(".chapter-application details p")).toContainText(correction);
     const scrollers = await chapter.evaluate(root => Array.from(root.querySelectorAll("*")).filter(element => /^(auto|scroll)$/.test(getComputedStyle(element).overflowY) && element.scrollHeight > element.clientHeight + 1).length);
