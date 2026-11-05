@@ -1,0 +1,32 @@
+#terre-cv { width: 100%; min-width: 0; color: var(--text, #f1f3f6); text-align: center; }
+#terre-cv .tcv-title { font: 400 24px/1.3 Outfit, sans-serif; margin: 0 0 12px; }
+#terre-cv .tcv-stage { position: relative; width: 100%; aspect-ratio: 1; max-height: 440px; display: grid; place-items: center; isolation: isolate; }
+#terre-cv .tcv-planet { position: relative; width: 100%; height: 100%; border: 0; padding: 0; background: transparent; color: inherit; cursor: pointer; touch-action: pan-y; border-radius: 50%; }
+#terre-cv .tcv-planet:focus-visible { outline: 3px solid #7ce5f1; outline-offset: 4px; }
+#terre-cv .tcv-planet canvas { display: block; width: 100%; height: 100%; transition: transform 300ms ease-out; }
+#terre-cv .tcv-planet:hover canvas { transform: scale(1.035); }
+#terre-cv .tcv-fallback { position: absolute; inset: 18%; border-radius: 50%; background: url('./textures/earth_atmos_2048.jpg') center/cover; box-shadow: inset -30px -10px 45px #000b, 0 0 24px #459bdb70; pointer-events: none; }
+#terre-cv .tcv-planet[data-ready] .tcv-fallback { display: none; }
+#terre-cv .tcv-ring { position: absolute; inset: 15%; border: 1px solid #7ce5f190; border-radius: 50%; pointer-events: none; animation: tcv-ring 2s ease-out infinite; animation-play-state: paused; }
+#terre-cv[data-visible="true"] .tcv-ring { animation-play-state: running; }
+#terre-cv .tcv-hint { font-size: 14px; line-height: 1.6; margin: 12px auto 0; max-width: 28ch; }
+#terre-cv .tcv-help { font-size: 12px; color: var(--muted, #a7b4c8); margin: 8px 0; }
+#terre-cv .tcv-ripple { position: absolute; width: 20px; height: 20px; margin: -10px; border: 2px solid #b6f6ff; border-radius: 50%; pointer-events: none; animation: tcv-ripple 650ms ease-out forwards; }
+#terre-cv .tcv-dialog { color: #f1f3f6; background: #101c2e; border: 1px solid #41516a; border-radius: 14px; padding: 0; width: min(880px, 94vw); max-height: 92dvh; text-align: left; }
+#terre-cv .tcv-dialog[open] { animation: tcv-fade 220ms ease-out; }
+#terre-cv .tcv-dialog::backdrop { background: #050c18bc; backdrop-filter: blur(8px); }
+#terre-cv .tcv-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 16px 20px; position: sticky; top: 0; background: #101c2e; z-index: 1; }
+#terre-cv .tcv-toolbar h3 { margin: 0; font: 500 20px/1.4 Outfit, sans-serif; }
+#terre-cv .tcv-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+#terre-cv .tcv-download, #terre-cv .tcv-close { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 14px; border: 1px solid #7ce5f1; border-radius: 6px; font: 500 14px/1.4 Outfit, sans-serif; cursor: pointer; text-decoration: none; }
+#terre-cv .tcv-download { background: #7ce5f1; color: #080f1c; }
+#terre-cv .tcv-close { background: transparent; color: #f1f3f6; }
+#terre-cv .tcv-preview { display: block; width: 100%; height: auto; background: #fff; }
+#terre-cv .tcv-actions :focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+@keyframes tcv-ring { from { transform: scale(.9); opacity: .7; } to { transform: scale(1.17); opacity: 0; } }
+@keyframes tcv-ripple { to { transform: scale(12); opacity: 0; } }
+@keyframes tcv-fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  #terre-cv .tcv-ring, #terre-cv .tcv-ripple, #terre-cv .tcv-dialog[open] { animation: none; }
+  #terre-cv .tcv-planet canvas { transition: none; }
+}
