@@ -25,7 +25,21 @@ export function learningChapter(kind: LearningKind): string {
 }
 
 export function initLearningChapters(): void {
-  document.querySelectorAll<HTMLElement>(".learning-world").forEach(root => {
+  const worlds = Array.from(document.querySelectorAll<HTMLElement>(".learning-world"));
+  const chapters = worlds.map(root => root.querySelector<HTMLElement>(".learning-chapter")!);
+  const syncHeights = (): void => {
+    // Mesurer aussi le chapitre masqué, sans l’afficher ni déplacer le document.
+    chapters.forEach(chapter => {
+      chapter.style.minHeight = "0px";
+      if (chapter.hidden) chapter.classList.add("chapter-measuring");
+    });
+    const height = Math.ceil(Math.max(...chapters.map(chapter => chapter.getBoundingClientRect().height)));
+    chapters.forEach(chapter => {
+      chapter.classList.remove("chapter-measuring");
+      chapter.style.minHeight = `${height}px`;
+    });
+  };
+  worlds.forEach(root => {
     const practice = root.querySelector<HTMLElement>(".demo-content")!;
     const chapter = root.querySelector<HTMLElement>(".learning-chapter")!;
     const buttons = root.querySelectorAll<HTMLButtonElement>("[data-learning-mode]");
@@ -49,6 +63,7 @@ export function initLearningChapters(): void {
       practice.hidden = mode !== "practice";
       chapter.hidden = mode !== "chapter";
       buttons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.learningMode === mode)));
+      syncHeights();
     };
     buttons.forEach(button => button.addEventListener("click", () => {
       show(button.dataset.learningMode === "chapter" ? "chapter" : "practice");
@@ -58,5 +73,17 @@ export function initLearningChapters(): void {
       const target = practice.querySelector<HTMLElement>("[data-choices] button:not(:disabled), [data-next-question]:not(:disabled), [data-reset]");
       target?.focus();
     });
+    chapter.querySelectorAll("details").forEach(details => details.addEventListener("toggle", syncHeights));
   });
+  let widths = "";
+  const resize = new ResizeObserver(() => {
+    const nextWidths = worlds.map(root => root.clientWidth).join(",");
+    if (nextWidths === widths) return;
+    widths = nextWidths;
+    syncHeights();
+  });
+  worlds.forEach(root => resize.observe(root));
+  void document.fonts.ready.then(syncHeights);
+  document.fonts.addEventListener("loadingdone", syncHeights);
+  syncHeights();
 }

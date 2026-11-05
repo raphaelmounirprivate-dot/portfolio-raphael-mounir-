@@ -2,12 +2,14 @@
 .learning-world .learning-modes button { flex: 1; border-color: #dce1f0; border-radius: 10px; color: #3657e8; font-size: 14px; font-weight: 750; min-height: 44px; }
 .learning-world .learning-modes button[aria-pressed="true"] { color: #fff; background: #3657e8; border-color: #3657e8; }
 .learning-world .learning-modes button[aria-pressed="true"]:hover { background: #2947c7; }
-.learning-chapter { padding: 22px 24px; color: #192345; }
+.learning-world { position: relative; }
+.learning-chapter { display: flex; flex-direction: column; padding: 22px 24px; color: #192345; }
+.learning-chapter.chapter-measuring[hidden] { display: flex !important; position: absolute; inset-inline: 0; top: 0; visibility: hidden; pointer-events: none; }
 .destination:has(.learning-chapter:not([hidden])) .project-copy { align-self: start; padding-top: 18px; }
 .chapter-heading { min-height: 132px; }
 .chapter-heading > h3 { font-family: Nunito, system-ui, sans-serif; font-weight: 900; font-size: 26px; line-height: 1.15; letter-spacing: -.025em; margin: 0 0 12px; }
 .chapter-pages, .chapter-steps { display: grid; }
-.chapter-pages { min-height: 400px; }
+.chapter-pages { min-height: 400px; flex: 1; }
 .chapter-pages > *, .chapter-steps > li { grid-area: 1 / 1; align-self: start; min-width: 0; }
 /* Superposer les étapes stabilise la hauteur sans cadre défilant ni hauteur maximale. */
 .chapter-pages [data-chapter-page][hidden] { display: block !important; visibility: hidden; pointer-events: none; }

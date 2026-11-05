@@ -20,6 +20,7 @@ test("les chapitres de maths et de français expliquent les règles sans perdre 
     await expect(world.locator(".demo-content")).toBeHidden();
     await expect(chapter.getByRole("heading", { name: title, exact: true })).toBeVisible();
     await expect(chapter.locator(".chapter-steps > li")).toHaveCount(3);
+    await page.evaluate(() => document.fonts.ready);
     const chapterHeight = await chapter.evaluate(el => el.getBoundingClientRect().height);
     if (sharedChapterHeight !== undefined) expect(Math.abs(chapterHeight - sharedChapterHeight)).toBeLessThan(2);
     sharedChapterHeight = chapterHeight;
@@ -36,6 +37,7 @@ test("les chapitres de maths et de français expliquent les règles sans perdre 
     expect(scrollers).toBe(0);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await chapter.screenshot({ path: `.local/chapters/${testInfo.project.name}-${kind}.png`, style: ".journey-map,.skip-link{visibility:hidden!important}" });
+    await chapter.locator(".chapter-application details").evaluate((details: HTMLDetailsElement) => { details.open = false; });
     await chapter.getByRole("button", { name: "Passer aux trois défis" }).click();
     await expect(chapter).toBeHidden();
     await expect(world.locator("[data-question]")).toHaveText(question!);
