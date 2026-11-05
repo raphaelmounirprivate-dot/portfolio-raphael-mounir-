@@ -21,7 +21,7 @@ function mount() {
 
   // Le dialogue natif gère Échap, le focus captif et l’inertie de l’arrière-plan.
   function open(event) {
-    if (dragged) { dragged = false; return; }
+    if (dragged && event.detail !== 0) { dragged = false; return; }
     if (!reduced.matches) {
       const ripple = document.createElement('span');
       ripple.className = 'tcv-ripple';
@@ -46,6 +46,8 @@ function mount() {
     const dx = event.clientX - pointer.x, dy = event.clientY - pointer.y;
     if (Math.hypot(event.clientX - pointer.startX, event.clientY - pointer.startY) > 7) {
       dragged = true;
+      // Un geste vertical tactile reste réservé au défilement de la page.
+      if (event.pointerType === 'touch' && Math.abs(event.clientY - pointer.startY) > Math.abs(event.clientX - pointer.startX)) return;
       button.setPointerCapture(event.pointerId);
       if (globe) { globe.rotation.y += dx * .008; globe.rotation.x = Math.max(-.7, Math.min(.7, globe.rotation.x + dy * .004)); }
       interacted = performance.now();
@@ -55,8 +57,8 @@ function mount() {
   });
   const release = () => { pointer = undefined; interacted = performance.now(); };
   button.addEventListener('pointerup', release);
-  button.addEventListener('pointercancel', release);
-  button.addEventListener('pointerenter', () => { hover = true; wake(); });
+  button.addEventListener('pointercancel', () => { release(); dragged = false; });
+  button.addEventListener('pointerenter', event => { hover = event.pointerType !== 'touch'; wake(); });
   button.addEventListener('pointerleave', () => { hover = false; wake(); });
 
   function draw(now) {

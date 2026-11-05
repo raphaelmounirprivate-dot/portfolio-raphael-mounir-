@@ -4,7 +4,7 @@
 #terre-cv .tcv-planet { position: relative; width: 100%; height: 100%; border: 0; padding: 0; background: transparent; color: inherit; cursor: pointer; touch-action: pan-y; border-radius: 50%; }
 #terre-cv .tcv-planet:focus-visible { outline: 3px solid #7ce5f1; outline-offset: 4px; }
 #terre-cv .tcv-planet canvas { display: block; width: 100%; height: 100%; transition: transform 300ms ease-out; }
-#terre-cv .tcv-planet:hover canvas { transform: scale(1.035); }
+@media (hover: hover) and (pointer: fine) { #terre-cv .tcv-planet:hover canvas { transform: scale(1.035); } }
 #terre-cv .tcv-fallback { position: absolute; inset: 18%; border-radius: 50%; background: url('./textures/earth_atmos_2048.jpg') center/cover; box-shadow: inset -30px -10px 45px #000b, 0 0 24px #459bdb70; pointer-events: none; }
 #terre-cv .tcv-planet[data-ready] .tcv-fallback { display: none; }
 #terre-cv .tcv-ring { position: absolute; inset: 15%; border: 1px solid #7ce5f190; border-radius: 50%; pointer-events: none; animation: tcv-ring 2s ease-out infinite; animation-play-state: paused; }

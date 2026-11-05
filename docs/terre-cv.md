@@ -25,3 +25,9 @@ Three.js 0.180.0 est chargé à la demande depuis jsDelivr, uniquement à la pre
 Le PDF est une copie inchangée du document fourni `CV_Raphael_Mounir_digiSolidaire_final.pdf`, une page. L’aperçu PNG est rendu par Poppler depuis ce PDF et a été inspecté. Le clic ouvre cet aperçu dans un dialogue natif avec téléchargement du PDF original. Le document contient les coordonnées que l’utilisateur a demandé de publier avec son CV ; elles ne sont pas reproduites ailleurs. La publication GitHub/site a été explicitement demandée pour cet ajout.
 
 Le glissement tourne la sphère ; l’auto-rotation reprend après 2,2 secondes. Les mouvements réduits arrêtent la rotation et les pulsations. IntersectionObserver et visibilité de l’onglet arrêtent le rendu hors écran. Un visuel statique conserve l’accès au CV si WebGL ou le CDN sont indisponibles. Le dialogue gère le focus, Échap et le retour au bouton ; aucune modification de `body` n’est nécessaire.
+
+## Contrôle GSM et PC tactile
+
+Profil Chromium ajouté : PC tactile 1366 × 768, sans mode mobile, avec entrée tactile. Contrôles supplémentaires : geste vertical natif sur la planète pour défiler sans ouvrir le CV, tap après défilement, boutons de 44 px minimum et modale sans débordement. Petit écran 320 × 640 avec texte à 125 %. Le survol agrandi est réservé aux pointeurs fins ; les gestes annulés libèrent l’état du déplacement et l’activation clavier reste disponible. Le glissement vertical tactile ne capture pas le pointeur pour ne pas entraver le défilement.
+
+Ces contrôles utilisent l’émulation Chromium et des gestes CDP, pas un téléphone ou un PC tactile physique. Ils ne constituent pas une validation Safari/iOS.
