@@ -24,7 +24,7 @@ Three.js 0.180.0 est chargé à la demande depuis jsDelivr, uniquement à la pre
 
 Le PDF est une copie inchangée du document fourni `CV_Raphael_Mounir_digiSolidaire_final.pdf`, une page. L’aperçu PNG est rendu par Poppler depuis ce PDF et a été inspecté. Le clic ouvre cet aperçu dans un dialogue natif avec téléchargement du PDF original. Le document contient les coordonnées que l’utilisateur a demandé de publier avec son CV ; elles ne sont pas reproduites ailleurs. La publication GitHub/site a été explicitement demandée pour cet ajout.
 
-Le glissement tourne la sphère ; l’auto-rotation reprend après 2,2 secondes. Les mouvements réduits arrêtent la rotation et les pulsations. IntersectionObserver et visibilité de l’onglet arrêtent le rendu hors écran. Un visuel statique conserve l’accès au CV si WebGL ou le CDN sont indisponibles. Le dialogue gère le focus, Échap et le retour au bouton ; aucune modification de `body` n’est nécessaire.
+La Terre tourne en CSS dès l’insertion de son conteneur dans le DOM, avant le montage des commandes JavaScript et le chargement de Three.js. Ce visuel reste animé si le CDN ou WebGL sont indisponibles. La sphère 3D prend ensuite le relais sans délai initial. Le glissement tourne la sphère ; l’auto-rotation reprend après 2,2 secondes. Les mouvements réduits divisent la vitesse de rotation par deux et arrêtent les pulsations. IntersectionObserver et visibilité de l’onglet arrêtent le rendu hors écran. Le dialogue gère le focus, Échap et le retour au bouton ; aucune modification de `body` n’est nécessaire.
 
 ## Contrôle GSM et PC tactile
 

@@ -11,12 +11,13 @@ function mount() {
     <p class="tcv-help">Faites-la tourner à la souris ou au doigt.</p>
     <dialog class="tcv-dialog" aria-labelledby="tcv-dialog-title"><div class="tcv-toolbar"><h3 id="tcv-dialog-title">Le CV de Raphaël Mounir</h3><div class="tcv-actions"><a class="tcv-download" href="${new URL('documents/CV_Raphael_Mounir.pdf', base)}" download="CV_Raphael_Mounir.pdf">Télécharger mon CV (PDF)</a><button class="tcv-close" type="button">Fermer</button></div></div><img class="tcv-preview" src="${new URL('documents/cv-raphael-apercu.png', base)}" loading="lazy" width="990" height="1400" alt="CV de Raphaël Mounir : technicien télécom, réseaux et fibre. Le document complet est également téléchargeable en PDF." /></dialog>`;
   const button = root.querySelector('.tcv-planet');
+  root.dataset.mounted = 'true';
   const stage = root.querySelector('.tcv-stage');
   const dialog = root.querySelector('dialog');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let visible = false;
   let renderer, scene, camera, earth, clouds, atmosphere, globe;
-  let frame = 0, last = 0, interacted = 0, zoom = 0, hover = false;
+  let frame = 0, last = 0, interacted = -Infinity, zoom = 0, hover = false;
   let pointer, dragged = false, loading = false, disposed = false;
 
   // Le dialogue natif gère Échap, le focus captif et l’inertie de l’arrière-plan.
@@ -67,15 +68,16 @@ function mount() {
     const dt = last ? Math.min((now - last) / 1000, .05) : 0;
     last = now;
     // Vue depuis le pôle Nord : rotation positive vers l’est, axe à 23,4°.
-    if (!reduced.matches && !pointer && now - interacted > 2200) {
-      earth.rotation.y += dt * .035;
-      clouds.rotation.y += dt * .039;
+    if (!pointer && now - interacted > 2200) {
+      const speed = reduced.matches ? .5 : 1;
+      earth.rotation.y += dt * .035 * speed;
+      clouds.rotation.y += dt * .039 * speed;
     }
     camera.position.z += ((3.45 - zoom) - camera.position.z) * .12;
     atmosphere.material.uniforms.tcvStrength.value = hover ? .9 : .6;
     renderer.render(scene, camera);
-    root.dataset.animation = reduced.matches ? 'static' : 'running';
-    if (!reduced.matches || Math.abs(camera.position.z - (3.45 - zoom)) > .002) frame = requestAnimationFrame(draw);
+    root.dataset.animation = reduced.matches ? 'slow' : 'running';
+    frame = requestAnimationFrame(draw);
   }
   function wake() {
     if (!frame && renderer && visible && !document.hidden && !disposed) { last = 0; frame = requestAnimationFrame(draw); }
