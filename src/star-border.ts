@@ -5,7 +5,7 @@ const TAU = Math.PI * 2;
 
 interface Point { x: number; y: number }
 
-export function initStarBorder(button: HTMLButtonElement, motionButton: HTMLButtonElement): () => void {
+export function initStarBorder(button: HTMLButtonElement): () => void {
   const canvas = document.createElement("canvas");
   canvas.className = "star-border-light";
   canvas.setAttribute("aria-hidden", "true");
@@ -27,9 +27,6 @@ export function initStarBorder(button: HTMLButtonElement, motionButton: HTMLButt
   let previous = 0;
   let frame = 0;
   let disposed = false;
-  let optedIn = false;
-
-  function canAnimate(): boolean { return !motion.matches || optedIn; }
 
   // Les droites et quarts de cercle gardent une vitesse uniforme sur tout le contour.
   function pointAt(distance: number): Point {
@@ -97,30 +94,24 @@ export function initStarBorder(button: HTMLButtonElement, motionButton: HTMLButt
 
   function animate(now: number): void {
     frame = 0;
-    // Appliquer la préférence dès la prochaine image, même si son événement est retardé.
-    if (!canAnimate()) {
-      sync();
-      return;
-    }
     const elapsed = previous ? Math.min((now - previous) / 1000, 0.05) : 0;
     previous = now;
-    phase = (phase + elapsed * perimeter * (1 / DURATION + (lap > 0 ? 1 / 0.9 : 0))) % perimeter;
+    // Le contour reste automatique ; le mode réduit ralentit la rotation et évite les accélérations.
+    const duration = motion.matches ? DURATION * 2 : DURATION;
+    phase = (phase + elapsed * perimeter * (1 / duration + (!motion.matches && lap > 0 ? 1 / 0.9 : 0))) % perimeter;
     lap = Math.max(0, lap - elapsed);
     flash = Math.max(0, flash - elapsed * 4);
     draw();
-    if (!disposed && canAnimate() && !document.hidden) frame = requestAnimationFrame(animate);
+    if (!disposed && !document.hidden) frame = requestAnimationFrame(animate);
   }
 
   function sync(): void {
     cancelAnimationFrame(frame);
     frame = 0;
     previous = 0;
-    button.dataset.starMotion = canAnimate() ? "animated" : "static";
-    motionButton.hidden = !motion.matches;
-    motionButton.textContent = optedIn ? "Arrêter le contour animé" : "Animer le contour du bouton";
-    motionButton.setAttribute("aria-pressed", String(optedIn));
+    button.dataset.starMotion = "animated";
     draw();
-    if (!disposed && canAnimate() && !document.hidden) frame = requestAnimationFrame(animate);
+    if (!disposed && !document.hidden) frame = requestAnimationFrame(animate);
   }
 
   function measure(): void {
@@ -135,22 +126,16 @@ export function initStarBorder(button: HTMLButtonElement, motionButton: HTMLButt
   }
 
   function engage(): void {
-    if (canAnimate()) {
-      lap = 0.9;
-      if (!frame) sync();
-    }
+    if (!motion.matches) lap = 0.9;
+    if (!frame) sync();
   }
-  function pulse(): void { if (canAnimate()) flash = 1; }
-  function toggleMotion(): void { optedIn = !optedIn; sync(); }
-  // Seul un choix explicite permet d'animer malgré la préférence système.
-  function onMotionChange(): void { optedIn = false; sync(); }
+  function pulse(): void { if (!motion.matches) flash = 1; }
   const observer = new ResizeObserver(measure);
   observer.observe(button);
   button.addEventListener("pointerenter", engage);
   button.addEventListener("focus", engage);
   button.addEventListener("pointerdown", pulse);
-  motionButton.addEventListener("click", toggleMotion);
-  motion.addEventListener("change", onMotionChange);
+  motion.addEventListener("change", sync);
   document.addEventListener("visibilitychange", sync);
   window.addEventListener("pageshow", sync);
   window.addEventListener("focus", sync);
@@ -160,8 +145,7 @@ export function initStarBorder(button: HTMLButtonElement, motionButton: HTMLButt
     disposed = true;
     cancelAnimationFrame(frame);
     observer.disconnect();
-    motionButton.removeEventListener("click", toggleMotion);
-    motion.removeEventListener("change", onMotionChange);
+    motion.removeEventListener("change", sync);
     document.removeEventListener("visibilitychange", sync);
     window.removeEventListener("pageshow", sync);
     window.removeEventListener("focus", sync);

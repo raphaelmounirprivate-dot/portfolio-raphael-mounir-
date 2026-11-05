@@ -1,47 +1,31 @@
 import { test, expect } from "@playwright/test";
 
-test("la bordure étoilée anime le bouton et suit la préférence de mouvement", async ({ page }, testInfo) => {
-  const errors: string[] = [];
-  page.on("pageerror", error => errors.push(error.message));
-  await page.emulateMedia({ reducedMotion: "no-preference" });
-  await page.goto("/");
-  const button = page.getByRole("button", { name: "Entrer dans le site" });
-  const border = button.locator("canvas");
-  await expect(button).toHaveAttribute("data-star-motion", "animated");
-  const first = await border.evaluate((canvas: HTMLCanvasElement) => canvas.toDataURL());
-  await expect.poll(() => border.evaluate((canvas: HTMLCanvasElement) => canvas.toDataURL())).not.toBe(first);
-  await page.evaluate(() => document.fonts.ready);
-  await page.locator(".welcome-image").evaluate((image: HTMLImageElement) => image.decode());
-  await page.screenshot({ path: `.local/star-border-${testInfo.project.name}.png` });
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await expect(button).toHaveAttribute("data-star-motion", "static");
-  // Plusieurs raf du navigateur vérifient que la bordure reste vraiment immobile.
-  const snapshots = await border.evaluate(async (canvas: HTMLCanvasElement) => {
-    const before = canvas.toDataURL();
-    for (let index = 0; index < 5; index++) await new Promise(requestAnimationFrame);
-    return [before, canvas.toDataURL()];
+for (const reducedMotion of ["reduce", "no-preference"] as const) {
+  test(`la bordure étoilée démarre sans clic : ${reducedMotion}`, async ({ page }, testInfo) => {
+    const errors: string[] = [];
+    page.on("pageerror", error => errors.push(error.message));
+    await page.emulateMedia({ reducedMotion });
+    await page.goto("/");
+    const button = page.getByRole("button", { name: "Entrer dans le site" });
+    const border = button.locator("canvas");
+    await expect(button).toHaveAttribute("data-star-motion", "animated");
+    const first = await border.evaluate((canvas: HTMLCanvasElement) => canvas.toDataURL());
+    await expect.poll(() => border.evaluate((canvas: HTMLCanvasElement) => canvas.toDataURL())).not.toBe(first);
+    await page.evaluate(() => document.fonts.ready);
+    await page.locator(".welcome-image").evaluate((image: HTMLImageElement) => image.decode());
+    await page.screenshot({ path: `.local/star-border-${testInfo.project.name}.png` });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await expect(page.locator(".welcome-motion")).toHaveCount(0);
+    await page.evaluate(() => dispatchEvent(new PageTransitionEvent("pageshow", { persisted: true })));
+    const restored = await border.evaluate((canvas: HTMLCanvasElement) => canvas.toDataURL());
+    await expect.poll(() => border.evaluate((canvas: HTMLCanvasElement) => canvas.toDataURL())).not.toBe(restored);
+    await button.focus();
+    await page.keyboard.press("Enter");
+    await expect(page.locator(".welcome, .star-border-light")).toHaveCount(0);
+    await expect(page.locator("#depart")).toBeFocused();
+    expect(errors).toEqual([]);
   });
-  expect(snapshots[0]).toBe(snapshots[1]);
-  const motionControl = page.getByRole("button", { name: "Animer le contour du bouton" });
-  await expect(motionControl).toBeVisible();
-  await motionControl.click();
-  await expect(button).toHaveAttribute("data-star-motion", "animated");
-  await expect.poll(() => border.evaluate((canvas: HTMLCanvasElement) => canvas.toDataURL())).not.toBe(snapshots[1]);
-  await page.getByRole("button", { name: "Arrêter le contour animé" }).click();
-  await expect(button).toHaveAttribute("data-star-motion", "static");
-  await page.emulateMedia({ reducedMotion: "no-preference" });
-  await expect(button).toHaveAttribute("data-star-motion", "animated");
-  await expect(motionControl).toBeHidden();
-  await page.evaluate(() => dispatchEvent(new PageTransitionEvent("pageshow", { persisted: true })));
-  const restored = await border.evaluate((canvas: HTMLCanvasElement) => canvas.toDataURL());
-  await expect.poll(() => border.evaluate((canvas: HTMLCanvasElement) => canvas.toDataURL())).not.toBe(restored);
-  await button.focus();
-  await page.keyboard.press("Enter");
-  await expect(page.locator(".welcome, .star-border-light")).toHaveCount(0);
-  await expect(page.locator("#depart")).toBeFocused();
-  expect(errors).toEqual([]);
-});
+}
 
 for (const failure of ["sans-webgl", "sans-textures-flottantes", "mouvements-réduits"]) {
   test(`le curseur reste visible : ${failure}`, async ({ page }, testInfo) => {

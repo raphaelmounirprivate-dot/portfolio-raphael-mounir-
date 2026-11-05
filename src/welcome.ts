@@ -17,7 +17,6 @@ export function initWelcome(): void {
     <div class="welcome-content">
       <h1 id="welcome-title">Un besoin,<br>Des solutions.</h1>
       <button class="welcome-enter" type="button">Entrer dans le site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
-      <button class="welcome-motion" type="button" aria-pressed="false" hidden>Animer le contour du bouton</button>
     </div>
     <p class="welcome-hint">Déplacez la souris. Suivez la lumière.</p>`;
   app.inert = true;
@@ -27,7 +26,7 @@ export function initWelcome(): void {
   document.body.append(welcome);
   const dispose = initWelcomeCursor(welcome, welcome.querySelector("canvas")!);
   const enterButton = welcome.querySelector<HTMLButtonElement>(".welcome-enter")!;
-  const disposeBorder = initStarBorder(enterButton, welcome.querySelector<HTMLButtonElement>(".welcome-motion")!);
+  const disposeBorder = initStarBorder(enterButton);
   const enter = (): void => {
     dispose?.();
     disposeBorder();
