@@ -8,7 +8,7 @@ function mount() {
   mounted = true;
   root.innerHTML = `<h3 class="tcv-title">Mon parcours</h3>
     <div class="tcv-stage"><button class="tcv-planet" type="button" aria-label="Découvrir mon CV" aria-haspopup="dialog"><span class="tcv-fallback" aria-hidden="true"></span></button><span class="tcv-ring" aria-hidden="true"></span></div>
-    <p class="tcv-hint">Cliquez sur la planète pour découvrir mon CV</p><p class="tcv-help">Faites-la tourner à la souris ou au doigt.</p>
+    <p class="tcv-help">Faites-la tourner à la souris ou au doigt.</p>
     <dialog class="tcv-dialog" aria-labelledby="tcv-dialog-title"><div class="tcv-toolbar"><h3 id="tcv-dialog-title">Le CV de Raphaël Mounir</h3><div class="tcv-actions"><a class="tcv-download" href="${new URL('documents/CV_Raphael_Mounir.pdf', base)}" download="CV_Raphael_Mounir.pdf">Télécharger mon CV (PDF)</a><button class="tcv-close" type="button">Fermer</button></div></div><img class="tcv-preview" src="${new URL('documents/cv-raphael-apercu.png', base)}" loading="lazy" width="990" height="1400" alt="CV de Raphaël Mounir : technicien télécom, réseaux et fibre. Le document complet est également téléchargeable en PDF." /></dialog>`;
   const button = root.querySelector('.tcv-planet');
   const stage = root.querySelector('.tcv-stage');

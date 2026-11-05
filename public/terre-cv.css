@@ -9,7 +9,6 @@
 #terre-cv .tcv-planet[data-ready] .tcv-fallback { display: none; }
 #terre-cv .tcv-ring { position: absolute; inset: 15%; border: 1px solid #7ce5f190; border-radius: 50%; pointer-events: none; animation: tcv-ring 2s ease-out infinite; animation-play-state: paused; }
 #terre-cv[data-visible="true"] .tcv-ring { animation-play-state: running; }
-#terre-cv .tcv-hint { font-size: 14px; line-height: 1.6; margin: 12px auto 0; max-width: 28ch; }
 #terre-cv .tcv-help { font-size: 12px; color: var(--muted, #a7b4c8); margin: 8px 0; }
 #terre-cv .tcv-ripple { position: absolute; width: 20px; height: 20px; margin: -10px; border: 2px solid #b6f6ff; border-radius: 50%; pointer-events: none; animation: tcv-ripple 650ms ease-out forwards; }
 #terre-cv .tcv-dialog { color: #f1f3f6; background: #101c2e; border: 1px solid #41516a; border-radius: 14px; padding: 0; width: min(880px, 94vw); max-height: 92dvh; text-align: left; }
