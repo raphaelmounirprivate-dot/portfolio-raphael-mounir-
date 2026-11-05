@@ -23,6 +23,9 @@ body.welcome-open { overflow: hidden; }
 .welcome-enter:hover { background: #101c2e; }
 .welcome-enter:hover svg { transform: translateX(4px); }
 .welcome-enter:focus-visible { outline: 3px solid #fff; outline-offset: 5px; }
+.welcome-motion { display: block; min-height: 44px; margin-top: 12px; padding: 8px 0; border: 0; background: transparent; color: #f1f3f6; font: 400 14px Outfit, sans-serif; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+.welcome-motion[hidden] { display: none; }
+.welcome-motion:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
 .welcome-hint { position: absolute; bottom: max(24px, env(safe-area-inset-bottom)); left: clamp(24px, 6vw, 96px); margin: 0; font-size: 14px; color: #e0e9f4; }
 @media (max-width: 600px) {
   .welcome-image { object-position: 62% center; }

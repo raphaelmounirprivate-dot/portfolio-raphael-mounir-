@@ -5,7 +5,7 @@ const TAU = Math.PI * 2;
 
 interface Point { x: number; y: number }
 
-export function initStarBorder(button: HTMLButtonElement): () => void {
+export function initStarBorder(button: HTMLButtonElement, motionButton: HTMLButtonElement): () => void {
   const canvas = document.createElement("canvas");
   canvas.className = "star-border-light";
   canvas.setAttribute("aria-hidden", "true");
@@ -27,6 +27,9 @@ export function initStarBorder(button: HTMLButtonElement): () => void {
   let previous = 0;
   let frame = 0;
   let disposed = false;
+  let optedIn = false;
+
+  function canAnimate(): boolean { return !motion.matches || optedIn; }
 
   // Les droites et quarts de cercle gardent une vitesse uniforme sur tout le contour.
   function pointAt(distance: number): Point {
@@ -95,7 +98,7 @@ export function initStarBorder(button: HTMLButtonElement): () => void {
   function animate(now: number): void {
     frame = 0;
     // Appliquer la préférence dès la prochaine image, même si son événement est retardé.
-    if (motion.matches) {
+    if (!canAnimate()) {
       sync();
       return;
     }
@@ -105,16 +108,19 @@ export function initStarBorder(button: HTMLButtonElement): () => void {
     lap = Math.max(0, lap - elapsed);
     flash = Math.max(0, flash - elapsed * 4);
     draw();
-    if (!disposed && !motion.matches && !document.hidden) frame = requestAnimationFrame(animate);
+    if (!disposed && canAnimate() && !document.hidden) frame = requestAnimationFrame(animate);
   }
 
   function sync(): void {
     cancelAnimationFrame(frame);
     frame = 0;
     previous = 0;
-    button.dataset.starMotion = motion.matches ? "static" : "animated";
+    button.dataset.starMotion = canAnimate() ? "animated" : "static";
+    motionButton.hidden = !motion.matches;
+    motionButton.textContent = optedIn ? "Arrêter le contour animé" : "Animer le contour du bouton";
+    motionButton.setAttribute("aria-pressed", String(optedIn));
     draw();
-    if (!disposed && !motion.matches && !document.hidden) frame = requestAnimationFrame(animate);
+    if (!disposed && canAnimate() && !document.hidden) frame = requestAnimationFrame(animate);
   }
 
   function measure(): void {
@@ -128,23 +134,37 @@ export function initStarBorder(button: HTMLButtonElement): () => void {
     sync();
   }
 
-  function engage(): void { if (!motion.matches) lap = 0.9; }
-  function pulse(): void { if (!motion.matches) flash = 1; }
+  function engage(): void {
+    if (canAnimate()) {
+      lap = 0.9;
+      if (!frame) sync();
+    }
+  }
+  function pulse(): void { if (canAnimate()) flash = 1; }
+  function toggleMotion(): void { optedIn = !optedIn; sync(); }
+  // Seul un choix explicite permet d'animer malgré la préférence système.
+  function onMotionChange(): void { optedIn = false; sync(); }
   const observer = new ResizeObserver(measure);
   observer.observe(button);
   button.addEventListener("pointerenter", engage);
   button.addEventListener("focus", engage);
   button.addEventListener("pointerdown", pulse);
-  motion.addEventListener("change", sync);
+  motionButton.addEventListener("click", toggleMotion);
+  motion.addEventListener("change", onMotionChange);
   document.addEventListener("visibilitychange", sync);
+  window.addEventListener("pageshow", sync);
+  window.addEventListener("focus", sync);
   measure();
 
   return () => {
     disposed = true;
     cancelAnimationFrame(frame);
     observer.disconnect();
-    motion.removeEventListener("change", sync);
+    motionButton.removeEventListener("click", toggleMotion);
+    motion.removeEventListener("change", onMotionChange);
     document.removeEventListener("visibilitychange", sync);
+    window.removeEventListener("pageshow", sync);
+    window.removeEventListener("focus", sync);
     button.removeEventListener("pointerenter", engage);
     button.removeEventListener("focus", engage);
     button.removeEventListener("pointerdown", pulse);
