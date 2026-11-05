@@ -1,5 +1,21 @@
 import { test, expect } from "@playwright/test";
 
+for (const reducedMotion of ["reduce", "no-preference"] as const) {
+  test(`la vague démarre dès son insertion dans le DOM sans initialisation JS : ${reducedMotion}`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion });
+    await page.route("**/src/animations.ts", route => route.fulfill({
+      contentType: "application/javascript",
+      body: "export function initAnimations() {}",
+    }));
+    await page.goto("/#depart");
+    await expect(page.locator("html")).toHaveAttribute("data-wave-motion", "on");
+    await expect(page.getByRole("button", { name: "Mettre la vague en pause", exact: true })).toHaveAttribute("aria-pressed", "true");
+    const signal = page.locator(".signal").first();
+    const offset = await signal.evaluate(el => getComputedStyle(el).strokeDashoffset);
+    await expect.poll(() => signal.evaluate(el => getComputedStyle(el).strokeDashoffset)).not.toBe(offset);
+  });
+}
+
 test("chaque fibre porte une vague avec un départ et une arrivée décalés", async ({ page }, testInfo) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/#depart");
