@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test("les six escales affichent tout leur contenu sans cadre défilant", async ({ page }, testInfo) => {
+test("les escales affichent tout leur contenu sans cadre défilant", async ({ page }, testInfo) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/#depart");
   await page.evaluate(() => document.fonts.ready);
@@ -45,7 +45,7 @@ test("les six escales affichent tout leur contenu sans cadre défilant", async (
   await page.locator(".real-captures > summary").click();
   expect(await scrollers()).toEqual([]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  for (const kind of ["sport", "simulation", "telecom", "budget", "math", "declic"]) {
+  for (const kind of ["sport", "simulation", "telecom", "budget", "math", "declic", "chess"]) {
     await page.locator(`[data-demo="${kind}"]`).screenshot({path: `.local/fit-${testInfo.project.name}-${kind}.png`});
   }
 });

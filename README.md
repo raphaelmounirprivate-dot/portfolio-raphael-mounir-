@@ -2,7 +2,7 @@
 
 Portfolio de Raphaël Mounir. Migration Vercel préparée pour `un-besoin-des-solutions.vercel.app` ; configuration et état dans [docs/migration-vercel.md](docs/migration-vercel.md). L’adresse sera confirmée après attribution par Vercel.
 
-Un portfolio français qui suit un signal dans la fibre à travers **six univers interactifs** : Mon Coach Sport, Pandemic Horizon, Télécom & Réseau, Mon App (Budget Belgique), Math et Déclic Ados. Coif’heure est exclu à la demande de Raphaël. Chaque escale se teste sur place, sans renvoi vers GitHub.
+Un portfolio français qui suit un signal dans la fibre à travers **sept univers interactifs** : Mon Coach Sport, Pandemic Horizon, Télécom & Réseau, Mon App (Budget Belgique), Math, Déclic Ados et Échec et Mat. Coif’heure est exclu à la demande de Raphaël. Chaque escale se teste sur place, sans renvoi vers GitHub. Échec et Mat charge l’application complète hébergée sur son propre site.
 
 Les petites démos sont adaptées des fonctions et exercices documentés dans les projets. Les séries et le budget utilisent des exemples fictifs et ne sauvegardent rien. Pandemic Horizon charge au clic le véritable jeu Godot 0.26 dans une adaptation Web expérimentale : 24 régions, agents, évolutions, transports, crises, décisions et tutoriel. Les sauvegardes du jeu restent locales au navigateur. Les exercices Math et Déclic et le diagnostic PoE conservent leurs corrections expliquées. Les captures réelles du sport restent disponibles dans un volet sous sa démo.
 

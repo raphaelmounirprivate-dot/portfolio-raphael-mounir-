@@ -152,4 +152,20 @@ export const projects: Project[] = [
     accentColor: "#df86ca",
     status: "Français · participe passé · missions pédagogiques",
   },
+  {
+    id: "echec-et-mat",
+    title: "Échec et Mat",
+    type: "Site web",
+    universe: "La stratégie",
+    tagline: "Apprendre les échecs, un coup à la fois.",
+    summary:
+      "Une académie d’échecs en français avec des leçons, des ouvertures, des problèmes tactiques et des parties contre des bots.",
+    story:
+      "L’échiquier propose une vue 3D et une vue 2D. Après une partie, le bilan permet de revoir les coups. Le site accepte aussi l’import et l’export au format PGN.",
+    technologies: ["JavaScript", "Three.js", "chess.js", "PWA"],
+    screenshots: [],
+    demo: "chess",
+    accentColor: "#bef578",
+    status: "Académie d’échecs · application web",
+  },
 ];

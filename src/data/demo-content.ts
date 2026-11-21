@@ -1,5 +1,5 @@
 export type DemoKind =
-  "sport" | "simulation" | "telecom" | "budget" | "math" | "declic";
+  "sport" | "simulation" | "telecom" | "budget" | "math" | "declic" | "chess";
 
 interface ExerciseGuide {
   image: string;
@@ -157,5 +157,11 @@ export const demoLabels: Record<
     action: "Jouer une mission",
     preview: "Être, avoir et les petits pièges",
     note: "Un chapitre introductif et trois phrases issues de Déclic Ados. Aucun résultat scolaire enregistré.",
+  },
+  chess: {
+    title: "L’académie d’échecs",
+    action: "Découvrir l’académie",
+    preview: "Leçons, tactique et parties contre les bots",
+    note: "Application originale hébergée sur son propre site. Le stockage de la progression peut dépendre des réglages de votre navigateur.",
   },
 };

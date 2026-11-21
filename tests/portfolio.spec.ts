@@ -10,7 +10,7 @@ test("le voyage et les ressources se chargent sans erreur", async ({
   });
   await page.goto("/#depart");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-  await expect(page.locator("[data-destination]")).toHaveCount(6);
+  await expect(page.locator("[data-destination]")).toHaveCount(7);
   await page.locator(".real-captures > summary").click();
   await page.locator("#mon-coach-sport").scrollIntoViewIfNeeded();
   await expect(page.locator(".phone img")).toBeVisible();
@@ -100,7 +100,7 @@ test("vue d’ensemble, liens directs et retour au focus", async ({ page }) => {
   const opener = page.getByRole("button", { name: "Vue d’ensemble" });
   await opener.click();
   await expect(page.locator("#overview")).toBeFocused();
-  await expect(page.locator("[data-overview-link]")).toHaveCount(6);
+  await expect(page.locator("[data-overview-link]")).toHaveCount(7);
   await page.getByRole("button", { name: "Revenir au voyage" }).click();
   await expect(opener).toBeFocused();
   await opener.click();

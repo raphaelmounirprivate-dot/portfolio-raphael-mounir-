@@ -76,8 +76,8 @@ try {
     await page.locator('[data-map="pandemic-horizon"]').click();
     if (!page.url().endsWith("#pandemic-horizon")) throw Error("anchor");
 
-    if ((await page.locator("[data-demo]").count()) !== 6)
-      throw Error("six demos");
+    if ((await page.locator("[data-demo]").count()) !== 7)
+      throw Error("sept démos");
     if ((await page.locator('a[href*="github.com"]').count()) !== 0)
       throw Error("github link");
     const budget = page.locator('[data-demo="budget"]');

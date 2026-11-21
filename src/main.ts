@@ -27,8 +27,10 @@ initLearningChapters();
 initCisco();
 
 import { initHorizon } from "./horizon-demo";
+import { initChess } from "./chess-demo";
 import "./horizon.css";
 initHorizon();
+initChess();
 
 import "./viewport-journey.css";
 import { initWelcome } from "./welcome";
