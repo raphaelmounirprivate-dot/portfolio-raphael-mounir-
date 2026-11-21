@@ -2,6 +2,7 @@ const chessUrl = "https://echec-et-mat.vercel.app/";
 
 export function renderChess(): string {
   return `<div class="chess-preview">
+    <img src="${import.meta.env.BASE_URL}images/echec-et-mat.jpg" alt="Échiquier 3D du jeu Échec et Mat avec ses pièces claires et foncées" width="699" height="398" loading="lazy" decoding="async" />
     <p>Suivez une leçon, résolvez un problème tactique ou jouez une partie contre un bot.</p>
     <button class="demo-primary" type="button" data-chess-launch>Jouer à Échec et Mat</button>
     <a href="${chessUrl}" target="_blank" rel="noopener">Ouvrir le site dans un nouvel onglet</a>
