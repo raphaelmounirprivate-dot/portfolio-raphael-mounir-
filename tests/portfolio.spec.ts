@@ -10,7 +10,7 @@ test("le voyage et les ressources se chargent sans erreur", async ({
   });
   await page.goto("/#depart");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-  const order = ["echec-et-mat", "telecom", "pandemic-horizon", "math", "mon-coach-sport", "mon-app", "declic-ados"];
+  const order = ["pulse-music", "echec-et-mat", "telecom", "pandemic-horizon", "math", "mon-coach-sport", "mon-app", "declic-ados"];
   expect(await page.locator("[data-destination]").evaluateAll(sections => sections.map(section => section.id))).toEqual(order);
   expect(await page.locator("[data-map]").evaluateAll(links => links.map(link => link.getAttribute("data-map")))).toEqual(["depart", ...order, "contact"]);
   expect(await page.locator("[data-overview-link]").evaluateAll(links => links.map(link => link.getAttribute("href")))).toEqual(order.map(id => `#${id}`));
@@ -98,7 +98,7 @@ test("vue d’ensemble, liens directs et retour au focus", async ({ page }) => {
   const opener = page.getByRole("button", { name: "Vue d’ensemble" });
   await opener.click();
   await expect(page.locator("#overview")).toBeFocused();
-  await expect(page.locator("[data-overview-link]")).toHaveCount(7);
+  await expect(page.locator("[data-overview-link]")).toHaveCount(8);
   await page.getByRole("button", { name: "Revenir au voyage" }).click();
   await expect(opener).toBeFocused();
   await opener.click();

@@ -156,6 +156,7 @@ test("les démos restent lisibles et utilisables sur chaque format", async ({
     "math",
     "declic",
     "chess",
+    "music",
   ]) {
     const demo = page.locator(`[data-demo="${kind}"]`);
     await demo.scrollIntoViewIfNeeded();

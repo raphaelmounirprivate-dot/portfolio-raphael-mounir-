@@ -1,3 +1,4 @@
+import { initMusic } from "./music-demo";
 import {
   type DemoKind,
   type QuizQuestion,
@@ -287,6 +288,7 @@ export function initDemos(): void {
   document.querySelectorAll<HTMLElement>("[data-demo]").forEach((root) => {
     const kind = root.dataset.demo as DemoKind;
     if (kind === "sport") initSport(root);
+    else if (kind === "music") initMusic(root);
     else if (kind === "simulation" || kind === "chess") return;
     else if (kind === "budget") initBudget(root);
     else

@@ -1,5 +1,5 @@
 export type DemoKind =
-  "sport" | "simulation" | "telecom" | "budget" | "math" | "declic" | "chess";
+  "sport" | "simulation" | "telecom" | "budget" | "math" | "declic" | "chess" | "music";
 
 interface ExerciseGuide {
   image: string;
@@ -163,5 +163,11 @@ export const demoLabels: Record<
     action: "Découvrir l’académie",
     preview: "Leçons, tactique et parties contre les bots",
     note: "Application originale hébergée sur son propre site. Le stockage de la progression peut dépendre des réglages de votre navigateur.",
+  },
+  music: {
+    title: "Le lecteur audio",
+    action: "Essayer le lecteur",
+    preview: "Écouter un extrait ou choisir un fichier audio",
+    note: "Démo web de Pulse Music. Le fichier choisi est lu dans votre navigateur, sans envoi ni sauvegarde.",
   },
 };

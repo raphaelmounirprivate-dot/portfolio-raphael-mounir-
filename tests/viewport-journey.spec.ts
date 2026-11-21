@@ -45,7 +45,7 @@ test("les escales affichent tout leur contenu sans cadre défilant", async ({ pa
   await page.locator(".real-captures > summary").click();
   expect(await scrollers()).toEqual([]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  for (const kind of ["sport", "simulation", "telecom", "budget", "math", "declic", "chess"]) {
+  for (const kind of ["sport", "simulation", "telecom", "budget", "math", "declic", "chess", "music"]) {
     await page.locator(`[data-demo="${kind}"]`).screenshot({path: `.local/fit-${testInfo.project.name}-${kind}.png`});
   }
 });

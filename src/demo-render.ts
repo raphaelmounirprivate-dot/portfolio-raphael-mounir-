@@ -4,6 +4,7 @@ import { escape } from "./html";
 import { learningWelcome, learningMissions } from "./learning-world";
 import { renderHorizon } from "./horizon-demo";
 import { renderChess } from "./chess-demo";
+import { renderMusic } from "./music-demo";
 import { renderCisco } from "./cisco-demo";
 import { learningModes, learningChapter } from "./learning-chapters";
 
@@ -51,7 +52,9 @@ function quiz(kind: DemoKind): string {
 export function renderDemo(kind: DemoKind, id: string): string {
   const label = demoLabels[kind];
   const body =
-    kind === "chess"
+    kind === "music"
+      ? renderMusic()
+      : kind === "chess"
       ? renderChess()
       : kind === "sport"
       ? sport()

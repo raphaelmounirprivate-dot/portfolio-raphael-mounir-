@@ -654,3 +654,42 @@
     min-height: calc(100svh - 148px);
   }
 }
+
+.music-player {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+}
+
+.music-disc {
+  width: clamp(3.5rem, 9vw, 7rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, #18142a 4%, #cda3f5 5% 15%, transparent 16%),
+    repeating-radial-gradient(circle, #211631 0 3px, #382850 4px 5px);
+}
+
+.music-controls {
+  display: grid;
+  gap: 0.6rem;
+  justify-items: start;
+}
+
+.music-controls audio,
+.music-controls input {
+  width: 100%;
+  min-width: 0;
+}
+
+.music-title {
+  margin: 0;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 480px) {
+  .music-player { grid-template-columns: minmax(0, 1fr); }
+  .music-disc { display: none; }
+}

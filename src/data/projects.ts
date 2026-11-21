@@ -28,6 +28,22 @@ const asset = (name: string): string =>
 
 export const projects: Project[] = [
   {
+    id: "pulse-music",
+    title: "Pulse Music",
+    type: "Application Android",
+    universe: "Le son",
+    tagline: "Votre musique, à portée d’écoute.",
+    summary:
+      "Un lecteur Android hors ligne pour écouter et organiser les fichiers musicaux du téléphone, sans compte ni abonnement.",
+    story:
+      "La collection présente les albums sous forme de vinyles. On peut rechercher et trier les titres, créer des playlists et ajuster les basses, les médiums et les aigus.",
+    technologies: ["Kotlin", "Jetpack Compose", "Media3", "Room"],
+    screenshots: [],
+    demo: "music",
+    accentColor: "#cd9cf7",
+    status: "Lecteur audio · Android · hors ligne",
+  },
+  {
     id: "echec-et-mat",
     title: "Échec et Mat",
     type: "Site web",
