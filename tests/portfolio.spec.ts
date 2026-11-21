@@ -10,7 +10,10 @@ test("le voyage et les ressources se chargent sans erreur", async ({
   });
   await page.goto("/#depart");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-  await expect(page.locator("[data-destination]")).toHaveCount(7);
+  const order = ["echec-et-mat", "telecom", "pandemic-horizon", "math", "mon-coach-sport", "mon-app", "declic-ados"];
+  expect(await page.locator("[data-destination]").evaluateAll(sections => sections.map(section => section.id))).toEqual(order);
+  expect(await page.locator("[data-map]").evaluateAll(links => links.map(link => link.getAttribute("data-map")))).toEqual(["depart", ...order, "contact"]);
+  expect(await page.locator("[data-overview-link]").evaluateAll(links => links.map(link => link.getAttribute("href")))).toEqual(order.map(id => `#${id}`));
   await page.locator(".real-captures > summary").click();
   await page.locator("#mon-coach-sport").scrollIntoViewIfNeeded();
   await expect(page.locator(".phone img")).toBeVisible();
@@ -25,12 +28,7 @@ test("le voyage et les ressources se chargent sans erreur", async ({
     .toBe(true);
   for (const id of [
     "depart",
-    "mon-coach-sport",
-    "pandemic-horizon",
-    "telecom",
-    "mon-app",
-    "math",
-    "declic-ados",
+    ...order,
     "a-propos",
     "contact",
   ]) {
