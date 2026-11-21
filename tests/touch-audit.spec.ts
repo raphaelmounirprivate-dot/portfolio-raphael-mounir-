@@ -28,6 +28,9 @@ test('tactile : planète, défilement et commandes du CV accessibles', async ({ 
   await planet.tap();
   const dialog = page.getByRole('dialog');
   await expect(dialog).toBeVisible();
+  await dialog.evaluate(async el => {
+    await Promise.all(el.getAnimations().map(animation => animation.finished));
+  });
   for (const control of [dialog.getByRole('button', { name: 'Fermer', exact: true }), dialog.getByRole('link')]) {
     const box = (await control.boundingBox())!;
     expect(box.height).toBeGreaterThanOrEqual(44);
