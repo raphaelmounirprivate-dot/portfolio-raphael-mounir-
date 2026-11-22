@@ -36,7 +36,7 @@ export const projects: Project[] = [
     summary:
       "Un lecteur Android hors ligne pour écouter et organiser les fichiers musicaux du téléphone, sans compte ni abonnement.",
     story:
-      "La collection présente les albums sous forme de vinyles. On peut rechercher et trier les titres, créer des playlists et ajuster les basses, les médiums et les aigus.",
+      "La collection présente les albums sous forme de vinyles. On peut trier les titres, regrouper les doublons sans effacer les fichiers, créer des playlists et régler l’égaliseur. Le lecteur affiche la progression autour du vinyle et permet de boucler le titre ou la file.",
     technologies: ["Kotlin", "Jetpack Compose", "Media3", "Room"],
     screenshots: [],
     demo: "music",

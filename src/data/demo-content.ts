@@ -167,7 +167,7 @@ export const demoLabels: Record<
   music: {
     title: "Le lecteur audio",
     action: "Essayer le lecteur",
-    preview: "Écouter un extrait ou choisir un fichier audio",
-    note: "Démo web de Pulse Music. Le fichier choisi est lu dans votre navigateur, sans envoi ni sauvegarde.",
+    preview: "Écouter le morceau de démo ou choisir vos propres fichiers",
+    note: "Démo web de Pulse Music. Vos fichiers sont lus dans votre navigateur, sans envoi ni sauvegarde.",
   },
 };

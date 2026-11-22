@@ -56,6 +56,6 @@ Références pédagogiques consultées : [Éduscol, puissances au cycle 4](https
 
 Présentation vérifiée dans `PROJET.md` de la copie locale du projet à la révision `a4755d4`, également déployée sur Vercel lors de la vérification. Le portfolio ouvre [l’académie publique](https://echec-et-mat.vercel.app/) dans une fenêtre intégrée chargée à la demande. L’accès au parcours de leçons a été vérifié sur ordinateur et téléphone. La progression relève du site d’origine et des réglages de stockage du navigateur.
 
-## Pulse Music — 21 novembre 2026
+## Pulse Music — 22 novembre 2026
 
-Présentation vérifiée dans le README de la copie locale de `Lecteur-Audio-` à la révision `6a19538`. Le lecteur web du portfolio utilise les commandes audio du navigateur. L’extrait synthétique a été créé pour le portfolio. Les fichiers choisis sont lus localement.
+Présentation vérifiée dans le README de la copie locale de `Lecteur-Audio-` à la révision `a398786`. La démo web adapte le vinyle animé, sa progression circulaire et la boucle du titre. La recherche dans la position du morceau passe par les commandes audio du navigateur. Le morceau de démo provient du fichier `sub_clair-social-media-634730.mp3` fourni par Raphaël. Les fichiers choisis sont lus localement.
