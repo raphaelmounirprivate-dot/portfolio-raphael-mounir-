@@ -58,4 +58,4 @@ Présentation vérifiée dans `PROJET.md` de la copie locale du projet à la ré
 
 ## Pulse Music — 22 novembre 2026
 
-Présentation vérifiée dans le README de la copie locale de `Lecteur-Audio-` à la révision `a398786`. La démo web adapte le vinyle animé, sa progression circulaire et la boucle du titre. La recherche dans la position du morceau passe par les commandes audio du navigateur. Les morceaux de démo proviennent des fichiers fournis par Raphaël, `sub_clair-social-media-634730.mp3` et `wave clear koro.wav`, ce dernier converti en MP3 pour le site. Les fichiers choisis par les visiteurs sont lus localement.
+Présentation vérifiée dans le README de la copie locale de `Lecteur-Audio-` à la révision `a398786`. La démo web adapte le vinyle animé, sa progression circulaire et la boucle du titre. On peut changer la position du morceau en touchant l’anneau ou en utilisant les commandes audio du navigateur. Les morceaux de démo proviennent des fichiers fournis par Raphaël, `sub_clair-social-media-634730.mp3` et `wave clear koro.wav`, ce dernier converti en MP3 pour le site. Les fichiers choisis par les visiteurs sont lus localement.
