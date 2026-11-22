@@ -726,10 +726,9 @@
   background: color-mix(in srgb, #9c6acc 10%, transparent);
 }
 
-.music-queue summary {
-  padding: 0.7rem 0.85rem;
-  min-height: 44px;
-  cursor: pointer;
+.music-queue > p {
+  margin: 0;
+  padding: 0.65rem 0.85rem 0.45rem;
   font-weight: 650;
 }
 

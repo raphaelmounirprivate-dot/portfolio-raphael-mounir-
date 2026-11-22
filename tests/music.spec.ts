@@ -6,16 +6,14 @@ test("Pulse Music lit le MP3 de démo et les morceaux locaux", async ({ page }) 
   const demo = page.locator('[data-demo="music"]');
   const audio = demo.locator("audio");
   const queue = demo.locator(".music-queue");
-  const openQueue = queue.locator("summary");
   const socialMedia = queue.getByRole("button", { name: "Social Media" });
   const wave = queue.getByRole("button", { name: "Wave Clear Koro" });
   const title = demo.locator("[data-music-title]");
   await expect(audio).toHaveAttribute("src", /sub_clair-social-media-634730\.mp3$/);
-  await expect(queue).toHaveJSProperty("open", false);
-  await openQueue.focus();
-  await openQueue.press("Enter");
+  await expect(socialMedia).toBeVisible();
+  await expect(wave).toBeVisible();
   await socialMedia.press("Enter");
-  await expect(openQueue).toBeFocused();
+  await expect(socialMedia).toBeFocused();
   await expect.poll(() => audio.evaluate((player) => player.currentTime)).toBeGreaterThan(0);
   const progress = demo.locator(".music-progress");
   const disc = progress.locator(".music-disc");
@@ -61,19 +59,16 @@ test("Pulse Music lit le MP3 de démo et les morceaux locaux", async ({ page }) 
   await audio.evaluate((player) => player.play());
   await expect.poll(() => audio.evaluate((player) => player.currentTime)).toBeGreaterThan(0);
 
-  await openQueue.click();
   await socialMedia.click();
   await expect(title).toHaveText("Social Media");
   await expect.poll(() => audio.evaluate((player) => player.currentTime)).toBeGreaterThan(0);
   await tracks.selectOption({ label: "Premier.mp3" });
   await expect(title).toHaveText("Premier.mp3");
 
-  await openQueue.click();
   await wave.click();
   await expect(title).toHaveText("Wave Clear Koro");
   await expect(audio).toHaveAttribute("src", /wave-clear-koro\.mp3$/);
-  await expect(queue).toHaveJSProperty("open", false);
-  await openQueue.click();
+  await expect(socialMedia).toBeVisible();
   await expect(wave).toHaveAttribute("aria-current", "true");
   await expect(disc).toHaveAttribute("data-tone", "blue");
   await expect.poll(() => audio.evaluate((player) => player.currentTime)).toBeGreaterThan(0);

@@ -18,8 +18,8 @@ export function renderMusic(): string {
       <label data-music-library hidden>Mes morceaux
         <select id="music-track"></select>
       </label>
-      <details class="music-queue">
-        <summary id="music-queue-title">Morceaux de démo</summary>
+      <div class="music-queue">
+        <p id="music-queue-title">Morceaux de démo</p>
         <ul aria-labelledby="music-queue-title">
           ${samples.map(({ title, tone }, index) => `<li>
             <button type="button" data-music-sample="${index}" aria-current="${index === 0}">
@@ -29,7 +29,7 @@ export function renderMusic(): string {
             </button>
           </li>`).join("")}
         </ul>
-      </details>
+      </div>
       <p data-music-error role="status" hidden></p>
     </div>
   </div>`;
@@ -44,8 +44,6 @@ export function initMusic(demo: HTMLElement): void {
   const library = demo.querySelector<HTMLLabelElement>("[data-music-library]")!;
   const trackSelect = demo.querySelector<HTMLSelectElement>("#music-track")!;
   const sampleButtons = demo.querySelectorAll<HTMLButtonElement>("[data-music-sample]");
-  const queue = demo.querySelector<HTMLDetailsElement>(".music-queue")!;
-  const queueSummary = queue.querySelector("summary")!;
   const title = demo.querySelector<HTMLElement>("[data-music-title]")!;
   const error = demo.querySelector<HTMLElement>("[data-music-error]")!;
   let fileUrl: string | undefined;
@@ -127,8 +125,6 @@ export function initMusic(demo: HTMLElement): void {
       void player.play().catch(() => {
         if (player.error) error.hidden = false;
       });
-      queue.open = false;
-      queueSummary.focus();
     });
   }
 
