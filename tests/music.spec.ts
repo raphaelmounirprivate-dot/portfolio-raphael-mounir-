@@ -41,4 +41,10 @@ test("Pulse Music lit le MP3 de démo et les morceaux locaux", async ({ page }) 
   await expect.poll(() => audio.evaluate((player) => player.currentTime)).toBeGreaterThan(0);
   await tracks.selectOption({ label: "Premier.mp3" });
   await expect(title).toHaveText("Premier.mp3");
+
+  await demo.getByRole("combobox", { name: "Morceau de démo" }).selectOption({ label: "Wave Clear Koro" });
+  await expect(title).toHaveText("Wave Clear Koro");
+  await expect(audio).toHaveAttribute("src", /wave-clear-koro\.mp3$/);
+  await playDemo.click();
+  await expect.poll(() => audio.evaluate((player) => player.currentTime)).toBeGreaterThan(0);
 });
